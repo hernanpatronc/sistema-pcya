@@ -1,0 +1,112 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card" >
+                    <div class="header">
+                        <h4 class="title">Performance de los asociados</h4>
+                        <p class="category">Considerando todos los legajos</p>
+                    </div>
+                    <div class="content">
+                        <div style="height:1000px !important;" id="chartActivity" class="ct-chart"></div>
+                        <div class="footer">
+                            <div class="legend">
+                                <i class="fa fa-circle text-info"></i> Productores Ofr
+                                <i class="fa fa-circle text-danger"></i> Productores Req
+                                <i class="fa fa-circle text-warning"></i> Traders
+                            </div>
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-check"></i> Actualizado hace {{lastUpdated}} minutos
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!--div class="col-md-6">
+                <div class="card" >
+                    <div class="header">
+                        <h4 class="title"></h4>
+                        <p class="category">Considerando todos los legajos</p>
+                    </div>
+                    <div class="content">
+                        <div id="chartHours" class="ct-chart"></div>
+                        <div class="footer">
+                            <div class="legend">
+                                <i class="fa fa-circle text-info"></i> Open
+                                <i class="fa fa-circle text-danger"></i> Click
+                                <i class="fa fa-circle text-warning"></i> Click Second Time
+                            </div>
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-history"></i> Actualizado hace {{getCurrentTime()}} minutos
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div-->
+        </div>
+    
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card" >
+                    <div class="header">
+                        <h4 class="title">Cantidad de propiedades</h4>
+                        <p class="category">Segun el tipo de inmueble</p>
+                    </div>
+                    <div class="content">
+                        <div id="chartPreferences" class="ct-chart"></div>
+                        <div class="footer" >
+                            <div class="legend">
+                                <div *ngFor="let tipo of this.tipos_inmu">
+                                    <i class="fa fa-circle" [ngStyle]="{ 'color' : this.colors[this.tipos_inmu.indexOf(tipo)]}"></i> {{tipo}}
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-clock-o"></i> Actualizado hace {{lastUpdated}} minutos
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--div class="col-md-6">
+                <div class="card" >
+                    <div class="header">
+                        <h4 class="title">Tasks</h4>
+                        <p class="category">Backend development</p>
+                    </div>
+                    <div class="content">
+                        <div class="table-full-width">
+                            <table class="table">
+                                <tbody>
+                                    <tr *ngFor="let task of tasks">
+                                        <td>
+                                                <input type="checkbox" class="checkbox" value="" data-toggle="checkbox" checked="">
+                                        </td>
+                                        <td>{{task}}</td>
+                                        <td class="td-actions text-right">
+                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs" (click)="deleteTask(task)">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="footer">
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-history"></i> Updated 3 minutes ago
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div-->
+        </div>
+    </div>
+</div>

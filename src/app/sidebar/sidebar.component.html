@@ -1,0 +1,18 @@
+    <div class="sidebar-wrapper">
+        <div class="logo">
+            <a href="http://www.creative-tim.com" class="simple-text">
+                <div class="logo-img">
+                    <img src="/assets/img/Logo2.png"/>
+                </div>
+                Patrón Costas y Asoc.
+            </a>
+        </div>
+        <ul class="nav">
+            <li *ngFor="let menuItem of menuItems" style="width:100%;" routerLinkActive="active" class="{{menuItem.class}}">
+                <a  [routerLink]="[menuItem.path]" style="height:40px;">
+                    <i class="{{menuItem.icon}}"></i>
+                    <p>{{menuItem.title}}</p>
+                </a>
+            </li>
+        </ul>
+    </div>

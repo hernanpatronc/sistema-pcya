@@ -1,0 +1,14 @@
+@keyframes test {
+    from  { margin-top:-50px;}
+    to {margin-top: 20px;}
+}
+.notification {
+    position: fixed !important;
+    float: right;
+    /* animation-name: test;
+    animation-duration: 2s; */
+    opacity: 0.0;
+    margin-top: 20px;
+    right: 10px;
+    width: 30%;
+}
