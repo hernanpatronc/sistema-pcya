@@ -11,7 +11,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { SidebarModule } from './sidebar/sidebar.module';
 import { NavbarModule} from './shared/navbar/navbar.module';
 
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { PropiedadesService } from './services/propiedades.service';
 import { FormsModule } from '@angular/forms';
 import { AuthenticationService } from './services/authentication.service';
@@ -31,7 +31,7 @@ import * as $ from 'jquery';
         RouterModule.forRoot([])
     ],
     declarations: [ AppComponent, DashboardComponent ],
-    providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, PropiedadesService, AuthenticationService, AuthGuard, AdminGuard],
+    providers: [{provide: LocationStrategy, useClass: PathLocationStrategy}, PropiedadesService, AuthenticationService, AuthGuard, AdminGuard],
     bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

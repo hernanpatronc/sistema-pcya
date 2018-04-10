@@ -6,12 +6,13 @@ import 'rxjs/add/operator/toPromise';
 import { Statistics } from '../models/estadisticas';
 import { Fields } from '../models/fields';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ip } from '../config';
 
 @Injectable()
 export class PropiedadesService {
     constructor(private http: Http, private router: Router, private activatedRoute: ActivatedRoute) { }
     getProperties(): Promise<Property[]> {
-        return this.http.get("http://localhost:3002/api/propiedades?token=" + localStorage.getItem('token').replace(/"/g, ''))
+        return this.http.get(ip + "/api/propiedades?token=" + localStorage.getItem('token').replace(/"/g, ''))
             .toPromise()
             .then(response => {
                 if (response.json()["success"])
@@ -24,7 +25,7 @@ export class PropiedadesService {
             .catch(this.handleError);
     } // stub
     getStatistics(): Promise<Statistics> {
-        return this.http.get("http://localhost:3002/api/estadisticas?token=" + localStorage.getItem('token').replace(/"/g, ''))
+        return this.http.get(ip + "/api/estadisticas?token=" + localStorage.getItem('token').replace(/"/g, ''))
             .toPromise()
             .then(response => {
                 if (response.json()["success"])
@@ -32,13 +33,14 @@ export class PropiedadesService {
                 else {
                     this.router.navigate(["../login"], { relativeTo: this.activatedRoute });
                     //return this.handleError(response.json()["message"])
+                    throw response.json()
                 }
 
             })
             .catch(this.handleError);
     }
     getProperty(legajo): Promise<Property[]> {
-        return this.http.get("http://localhost:3002/api/propiedades/" + legajo + "?token=" + localStorage.getItem('token').replace(/"/g, ''))
+        return this.http.get(ip + "/api/propiedades/" + legajo + "?token=" + localStorage.getItem('token').replace(/"/g, ''))
             .toPromise()
             .then(response => {
                 if (response.json()["success"])
@@ -52,7 +54,7 @@ export class PropiedadesService {
             .catch(this.handleError);
     }
     getUsers(): Promise<User[]> {
-        return this.http.get("http://localhost:3002/api/user?token=" + localStorage.getItem('token').replace(/"/g, ''))
+        return this.http.get(ip + "/api/user?token=" + localStorage.getItem('token').replace(/"/g, ''))
             .toPromise()
             .then(response => {
                 if (response.json()["success"])
@@ -66,7 +68,7 @@ export class PropiedadesService {
             .catch(this.handleError);
     }
     postUser(user): Promise<boolean> {
-        return this.http.post("http://localhost:3002/api/user/new?token=" + localStorage.getItem('token').replace(/"/g, ''),
+        return this.http.post(ip + "/api/user/new?token=" + localStorage.getItem('token').replace(/"/g, ''),
             {
                 new_user: user,
                 user : localStorage.getItem('currentUser')
@@ -84,7 +86,7 @@ export class PropiedadesService {
             .catch(this.handleError);
     }
     getFields(): Promise<Fields> {
-        return this.http.get("http://localhost:3002/api/fields?token=" + localStorage.getItem('token').replace(/"/g, ''))
+        return this.http.get(ip + "/api/fields?token=" + localStorage.getItem('token').replace(/"/g, ''))
             .toPromise()
             .then(response => {
                 if (response.json()["success"])
@@ -98,7 +100,7 @@ export class PropiedadesService {
             .catch(this.handleError);
     }
     searchPropiedades = (columna : string, busqueda: string) : Promise<Property[]> => {
-        return this.http.get("http://localhost:3002/api/propiedades?columna=" + columna + "&busqueda=" + busqueda + "&token=" + localStorage.getItem('token').replace(/"/g, ''))
+        return this.http.get(ip + "/api/propiedades?columna=" + columna + "&busqueda=" + busqueda + "&token=" + localStorage.getItem('token').replace(/"/g, ''))
             .toPromise()
             .then(response => {
                 if (response.json()["success"])
@@ -112,7 +114,6 @@ export class PropiedadesService {
     }
     private handleError(error: any): Promise<any> {
         //console.error('An error occurred', error); // for demo purposes only
-       
         return Promise.reject(error.message || error);
     }
 }

@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy{
     tipos_inmu = [];
     minutos:Date;
     lastUpdated:number = 0;
-    intervalId : NodeJS.Timer;
+    intervalId;
     ngOnInit() {
         // $.getScript('../../../assets/js/bootstrap-checkbox-radio-switch.js');
         // $.getScript('../../../assets/js/light-bootstrap-dashboard.js');
@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit, OnDestroy{
             this.tipos_inmu = objeto.TIPO_INMU[0];
         });
         this.minutos = new Date();
-        this.intervalId = setInterval(()=>{this.getCurrentTime()}, 1000)
+        this.intervalId = setInterval(()=>{this.getCurrentTime()}, 20000)
     }
     getCurrentTime() {
         var now = new Date();

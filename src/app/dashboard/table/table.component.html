@@ -6,12 +6,13 @@
                     <div class="content">
                         <form>
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-3 col-md-offset-1">
                                     <div class="form-group">
                                         <label>Filtrar por Columna</label>
                                         <select class="form-control" #columna>
-                                            <option value="NOMBRE_INM">Nombre</option>
                                             <option value="LEGAJO">Legajo</option>
+                                            <option value="NOMBRE_INM">Nombre</option>
                                             <option value="TIPO_INMU">Tipo de Inmueble</option>
                                             <option value="OFER_REQUE">Oferente/Requerente</option>
                                             <option value="PAIS">Pais</option>
@@ -19,7 +20,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <!--div class="col-md-3">
                                     <div class="form-group">
                                         <label>Filtrar por valor</label>
                                         <select class="form-control">
@@ -27,8 +28,8 @@
                                             <option value="AL">Alquiler</option>
                                         </select>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
+                                </div-->
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Campo de Búsqueda</label>
                                         <input type="text"  class="form-control" placeholder="Busqueda" #busqueda value="">
@@ -49,8 +50,8 @@
             <div class="col-md-12">
                 <div class="card" >
                     <div class="header">
-                        <h4 class="title">Striped Table with Hover</h4>
-                        <p class="category">Here is a subtitle for this table</p>
+                        <h4 class="title">Listado de Legajos</h4>
+                        <p class="category">Haciendo click podes entrar al detalle</p>
                     </div>
                     
                     <div class="content table-responsive table-full-width">
@@ -64,7 +65,7 @@
                                     <th>Operacion</th>
                                 </tr>
                             <tbody>
-                                    <tr (click)="propDetail(prop)" class='button' *ngFor="let prop of displayingPropiedades">
+                                    <tr (click)="propDetail(prop)" style="cursor: pointer;" *ngFor="let prop of displayingPropiedades">
                                         <td>{{prop.LEGAJO}}</td>
                                         <td>{{prop.NOMBRE_INM}}</td>
                                         <td>{{prop.OFER_REQUE}}</td>

@@ -2,6 +2,7 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
+import { ip } from '../config';
  
 @Injectable()
 export class AuthenticationService {
@@ -12,7 +13,7 @@ export class AuthenticationService {
         return Promise.reject(error.message || error);
     }
     login(username: string, password: string) : Promise<any>{
-        return this.http.post("http://localhost:3002/user", { username: username, password: password }).toPromise()
+        return this.http.post(ip + "/user", { username: username, password: password }).toPromise()
             .then((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let user = response.json();
@@ -21,8 +22,10 @@ export class AuthenticationService {
                     localStorage.setItem('currentUser', JSON.stringify(user.user));
                     localStorage.setItem('token', user.token);
                     this.loggedIn.emit(user.user)
+                    return user.user;
                 }
                 else {
+                    throw (user.message);
                 }
             }).catch(this.handleError)
     }

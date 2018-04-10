@@ -1,0 +1,74 @@
+<div class="container-fluid">
+  <div class="row">
+      <div class="card" style="width: 100%;">
+          <div class="col-md-12">
+              <div class="header">
+                  <h4 class="title">Propiedad: {{this.propiedad.LEGAJO}}</h4>
+              </div>
+              <div class="content" style="width: 100%;">
+                  <form style="width: 100%;">
+                      <div class="row">
+                          <div class="col-md-2">
+                              <h4>Descripción</h4>
+                          </div>
+
+                          <div class="col-md-5">
+                              <label>Principal</label>
+                              <input type="text" class="form-control">
+                          </div>
+                          <div class="col-md-5">
+                              <label>Secundaria</label>
+                              <input type="text" class="form-control">
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-2">
+                              <h4>Description</h4>
+                          </div>
+
+                          <div class="col-md-5">
+                              <label>Principal</label>
+                              <input type="text" class="form-control">
+                          </div>
+                          <div class="col-md-5">
+                              <label>Secundaria</label>
+                              <input type="text" class="form-control">
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-2">
+                              <h4>Comentarios </h4>
+                          </div>
+
+                          <div class="col-md-5">
+                              <label>&nbsp;</label>
+                              <textarea style="width: 100%; height: 70px;" class="form-control"></textarea>
+                          </div>
+                          <div class="col-md-5">
+                              <label>&nbsp;</label>
+                              <textarea style="width: 100%; height: 70px;" class="form-control"></textarea>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-2">
+                              <h4>Título de la página </h4>
+                          </div>
+
+                          <div class="col-md-5">
+                              <label>Español</label>
+                              <input type="text" class="form-control">
+                          </div>
+                          <div class="col-md-5">
+                              <label>Inglés</label>
+                              <input type="text" class="form-control">
+                          </div>
+                      </div>
+                      <br>
+                      <button type="submit" class="btn btn-info btn-fill pull-right">{{this.legajo == "new" ? "Guardar" : "Actualizar"}}</button>
+                      <div class="clearfix"></div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
