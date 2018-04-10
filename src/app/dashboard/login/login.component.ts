@@ -6,9 +6,10 @@ import {
   PathLocationStrategy
 } from "@angular/common";
 import { AuthenticationService } from "../../services/authentication.service";
-import initNotify = require("../../../assets/js/notify.js");
+// import initNotify from "../../../assets/js/notify.js";
 import { SidebarComponent } from "../../sidebar/sidebar.component";
 import { User } from "../../models/user-model";
+import { NotifyService } from "../../notify/notify.service";
 
 @Component({
   moduleId: module.id,
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private notifyService : NotifyService
   ) {}
   ngOnInit() {
     // reset login status
@@ -37,12 +39,12 @@ export class LoginComponent implements OnInit {
       if (currentUser) {
         if (currentUser.privileges == -1) this.router.navigate(["./dashboard"]);
         else this.router.navigate(["./table"]);
-        initNotify("Bienvenido " + currentUser.alias, 2);
+        this.notifyService.newNotification("success","Bienvenido " + currentUser.alias);
       }
     } catch (error) {
       this.user = "";
       this.password = "";
-      initNotify("Error de conexión: " + error, 4);
+      this.notifyService.newNotification("danger","Error de conexion " + error);
     }
   };
 }

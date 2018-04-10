@@ -1146,7 +1146,7 @@ input:focus {
   border-bottom-width: 1px;
   font-size: 12px;
   text-transform: uppercase;
-  color: #9A9A9A;
+  color: #555555;
   font-weight: 400;
   padding-bottom: 5px;
 }
@@ -2004,7 +2004,7 @@ input:focus {
 .card label {
   font-size: 14px;
   font-weight: 400;
-  color: #9A9A9A;
+  color: #555555;
   margin-bottom: 0px;
 }
 .card .category i,

@@ -3,7 +3,7 @@ import { User, PRIVILEGES } from '../../models/user-model';
 import { PropiedadesService } from '../../services/propiedades.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import initNotify = require('../../../assets/js/notify.js');
+// import initNotify from '../../../assets/js/notify.js';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -33,7 +33,7 @@ export class UserComponent implements OnInit {
     isAdmin = JSON.parse(localStorage.getItem('currentUser')).privileges == -1
     newUser(){
         console.log(this.user)
-            this.propiedadesService.postUser(this.user).then(resp => initNotify("Usuario creado", 2))
+            this.propiedadesService.postUser(this.user)/*.then(resp => initNotify("Usuario creado", 2))*/
     }
     users: User[];
     updateUserPriv(user): void {

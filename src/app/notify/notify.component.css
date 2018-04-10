@@ -1,14 +1,28 @@
-@keyframes test {
-    from  { margin-top:-50px;}
-    to {margin-top: 20px;}
+@keyframes notificationStart {
+    from {top: -50px;opacity: 0;}
+    to {top: 0px;opacity: 1;}
+}
+@keyframes notificationEnd {
+    from {top: 0px;opacity: 1.0;}
+    to {top: -50px;opacity: 0;}
 }
 .notification {
+    border-radius: 25px;
     position: fixed !important;
     float: right;
     /* animation-name: test;
     animation-duration: 2s; */
-    opacity: 0.0;
-    margin-top: 20px;
+    height: 50px;
+    opacity: 1.0;
+    /* margin-top: 50px; */
     right: 10px;
     width: 30%;
+    top: 0px;
+    z-index:100;
+    animation: notificationStart 1s ease-in;
 }
+
+.destroy {
+    animation: notificationEnd 1s ease-in-out;
+}
+

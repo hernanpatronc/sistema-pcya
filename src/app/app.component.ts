@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { NotifyService } from './notify/notify.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 export class AppComponent implements OnInit {
   location: Location;
 
-    constructor(location:Location) {
+    constructor(location:Location, private notificationService : NotifyService) {
         this.location = location;
     }
     

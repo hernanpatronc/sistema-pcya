@@ -39,15 +39,15 @@ export class PropiedadesService {
             })
             .catch(this.handleError);
     }
-    getProperty(legajo): Promise<Property[]> {
+    getProperty(legajo): Promise<Property> {
         return this.http.get(ip + "/api/propiedades/" + legajo + "?token=" + localStorage.getItem('token').replace(/"/g, ''))
             .toPromise()
             .then(response => {
                 if (response.json()["success"])
-                    return response.json()["data"] as Property[];
+                    return response.json()["data"][0] as Property;
                 else {
                     
-                    this.router.navigate(["../login"], { relativeTo: this.activatedRoute });
+                    throw response.json()["message"];
                     //return this.handleError(response.json()["message"])
                 }
             })

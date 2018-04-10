@@ -1,3 +1,5 @@
+<app-notify *ngFor="let notification of notificationService.notificationList" [alertType]="notification.type" [state]="notification.class" [top]="notification.marginTop">{{notification.text}}</app-notify>
+<!-- <button (click)="notificationService.newNotification('success','Success')">Clickeame</button> -->
 <div class="wrapper">
   <div class="sidebar navbar-collapse collapse show" id="demo" data-color="orange" data-image="">
       <sidebar-cmp></sidebar-cmp>

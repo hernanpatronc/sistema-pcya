@@ -17,6 +17,8 @@ import { FormsModule } from '@angular/forms';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthGuard, AdminGuard } from './authentication/auth.guard';
 import * as $ from 'jquery';
+import { NotifyComponent } from './notify/notify.component';
+import { NotifyService } from './notify/notify.service';
 
 
 @NgModule({
@@ -30,8 +32,8 @@ import * as $ from 'jquery';
         NoopAnimationsModule,
         RouterModule.forRoot([])
     ],
-    declarations: [ AppComponent, DashboardComponent ],
-    providers: [{provide: LocationStrategy, useClass: PathLocationStrategy}, PropiedadesService, AuthenticationService, AuthGuard, AdminGuard],
+    declarations: [ AppComponent, DashboardComponent , NotifyComponent ],
+    providers: [{provide: LocationStrategy, useClass: PathLocationStrategy}, PropiedadesService, AuthenticationService, AuthGuard, AdminGuard, NotifyService],
     bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

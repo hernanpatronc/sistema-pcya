@@ -1,1 +1,2 @@
-export const ip = "http://192.168.0.38:3002";
+export const ip = "http://sist-inmo.azurewebsites.net/";
+// export const ip = "http://localhost:3002";

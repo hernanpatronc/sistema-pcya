@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Property } from '../../../models/property';
 
 @Component({
@@ -8,6 +8,7 @@ import { Property } from '../../../models/property';
 })
 export class Campos1Component implements OnInit {
   @Input() propiedad: Property;
+  @Output() updateProperty = new EventEmitter<string>();
   constructor() { }
 
   ngOnInit() {

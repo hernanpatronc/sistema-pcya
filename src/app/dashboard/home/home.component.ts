@@ -1,6 +1,6 @@
 import {Component, OnInit,trigger,state,style,transition,animate,keyframes, group, OnChanges, OnDestroy} from '@angular/core';
-import initDemo = require('../../../assets/js/charts.js');
-import initNotify = require('../../../assets/js/notify.js');
+import initDemo from '../../../assets/js/charts.js';
+// import initNotify from '../../../assets/js/notify.js';
 import { PropiedadesService } from '../../services/propiedades.service';
 import { Router } from '@angular/router';
 

@@ -4,45 +4,15 @@
             <a class="nav-link active" data-toggle="tab" href="#general">General</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#campos1">Campos 1</a>
+            <a class="nav-link" data-toggle="tab" href="#{{tipo_propiedad.value}}1">{{tipo_propiedad.nombre}} 1</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#campos2">Campos 2</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#deoflo1">DE-OF-LO 1</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#deoflo2">DE-OF-LO 2</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#cctc1">CC-TC 1</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#cctc2">CC-TC 2</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#vucqtu1">VU-CQ-TU 1</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#vucqtu2">VU-CQ-TU 2</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#ot1">OT 1</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#ot2">OT 2</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#fa1">FA 1</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#fa2">FA 2</a>
+            <a class="nav-link" data-toggle="tab" href="#{{tipo_propiedad.value}}2">{{tipo_propiedad.nombre}} 2</a>
         </li>
     </ul>
 
     <div class="tab-content">
-        <app-general id="general" class="tab-pane fade show active" [propiedad]="propiedad"></app-general>
+        <app-general (updateProperty)="updatePropertyGlobal($event)" id="general" class="tab-pane fade show active" [propiedad]="propiedad"></app-general>
         <app-campos1 id="campos1" class="tab-pane fade" [propiedad]="propiedad"></app-campos1>
         <app-campos2 id="campos2" class="tab-pane fade" [propiedad]="propiedad"></app-campos2>
         <app-de-of-lo1 id="deoflo1" class="tab-pane fade" [propiedad]="propiedad"></app-de-of-lo1>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import { Property } from "../../../models/property";
 import { PropiedadesService } from "../../../services/propiedades.service";
 import { Router } from "@angular/router";
@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 })
 export class GeneralComponent implements OnInit {
   @Input() propiedad: Property;
-
+  @Output() updateProperty = new EventEmitter<string>();
   traders = [];
   tipo_inmus = [];
   estados = [];
