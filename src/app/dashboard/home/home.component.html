@@ -1,18 +1,100 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Cantidad de propiedades</h4>
+                        <p class="category">Segun el tipo de inmueble</p>
+                    </div>
+                    <div class="content">
+                        <div id="chartPreferences" class="ct-chart"></div>
+                        <div class="footer">
+                            <div class="legend">
+                                <div *ngFor="let tipo of this.tipos_inmu">
+                                    <i class="fa fa-circle" [ngStyle]="{ 'color' : this.colors[this.tipos_inmu.indexOf(tipo)]}"></i> {{tipo}}
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-clock-o"></i> Actualizado hace {{lastUpdated}} minutos
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
                 <div class="card" >
                     <div class="header">
-                        <h4 class="title">Performance de los asociados</h4>
+                        <h4 class="title">Progreso a través de los años</h4>
                         <p class="category">Considerando todos los legajos</p>
                     </div>
                     <div class="content">
-                        <div style="height:1000px !important;" id="chartActivity" class="ct-chart"></div>
+                        <div id="chartHours" class="ct-chart ct-series-d"></div>
+                        <div class="footer">
+                            <div class="legend">
+                                <i class="fa fa-circle text-success"></i> Progreso de cantidad de legajos
+                            </div>
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-history"></i> Actualizado hace {{getCurrentTime()}} minutos
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Productores Ofrecimiento</h4>
+                        <p class="category">Considerando todos los legajos</p>
+                    </div>
+                    <div class="content">
+                        <div style="height:500px;" id="chartActivity1" class="ct-chart"></div>
                         <div class="footer">
                             <div class="legend">
                                 <i class="fa fa-circle text-info"></i> Productores Ofr
+                            </div>
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-check"></i> Actualizado hace {{lastUpdated}} minutos
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Productores Requerimiento</h4>
+                        <p class="category">Considerando todos los legajos</p>
+                    </div>
+                    <div class="content">
+                        <div style="height:500px;" id="chartActivity2" class="ct-chart ct-series-b"></div>
+                        <div class="footer">
+                            <div class="legend">
                                 <i class="fa fa-circle text-danger"></i> Productores Req
+                            </div>
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-check"></i> Actualizado hace {{lastUpdated}} minutos
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Traders </h4>
+                        <p class="category">Considerando todos los legajos</p>
+                    </div>
+                    <div class="content">
+                        <div style="height:500px;" id="chartActivity3" class="ct-chart ct-series-c"></div>
+                        <div class="footer">
+                            <div class="legend">
                                 <i class="fa fa-circle text-warning"></i> Traders
                             </div>
                             <hr>
@@ -23,7 +105,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!--div class="col-md-6">
                 <div class="card" >
                     <div class="header">
@@ -47,17 +129,17 @@
                 </div>
             </div-->
         </div>
-    
+
         <div class="row">
             <div class="col-md-6">
-                <div class="card" >
+                <div class="card">
                     <div class="header">
                         <h4 class="title">Cantidad de propiedades</h4>
                         <p class="category">Segun el tipo de inmueble</p>
                     </div>
                     <div class="content">
                         <div id="chartPreferences" class="ct-chart"></div>
-                        <div class="footer" >
+                        <div class="footer">
                             <div class="legend">
                                 <div *ngFor="let tipo of this.tipos_inmu">
                                     <i class="fa fa-circle" [ngStyle]="{ 'color' : this.colors[this.tipos_inmu.indexOf(tipo)]}"></i> {{tipo}}

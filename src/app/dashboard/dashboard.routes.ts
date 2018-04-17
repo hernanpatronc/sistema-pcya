@@ -4,7 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
 import { IconsComponent } from './icons/icons.component';
 import { TableComponent } from './table/table.component';
-import { NotificationsComponent } from './notifications/notifications.component';
+// import { NotificationsComponent } from './notifications/notifications.component';
 import { TypographyComponent } from './typography/typography.component';
 import { MapsComponent } from './maps/maps.component';
 import { LoginComponent } from './login/login.component';
@@ -14,10 +14,11 @@ import { AuthGuard,AdminGuard } from '../authentication/auth.guard';
 export const MODULE_ROUTES: Route[] =[
     { path: '', redirectTo: 'table', pathMatch: 'full' },
     { path: 'dashboard', component: HomeComponent, canActivate: [AdminGuard] },
-    { path: 'property/:legajo', component: PropertyComponent , canActivate: [AuthGuard]},
+    { path: 'property/:id', component: PropertyComponent , canActivate: [AuthGuard]},
+    { path: 'property', component: PropertyComponent , canActivate: [AuthGuard]},
     { path: 'table', component: TableComponent , canActivate: [AuthGuard]},
     { path: 'icons', component: IconsComponent , canActivate: [AuthGuard]},
-    { path: 'notifications', component: NotificationsComponent , canActivate: [AuthGuard]},
+    // { path: 'notifications', component: NotificationsComponent , canActivate: [AuthGuard]},
     { path: 'user', component: UserComponent , canActivate: [AdminGuard]},
     { path: 'maps', component: MapsComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent}
@@ -29,7 +30,7 @@ export const MODULE_COMPONENTS = [
     UserComponent,
     TableComponent,
     IconsComponent,
-    NotificationsComponent,
+    // NotificationsComponent,
     TypographyComponent,
     MapsComponent,
     LoginComponent,

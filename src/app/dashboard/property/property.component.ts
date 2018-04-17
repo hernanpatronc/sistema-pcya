@@ -14,6 +14,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Property } from "../../models/property";
 import { PropiedadesService } from "../../services/propiedades.service";
 import { FormsModule } from "@angular/forms";
+import { NotifyService } from "../../notify/notify.service";
 // import initNotify from "../../../assets/js/notify.js";
 
 @Component({
@@ -25,9 +26,10 @@ export class PropertyComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private propiedadesService: PropiedadesService
+    private propiedadesService: PropiedadesService,
+    private notifyService : NotifyService
   ) {}
-  legajo: string;
+  id: string;
   tipo_propiedad = {
     value: "",
     nombre: ""
@@ -35,15 +37,16 @@ export class PropertyComponent implements OnInit {
   propiedad = new Property();
 
   async ngOnInit() {
-    this.legajo = this.activatedRoute.snapshot.params["legajo"];
-    if (this.legajo != "new") {
+    this.id = this.activatedRoute.snapshot.params["id"];
+    if (this.id) {
         try {
             this.propiedad = await this.propiedadesService.getProperty(
-                this.legajo
+                this.id
               );
         }
         catch (err) {
             // initNotify("Error buscando legajo ", 4);
+            this.notifyService.newNotification("danger", "Error buscando el legajo " + err)
         }
       
       this.setTipoPropiedad(this.propiedad.TIPO_INMU);
@@ -55,7 +58,7 @@ export class PropertyComponent implements OnInit {
   }
 
   setTipoPropiedad = (tipo_inmu : string) => {
-      console.log(tipo_inmu)
+    //   console.log(tipo_inmu)
     switch (tipo_inmu) {
         case "CA":
           this.tipo_propiedad.nombre = "Campos";

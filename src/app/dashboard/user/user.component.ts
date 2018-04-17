@@ -1,10 +1,11 @@
-import { Component, OnInit, AfterViewInit, trigger, state, style, transition, animate, keyframes } from '@angular/core';
+import { Component, OnInit, AfterViewInit, trigger, state, style, transition, animate, keyframes, ViewChild, ElementRef } from '@angular/core';
 import { User, PRIVILEGES } from '../../models/user-model';
-import { PropiedadesService } from '../../services/propiedades.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 // import initNotify from '../../../assets/js/notify.js';
 import { FormsModule } from '@angular/forms';
+import { UserService } from '../../services/user.service';
+import { NotifyService } from '../../notify/notify.service';
 
 @Component({
     moduleId: module.id,
@@ -13,27 +14,32 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class UserComponent implements OnInit {
+    @ViewChild("closeModalButton") closeButton : ElementRef;
+
     user : User;
+
     ngOnInit(){
-        this.user = {
-            username : "",
-            password : "",
-            privileges : 0,
-            alias : ""
-        }
+        this.user = new User();
     }
 
-    constructor(private propiedadesService: PropiedadesService, private router: Router, private activatedRoute: ActivatedRoute) {
+    constructor(private userService: UserService, private notificationService : NotifyService) {
         this.getUsers();
     }
-    getUsers(): void {
-        this.propiedadesService.getUsers().then(users => this.users = users);
+    async getUsers() {
+        this.users= await this.userService.getUsers();
     }
 
-    isAdmin = JSON.parse(localStorage.getItem('currentUser')).privileges == -1
-    newUser(){
-        console.log(this.user)
-            this.propiedadesService.postUser(this.user)/*.then(resp => initNotify("Usuario creado", 2))*/
+    isAdmin = JSON.parse(localStorage.getItem('currentUser')).privileges == "-1"
+    async newUser(){
+        try {
+            await this.userService.postUser(this.user)
+            this.users.push(this.user);
+            this.notificationService.newNotification("success","Usuario creado");
+        }
+        catch(err){
+            this.notificationService.newNotification("danger","Hubo un error " + err);
+        }
+        this.closeButton.nativeElement.click();
     }
     users: User[];
     updateUserPriv(user): void {

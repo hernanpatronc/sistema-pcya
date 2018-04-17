@@ -2337,7 +2337,7 @@ input:focus {
 }
 
 .ct-series-d .ct-point, .ct-series-d .ct-line, .ct-series-d .ct-bar, .ct-series-d .ct-slice-donut {
-  stroke: #9368E9;
+  stroke: #87CB16;
 }
 .ct-series-d .ct-slice-pie, .ct-series-d .ct-area {
   fill: #87CB16;

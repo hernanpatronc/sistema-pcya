@@ -1,40 +1,33 @@
 import * as Chartist from "chartist";
 
-export default function initDemo(series1, label1, series2, label2, series3, label3) {
+export default function initDemo(series0, series1, series2, series3, series4) {
+  let anios = Object.keys(series0).filter((val,index,array)=>{
+    return 2010 <= parseInt(val) && parseInt(val) <= 2018;
+  });
+  let valores = Object.values(series0).slice(0,anios.length)
   var dataSales = {
-    labels: [
-      "9:00AM",
-      "12:00AM",
-      "3:00PM",
-      "6:00PM",
-      "9:00PM",
-      "12:00PM",
-      "3:00AM",
-      "6:00AM"
-    ],
+    labels: anios,
     series: [
-      [287, 385, 490, 492, 554, 586, 698, 695, 752, 788, 846, 944],
-      [67, 152, 143, 240, 287, 335, 435, 437, 539, 542, 544, 647],
-      [23, 113, 67, 108, 190, 239, 307, 308, 439, 410, 410, 509]
+      valores
     ]
   };
 
   var optionsSales = {
     lineSmooth: false,
     low: 0,
-    high: 800,
-    showArea: true,
-    height: "245px",
+    // high: 800,
+    // showArea: true,
+    // height: "245px",
     axisX: {
       showGrid: false
     },
-    showLine: false,
-    showPoint: false
+    // showLine: false,
+    // showPoint: false
   };
 
   var responsiveSales = [
     [
-      "screen and (max-width: 640px)",
+      // "screen and (max-width: 640px)",
       {
         axisX: {
           labelInterpolationFnc: function(value) {
@@ -45,12 +38,13 @@ export default function initDemo(series1, label1, series2, label2, series3, labe
     ]
   ];
 
-  //Chartist.Line('#chartHours', dataSales, optionsSales, responsiveSales);
-  var dataActivity = {
-    labels: label3,
-    series: series3
-  };
+  new Chartist.Line('#chartHours', dataSales, optionsSales);
 
+  var dataActivity = {
+    labels: Object.keys(series2),
+    series: [Object.values(series2)]
+  };
+  // console.log(dataActivity)
   var optionsActivity = {
     seriesBarDistance: 12,
     reverseData: true,
@@ -58,51 +52,41 @@ export default function initDemo(series1, label1, series2, label2, series3, labe
     axisX: {
       showGrid: false
     },
-    height: "1000px"
+    height: "500px"
   };
 
-  var responsiveOptions = [
-    [
-      "screen and (max-width: 640px)",
-      {
-        seriesBarDistance: 5,
-        axisX: {
-          labelInterpolationFnc: function(value) {
-            return value[0];
-          }
-        }
-      }
-    ]
-  ];
-
   new Chartist.Bar(
-    "#chartActivity",
+    "#chartActivity1",
     dataActivity,
     optionsActivity
   );
-  var dataPreferences = {
-    series: [[25, 30, 20, 25]]
+  dataActivity = {
+    labels: Object.keys(series3),
+    series: [Object.values(series3)]
   };
+  new Chartist.Bar(
+    "#chartActivity2",
+    dataActivity,
+    optionsActivity
+  );
+  dataActivity = {
+    labels: Object.keys(series4),
+    series: [Object.values(series4)]
+  };
+  new Chartist.Bar(
+    "#chartActivity3",
+    dataActivity,
+    optionsActivity
+  );
 
-  var optionsPreferences = {
-    donut: true,
-    donutWidth: 40,
-    startAngle: 0,
-    total: 100,
-    //height: "245px",
-    showLabel: false,
-    axisX: {
-      showGrid: false
-    }
-  };
 
   //Chartist.Pie('#chartPreferences', dataPreferences, optionsPreferences);
 
   new Chartist.Pie(
     "#chartPreferences",
     {
-      series: series1,
-      labels: label1
+      labels: Object.keys(series1),
+      series: Object.values(series1)
     },
     {
       showLabel: false

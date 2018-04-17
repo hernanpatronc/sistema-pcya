@@ -8,7 +8,7 @@ export class NotifyService {
   notificationList = [];
   marginTop = 0;
 
-  newNotification = (type, text) => {
+  newNotification = (type : string, text : string) => {
     this.marginTop += 80;
     const newNotification = {
       text : text,

@@ -2,5 +2,8 @@
 export class Statistics 
 {
     TIPO_INMU : Object;
-    PRODUCTORES : Object;
+    PRODUCT_O : Object;
+    PRODUCT_R : Object;
+    TRADER : Object;
+    FECHA: Object;
 }

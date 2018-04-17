@@ -4,6 +4,7 @@ import { PropiedadesService } from '../../services/propiedades.service';
 import { Router } from '@angular/router';
 import {ActivatedRoute} from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { NotifyService } from '../../notify/notify.service';
 
 @Component({
     moduleId: module.id,
@@ -12,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class TableComponent{ 
-    constructor(private propiedadesService: PropiedadesService, private router : Router,private activatedRoute : ActivatedRoute) {
+    constructor(private propiedadesService: PropiedadesService,private notifyService : NotifyService ,private router : Router,private activatedRoute : ActivatedRoute) {
             this.getProperties();
         }
     async getProperties() {
@@ -24,11 +25,17 @@ export class TableComponent{
     displayingPropiedades : Property[];
 
     propDetail(property) : void {
-        this.router.navigate(['../property', property.LEGAJO],{relativeTo : this.activatedRoute});
+        this.router.navigate(['../property', property.id],{relativeTo : this.activatedRoute});
     }
 
     search = async (columna : string, busqueda : string) => {
-        this.displayingPropiedades= await this.propiedadesService.searchPropiedades(columna.toUpperCase(),busqueda.toUpperCase())
+        try {
+            this.displayingPropiedades= await this.propiedadesService.searchPropiedades(columna.toUpperCase(),busqueda.toUpperCase())
+
+        }
+        catch (err) {
+            this.notifyService.newNotification("danger","Error en la búsqueda " + err)
+        }
         // this.displayingPropiedades = this.propiedades.filter((val,index,array) => {
         //     return val[columna].toUpperCase().includes(busqueda.toUpperCase())
         // });

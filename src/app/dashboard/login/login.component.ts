@@ -37,14 +37,14 @@ export class LoginComponent implements OnInit {
         this.password
       );
       if (currentUser) {
-        if (currentUser.privileges == -1) this.router.navigate(["./dashboard"]);
+        if (currentUser.privileges == "-1") this.router.navigate(["./dashboard"]);
         else this.router.navigate(["./table"]);
         this.notifyService.newNotification("success","Bienvenido " + currentUser.alias);
       }
     } catch (error) {
       this.user = "";
       this.password = "";
-      this.notifyService.newNotification("danger","Error de conexion " + error);
+      this.notifyService.newNotification("danger","Error de login: " + error);
     }
   };
 }

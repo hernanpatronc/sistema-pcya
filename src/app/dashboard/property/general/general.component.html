@@ -39,7 +39,7 @@
                                             <div class="form-group">
                                                 <label>País</label>
                                                 <select class="form-control" [ngModelOptions]="{standalone: true}" (change)="OnLegajoPropertiesChanges()" [(ngModel)]="this.propiedad.PAIS">
-                                                    <option *ngFor="let pais of paises" [value]="pais">{{pais}}</option>
+                                                    <option *ngFor="let pais of paises" [value]="pais.nombre">{{pais.nombre}}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -47,7 +47,7 @@
                                             <div class="form-group">
                                                 <label>Propiedad</label>
                                                 <select class="form-control" [ngModelOptions]="{standalone: true}" (change)="OnLegajoPropertiesChanges()" [(ngModel)]="this.propiedad.TIPO_INMU">
-                                                    <option *ngFor="let inmu of tipo_inmus" [value]="inmu">{{inmu}}</option>
+                                                    <option *ngFor="let inmu of tipo_inmus" [value]="inmu.nombre">{{inmu.nombre}}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -64,7 +64,7 @@
                                             <div class="form-group">
                                                 <label>Estado</label>
                                                 <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.ESTADO">
-                                                    <option *ngFor="let estado of estados" [value]="estado">{{estado}}</option>
+                                                    <option *ngFor="let estado of estados" [value]="estado.nombre">{{estado.nombre}}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -81,7 +81,7 @@
                                             <div class="form-group">
                                                 <label>Provincia</label>
                                                 <select class="form-control" [ngModelOptions]="{standalone: true}" (change)="OnLegajoPropertiesChanges()" [(ngModel)]="this.propiedad.ZONA">
-                                                    <option *ngFor="let prov of provincias" [value]="prov">{{prov}}</option>
+                                                    <option *ngFor="let prov of provincias" [value]="prov.nombre">{{prov.nombre}}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -152,7 +152,7 @@
                                     <div class="form-group">
                                         <label>Trader</label>
                                         <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.TRADER">
-                                            <option *ngFor="let trader of traders" [value]="trader">{{trader}}</option>
+                                            <option *ngFor="let trader of traders" [value]="trader.nombre">{{trader.nombre}}</option>
                                         </select>
                                     </div>
                                 </div>

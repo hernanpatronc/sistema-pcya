@@ -2,7 +2,7 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { HttpModule } from '@angular/http';
+// import { HttpClientModule } from '@angular/http';
 
 import { AppComponent }   from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -19,6 +19,9 @@ import { AuthGuard, AdminGuard } from './authentication/auth.guard';
 import * as $ from 'jquery';
 import { NotifyComponent } from './notify/notify.component';
 import { NotifyService } from './notify/notify.service';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { UserService } from './services/user.service';
 
 
 @NgModule({
@@ -28,12 +31,17 @@ import { NotifyService } from './notify/notify.service';
         SidebarModule,
         NavbarModule,
         FormsModule,
-        HttpModule,
+        HttpClientModule,
         NoopAnimationsModule,
         RouterModule.forRoot([])
     ],
     declarations: [ AppComponent, DashboardComponent , NotifyComponent ],
-    providers: [{provide: LocationStrategy, useClass: PathLocationStrategy}, PropiedadesService, AuthenticationService, AuthGuard, AdminGuard, NotifyService],
+    providers: [{provide: LocationStrategy, useClass: PathLocationStrategy}, PropiedadesService, AuthenticationService, AuthGuard, AdminGuard, NotifyService, 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }, UserService],
     bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

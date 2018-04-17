@@ -1,5 +1,7 @@
 export class Property 
 {
+    id: number;
+    created_at: Date;
     LEGAJO: string;
     NOMBRE_INM: string;
     OPERACION: string;

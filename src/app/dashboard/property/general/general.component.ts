@@ -47,16 +47,29 @@ export class GeneralComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-    this.propiedadesService
-      .getFields()
-      .then(data => {
-        this.traders = data.TRADER.split(",");
-        this.tipo_inmus = data.TIPO_INMU.split(",");
-        this.estados = data.ESTADO.split(",");
-        this.paises = data.PAIS.split(",");
-        this.provincias = data.ZONA.split(",");
-      })
-      .catch(err => this.router.navigate(["/login"]));
+  async ngOnInit() {
+    try {
+      let fields = await this.propiedadesService.getFields()
+      // console.log(fields)
+      this.traders = fields.filter((val,index,array)=>{
+        return val.columna == "TRADER";
+      });
+      this.tipo_inmus = fields.filter((val,index,array)=>{
+        return val.columna == "TIPO_INMU";
+      });
+      this.estados = fields.filter((val,index,array)=>{
+        return val.columna == "ESTADO";
+      });
+      this.paises = fields.filter((val,index,array)=>{
+        return val.columna == "PAIS";
+      });
+      this.provincias = fields.filter((val,index,array)=>{
+        return val.columna == "ZONA";
+      });
+    }
+    
+    catch (error) {
+
+    }
   }
 }
