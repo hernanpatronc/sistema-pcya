@@ -1528,7 +1528,7 @@ input:focus {
   font-size: 16px;
 }
 .navbar.fixed {
-  width: calc(100% - $sidebar-width);
+  width: calc(100%) /*- $sidebar-width*/;
   right: 0;
   left: auto;
   border-radius: 0;
@@ -2141,7 +2141,7 @@ input:focus {
 .ct-label {
   fill: rgba(0, 0, 0, 0.4);
   color: rgba(0, 0, 0, 0.4);
-  font-size: 1.3rem;
+  font-size: 10px;
   line-height: 1;
 }
 

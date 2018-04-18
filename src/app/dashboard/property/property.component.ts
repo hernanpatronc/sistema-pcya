@@ -40,16 +40,19 @@ export class PropertyComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.params["id"];
     if (this.id) {
         try {
-            this.propiedad = await this.propiedadesService.getProperty(
+            this.propiedad = /*await this.propiedadesService.getProperty(
                 this.id
-              );
+              );*/ this.propiedadesService.currentProperty;
         }
         catch (err) {
             // initNotify("Error buscando legajo ", 4);
+
             this.notifyService.newNotification("danger", "Error buscando el legajo " + err)
         }
       
       this.setTipoPropiedad(this.propiedad.TIPO_INMU);
+    } else {
+      this.propiedadesService.currentProperty = this.propiedad;
     }
   }
 

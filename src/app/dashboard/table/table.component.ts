@@ -25,6 +25,7 @@ export class TableComponent{
     displayingPropiedades : Property[];
 
     propDetail(property) : void {
+        this.propiedadesService.currentProperty = property;
         this.router.navigate(['../property', property.id],{relativeTo : this.activatedRoute});
     }
 

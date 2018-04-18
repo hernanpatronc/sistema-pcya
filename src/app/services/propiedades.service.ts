@@ -10,7 +10,11 @@ import { ip } from '../config';
 
 @Injectable()
 export class PropiedadesService {
+
+    currentProperty : Property = new Property();
+
     constructor(private http: HttpClient, private router: Router, private activatedRoute: ActivatedRoute) { }
+
     getProperties(): Promise<Property[]> {
         return this.http.get(ip + "/api/legajo" /*?token=" + localStorage.getItem('token').replace(/"/g, '')*/)
             .toPromise()

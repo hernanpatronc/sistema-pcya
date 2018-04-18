@@ -1,10 +1,14 @@
 import * as Chartist from "chartist";
 
 export default function initDemo(series0, series1, series2, series3, series4) {
+  // console.log(series0)
   let anios = Object.keys(series0).filter((val,index,array)=>{
     return 2010 <= parseInt(val) && parseInt(val) <= 2018;
   });
-  let valores = Object.values(series0).slice(0,anios.length)
+  let valores = anios.reduce((previous,val,index,array)=>{
+    previous.push(series0[val]);
+    return previous;
+  }, []);
   var dataSales = {
     labels: anios,
     series: [

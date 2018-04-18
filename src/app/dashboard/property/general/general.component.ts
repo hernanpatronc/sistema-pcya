@@ -2,6 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import { Property } from "../../../models/property";
 import { PropiedadesService } from "../../../services/propiedades.service";
 import { Router } from "@angular/router";
+import { NotifyService } from "../../../notify/notify.service";
 
 @Component({
   selector: "app-general",
@@ -16,16 +17,18 @@ export class GeneralComponent implements OnInit {
   estados = [];
   paises = [];
   provincias = [];
-  lastIndex : number = 1532;
+  lastIndexOfr : number = 0;
+  lastIndexReq : number = 0;
 
   constructor(
     private propiedadesService: PropiedadesService,
-    private router: Router
+    private router: Router,
+    private notifyService : NotifyService
   ) {}
 
   OnLegajoPropertiesChanges() {
     if (
-      this.propiedad.OFR &&
+      this.propiedad.OFR =="1" &&
       this.propiedad.ZONA &&
       this.propiedad.TIPO_INMU &&
       this.propiedad.TIPO_OPERA &&
@@ -42,8 +45,28 @@ export class GeneralComponent implements OnInit {
         "-" +
         this.propiedad.ZONA +
         "-" +
-        this.lastIndex;
-      this.lastIndex++;
+        this.lastIndexOfr;
+      this.lastIndexOfr++;
+    } else if (
+      this.propiedad.OFR =="2" &&
+      this.propiedad.ZONA &&
+      this.propiedad.TIPO_INMU &&
+      this.propiedad.TIPO_OPERA &&
+      this.propiedad.PAIS
+    ) {
+      this.propiedad.LEGAJO =
+        this.propiedad.PAIS.substring(0,1) +
+        "-" +
+        this.propiedad.TIPO_OPERA +
+        "-" +
+        this.propiedad.OFR +
+        "-" +
+        this.propiedad.TIPO_INMU +
+        "-" +
+        this.propiedad.ZONA +
+        "-" +
+        this.lastIndexReq;
+      this.lastIndexReq++;
     }
   }
 
@@ -66,10 +89,16 @@ export class GeneralComponent implements OnInit {
       this.provincias = fields.filter((val,index,array)=>{
         return val.columna == "ZONA";
       });
+      this.lastIndexOfr = parseInt(fields.filter((val,index,array)=>{
+        return val.columna == "INDICE_OFR"
+      })[0].nombre);
+      this.lastIndexReq = parseInt(fields.filter((val,index,array)=>{
+        return val.columna == "INDICE_REQ"
+      })[0].nombre);
     }
     
     catch (error) {
-
+      this.notifyService.newNotification("danger","Error buscando los valores " + error);
     }
   }
 }
