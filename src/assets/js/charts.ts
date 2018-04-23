@@ -1,9 +1,9 @@
 import * as Chartist from "chartist";
 
-export default function initDemo(series0, series1, series2, series3, series4) {
+export default function initDemo(series0, series1, series2, series3, series4, series5, series6) {
   // console.log(series0)
   let anios = Object.keys(series0).filter((val,index,array)=>{
-    return 2010 <= parseInt(val) && parseInt(val) <= 2018;
+    return 2010 <= parseInt(val) && parseInt(val) <= new Date().getFullYear();
   });
   let valores = anios.reduce((previous,val,index,array)=>{
     previous.push(series0[val]);
@@ -96,4 +96,25 @@ export default function initDemo(series0, series1, series2, series3, series4) {
       showLabel: false
     }
   );
+
+  new Chartist.Pie(
+    "#codigoCaptacion",
+    {
+      labels: Object.keys(series5),
+      series: Object.values(series5)
+    },
+    {
+      showLabel: false
+    }
+  );
+  // new Chartist.Pie(
+  //   "#codigoCaptacion2",
+  //   {
+  //     labels: Object.keys(series6),
+  //     series: Object.values(series6)
+  //   },
+  //   {
+  //     showLabel: true
+  //   }
+  // );
 }

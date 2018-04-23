@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Property } from '../../../models/property';
+import { PropiedadesService } from '../../../services/propiedades.service';
 
 @Component({
   selector: 'app-cc-tc2',
@@ -8,8 +9,8 @@ import { Property } from '../../../models/property';
 })
 export class CcTc2Component implements OnInit {
   @Input() propiedad : Property;
-  @Output() updateProperty = new EventEmitter<string>();
-  constructor() { }
+
+  constructor(private propiedadesService : PropiedadesService) { }
 
   ngOnInit() {
   }

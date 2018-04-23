@@ -11,7 +11,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Situación Títulos</label>
-                                    <input type="text" class="form-control" name="titulos" [(ngModel)]="propiedad.TITULOS" />
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="titulos" [(ngModel)]="propiedad.TITULOS" />
                                 </div>
                             </div>
                         </div>
@@ -26,25 +26,25 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Calle</label>
-                                    <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="CALLE" [(ngModel)]="propiedad.CALLE">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Número</label>
-                                    <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="NRO_CALLE" [(ngModel)]="propiedad.NRO_CALLE">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Piso</label>
-                                    <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="PISO" [(ngModel)]="propiedad.PISO">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Departamento</label>
-                                    <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="DPTO" [(ngModel)]="propiedad.DPTO">
                                 </div>
                             </div>
                         </div>
@@ -52,13 +52,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Entre calle</label>
-                                    <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="ENTRE_CALL" [(ngModel)]="propiedad.ENTRE_CALL">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Y calle</label>
-                                    <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="Y_CALLE" [(ngModel)]="propiedad.Y_CALLE">
                                 </div>
                             </div>
                         </div>
@@ -76,61 +76,61 @@
                                         <tr>
                                             <td>Sup. Cubierta</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO1A" [(ngModel)]="propiedad.DPTO1A">
                                             </td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO1B" [(ngModel)]="propiedad.DPTO1B">
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Balcón</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO2A" [(ngModel)]="propiedad.DPTO2A">
                                             </td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO2B" [(ngModel)]="propiedad.DPTO2B">
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Patios</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO3A" [(ngModel)]="propiedad.DPTO3A">
                                             </td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO3B" [(ngModel)]="propiedad.DPTO3B">
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Baulera</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO4A" [(ngModel)]="propiedad.DPTO4A">
                                             </td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO4B" [(ngModel)]="propiedad.DPTO4B">
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Jardín</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO5A" [(ngModel)]="propiedad.DPTO5A">
                                             </td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO5B" [(ngModel)]="propiedad.DPTO5B">
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Cocheras</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO6A" [(ngModel)]="propiedad.DPTO6A">
                                             </td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO16" [(ngModel)]="propiedad.DPTO16">
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Total</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO7A" [(ngModel)]="propiedad.DPTO7A">
                                             </td>
                                             <td>
                                                 &nbsp;
@@ -149,21 +149,21 @@
                                         <tr>
                                             <td>Expensas</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO25" [(ngModel)]="propiedad.DPTO25">
                                             </td>
                                             
                                         </tr>
                                         <tr>
                                             <td>Imp. Agua</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO26" [(ngModel)]="propiedad.DPTO26">
                                             </td>
                                          
                                         </tr>
                                         <tr>
                                             <td>ABL dto.</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO27" [(ngModel)]="propiedad.DPTO27">
                                             </td>
                                            
                                         </tr>
@@ -182,105 +182,105 @@
                                         <tr>
                                             <td>Categoría</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO10" [(ngModel)]="propiedad.DPTO10">
                                             </td>
                                             
                                         </tr>
                                         <tr>
                                             <td>Estado</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO11" [(ngModel)]="propiedad.DPTO11">
                                             </td>
                                          
                                         </tr>
                                         <tr>
                                             <td>Ubicación</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO12" [(ngModel)]="propiedad.DPTO12">
                                             </td>
                                            
                                         </tr>
                                         <tr>
                                             <td>Apto para</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO13" [(ngModel)]="propiedad.DPTO13">
                                             </td>
                                            
                                         </tr>
                                         <tr>
                                             <td>Anitguedad</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO14" [(ngModel)]="propiedad.DPTO14">
                                             </td>
                                             
                                         </tr>
                                         <tr>
                                             <td>Orientación</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO15" [(ngModel)]="propiedad.DPTO15">
                                             </td>
                                             
                                         </tr>
                                         <tr>
                                             <td>Cant. Asc.</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO16" [(ngModel)]="propiedad.DPTO16">
                                             </td>
                                             
                                         </tr>
                                         <tr>
                                             <td>Cant. Pisos</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO17" [(ngModel)]="propiedad.DPTO17">
                                             </td>
                                             
                                         </tr>
                                         <tr>
                                             <td>Depto. x piso</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO18" [(ngModel)]="propiedad.DPTO18">
                                             </td>
                                             
                                         </tr>
                                         <tr>
                                             <td>SUM</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO19" [(ngModel)]="propiedad.DPTO19">
                                             </td>
                                             
                                         </tr>
                                         <tr>
                                             <td>Vigilancia</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO20" [(ngModel)]="propiedad.DPTO20">
                                             </td>
                                             
                                         </tr>
                                         <tr>
                                             <td>Piscina</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO21" [(ngModel)]="propiedad.DPTO21">
                                             </td>
                                             
                                         </tr>
                                         <tr>
                                             <td>Entrada Serv.</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO22" [(ngModel)]="propiedad.DPTO22">
                                             </td>
                                             
                                         </tr>
                                         <tr>
                                             <td>Agua caliente</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO23" [(ngModel)]="propiedad.DPTO23">
                                             </td>
                                             
                                         </tr>
                                         <tr>
                                             <td>Calefacción</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO24" [(ngModel)]="propiedad.DPTO24">
                                             </td>
                                             
                                         </tr>
@@ -298,84 +298,84 @@
                                         <tr>
                                             <td>Dormitorios</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO30" [(ngModel)]="propiedad.DPTO30">
                                             </td>
                                             
                                         </tr>
                                         <tr>
                                             <td>Palier</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO31" [(ngModel)]="propiedad.DPTO31">
                                             </td>
                                          
                                         </tr>
                                         <tr>
                                             <td>Living</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO32" [(ngModel)]="propiedad.DPTO32">
                                             </td>
                                            
                                         </tr>
                                         <tr>
                                             <td>Comedor</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO33" [(ngModel)]="propiedad.DPTO33">
                                             </td>
                                            
                                         </tr>
                                         <tr>
                                             <td>Baños/Toilette</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO35" [(ngModel)]="propiedad.DPTO35">
                                             </td>
                                             
                                         </tr>
                                         <tr>
                                             <td>Cocina</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO36" [(ngModel)]="propiedad.DPTO36">
                                             </td>
                                             
                                         </tr>
                                         <tr>
                                             <td>Comedor diario</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO37" [(ngModel)]="propiedad.DPTO37">
                                             </td>
                                             
                                         </tr>
                                         <tr>
                                             <td>Escritorio</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO38" [(ngModel)]="propiedad.DPTO38">
                                             </td>
                                             
                                         </tr>
                                         <tr>
                                             <td>Depto. servicio</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO39" [(ngModel)]="propiedad.DPTO39">
                                             </td>
                                             
                                         </tr>
                                         <tr>
                                             <td>Luminosidad</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO40" [(ngModel)]="propiedad.DPTO40">
                                             </td>
                                             
                                         </tr>
                                         <tr>
                                             <td>Placards</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO41" [(ngModel)]="propiedad.DPTO41">
                                             </td>
                                             
                                         </tr>
                                         <tr>
                                             <td>Estado</td>
                                             <td>
-                                                <input style="padding:0;"  type="text" class="form-control">
+                                                <input [disabled]="propiedadesService.disableForm" style="padding:0;"  type="text" class="form-control"  name="DPTO42" [(ngModel)]="propiedad.DPTO42">
                                             </td>
                                             
                                         </tr>
@@ -394,13 +394,13 @@
                             <div class="col-md-2 col-md-offset-4">
                                 <div class="form-group">
                                     <label>Mostrar precios</label>
-                                    <input type="text" class="form-control">
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control"  name="MOST_PREC" [(ngModel)]="propiedad.MOST_PREC">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                     <div class="form-group">
                                             <label>Fecha última actualización pr.</label>
-                                            <input type="date" class="form-control">
+                                            <input [disabled]="propiedadesService.disableForm" type="date" class="form-control"  name="FEC_ULT_PR" [(ngModel)]="propiedad.FEC_ULT_PR">
                                         </div>
                             </div>
                         </div>
@@ -412,7 +412,7 @@
                                     <th>
                                         <div class="form-group">
                                             <label>Valor Total Autorizado</label>
-                                            <input type="text" class="form-control">
+                                            <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="VAL_TOT" [(ngModel)]="propiedad.VAL_TOT">
                                         </div>
                                     </th>
                                 </tr>
@@ -421,7 +421,7 @@
                                     <th>
                                         <div class="form-group">
                                             <label>Valor total definitivo</label>
-                                            <input type="text" class="form-control">
+                                            <input [disabled]="propiedadesService.disableForm" type="text" class="form-control"  name="TOT_DEF_DE" [(ngModel)]="propiedad.TOT_DEF_DE">
                                         </div>
                                     </th>
                                     
@@ -432,7 +432,7 @@
                                     <th>
                                         <div class="form-group">
                                             <label>Valor total autorizado</label>
-                                            <input type="text" class="form-control">
+                                            <input [disabled]="propiedadesService.disableForm" type="text" class="form-control"  name="TOT_AUT_D2" [(ngModel)]="propiedad.TOT_AUT_D2">
                                         </div>
                                     </th>
                                 </tr>
@@ -441,16 +441,14 @@
                                     <th>
                                         <div class="form-group">
                                             <label>Valor total definitivo</label>
-                                            <input type="text" class="form-control">
+                                            <input [disabled]="propiedadesService.disableForm" type="text" class="form-control"  name="TOT_DEF_D2" [(ngModel)]="propiedad.TOT_DEF_D2">
                                         </div>
                                     </th>
                                     
                                 </tr>
                             </thead>
                         </table>
-                        <br>
-                        <button type="submit" class="btn btn-info btn-fill pull-right">{{this.legajo == "new" ? "Guardar" : "Actualizar"}}</button>
-                        <div class="clearfix"></div>
+                        <ng-content></ng-content>
                     </form>
                 </div>
             </div>

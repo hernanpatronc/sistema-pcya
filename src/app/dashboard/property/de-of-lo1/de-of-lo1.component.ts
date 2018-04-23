@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Property } from '../../../models/property';
+import { PropiedadesService } from '../../../services/propiedades.service';
 
 @Component({
   selector: 'app-de-of-lo1',
@@ -9,7 +10,7 @@ import { Property } from '../../../models/property';
 export class DeOfLo1Component implements OnInit {
 
   @Input() propiedad : Property;
-  constructor() { }
+  constructor(private propiedadesService : PropiedadesService) { }
 
   ngOnInit() {
   }

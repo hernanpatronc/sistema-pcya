@@ -20,23 +20,26 @@ export class HomeComponent implements OnInit, OnDestroy{
     deleteTask(task) {
         this.tasks.splice(this.tasks.indexOf(task), 1)
     }
-    colors = ["#1DC7EA","#9368E9","#FB404B","#87CB16","#FFA534","#1F77D0","#5e5e5e","#3b5998","#55acee","#cc2127","#dd4b39"];
+    colors = ["#1DC7EA","#9368E9","#FB404B","#87CB16","#FFA534","#1F77D0","#5e5e5e","#3b5998","#55acee","#cc2127","#dd4b39", "#cc2127", "#1769ff", "#6188e2", "#a748ca"];
     tipos_inmu = [];
+    cod_captacion = [];
     minutos:Date = new Date();
     lastUpdated:number = 0;
     intervalId;
     async ngOnInit() {
         // $.getScript('../../../assets/js/bootstrap-checkbox-radio-switch.js');
         // $.getScript('../../../assets/js/light-bootstrap-dashboard.js');
-        $('[data-toggle="checkbox"]').each(function () {
-            if($(this).data('toggle') == 'switch') return;
+        // $('[data-toggle="checkbox"]').each(function () {
+        //     if($(this).data('toggle') == 'switch') return;
             
-            var $checkbox = $(this);
-            $checkbox.checkbox();
-        });
-        let statistics = await this.propiedadesService.getStatistics()
-        initDemo(statistics.FECHA,statistics.TIPO_INMU, statistics.PRODUCT_O, statistics.PRODUCT_R, statistics.TRADER);
+        //     var $checkbox = $(this);
+        //     $checkbox.checkbox();
+        // });
+        let statistics = await this.propiedadesService.getStatistics();
+        console.log(statistics)
+        initDemo(statistics.FECHA,statistics.TIPO_INMU, statistics.PRODUCT_O, statistics.PRODUCT_R, statistics.TRADER, statistics.COD_CAP, statistics.COD_CAP2);
         this.tipos_inmu = Object.keys(statistics.TIPO_INMU);
+        this.cod_captacion = Object.keys(statistics.COD_CAP);
         this.minutos = new Date();
         this.intervalId = setInterval(()=>{this.getCurrentTime()}, 20000)
     }

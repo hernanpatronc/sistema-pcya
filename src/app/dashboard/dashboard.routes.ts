@@ -12,8 +12,8 @@ import { PropertyComponent } from './property/property.component';
 import { AuthGuard,AdminGuard } from '../authentication/auth.guard';
 
 export const MODULE_ROUTES: Route[] =[
-    { path: '', redirectTo: 'table', pathMatch: 'full' },
-    { path: 'dashboard', component: HomeComponent, canActivate: [AdminGuard] },
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    { path: 'dashboard', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'property/:id', component: PropertyComponent , canActivate: [AuthGuard]},
     { path: 'property', component: PropertyComponent , canActivate: [AuthGuard]},
     { path: 'table', component: TableComponent , canActivate: [AuthGuard]},

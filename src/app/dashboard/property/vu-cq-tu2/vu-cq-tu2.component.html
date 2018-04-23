@@ -14,11 +14,11 @@
   
                             <div class="col-md-5">
                                 <label>Principal</label>
-                                <input type="text" class="form-control">
+                                <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="COMENTARIO" [(ngModel)]="propiedad.COMENTARIO">
                             </div>
                             <div class="col-md-5">
                                 <label>Secundaria</label>
-                                <input type="text" class="form-control">
+                                <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="COMENTARI2" [(ngModel)]="propiedad.COMENTARI2">
                             </div>
                         </div>
                         <div class="row">
@@ -28,11 +28,11 @@
   
                             <div class="col-md-5">
                                 <label>Principal</label>
-                                <input type="text" class="form-control">
+                                <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="REMARKS" [(ngModel)]="propiedad.REMARKS">
                             </div>
                             <div class="col-md-5">
                                 <label>Secundaria</label>
-                                <input type="text" class="form-control">
+                                <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="REMARKS2" [(ngModel)]="propiedad.REMARKS2">
                             </div>
                         </div>
                         <div class="row">
@@ -42,11 +42,11 @@
   
                             <div class="col-md-5">
                                 <label>&nbsp;</label>
-                                <textarea style="width: 100%; height: 70px;" class="form-control"></textarea>
+                                <textarea [disabled]="propiedadesService.disableForm"  style="width: 100%; height: 70px;" class="form-control" name="COMENT_RES" [(ngModel)]="propiedad.COMENT_RES"></textarea>
                             </div>
                             <div class="col-md-5">
                                 <label>&nbsp;</label>
-                                <textarea style="width: 100%; height: 70px;" class="form-control"></textarea>
+                                <textarea [disabled]="propiedadesService.disableForm"  style="width: 100%; height: 70px;" class="form-control" name="AERO2" [(ngModel)]="propiedad.AERO2"></textarea>
                             </div>
                         </div>
                         <div class="row">
@@ -56,11 +56,11 @@
   
                             <div class="col-md-5">
                                 <label>Español</label>
-                                <input type="text" class="form-control">
+                                <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="URL" [(ngModel)]="propiedad.URL">
                             </div>
                             <div class="col-md-5">
                                 <label>Inglés</label>
-                                <input type="text" class="form-control">
+                                <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="URL2" [(ngModel)]="propiedad.URL2">
                             </div>
                         </div>
                         <hr>
@@ -73,13 +73,13 @@
                               <div class="col-md-2 col-md-offset-4">
                                   <div class="form-group">
                                       <label>Mostrar precios</label>
-                                      <input type="text" class="form-control">
+                                      <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="MOST_PREC" [(ngModel)]="propiedad.MOST_PREC">
                                   </div>
                               </div>
                               <div class="col-md-4">
                                       <div class="form-group">
                                               <label>Fecha última actualización pr.</label>
-                                              <input type="date" class="form-control">
+                                              <input [disabled]="propiedadesService.disableForm" type="date" class="form-control" name="FEC_ULT_PR" [(ngModel)]="propiedad.FEC_ULT_PR">
                                           </div>
                               </div>
                           </div>
@@ -91,19 +91,19 @@
                                       <th>
                                           <div class="form-group">
                                               <label>Valor Total Autorizado</label>
-                                              <input type="text" class="form-control">
+                                              <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="VAL_TOT" [(ngModel)]="propiedad.VAL_TOT">
                                           </div>
                                       </th>
                                       <th>
                                           <div class="form-group">
                                               <label>Valor edificaciones est.</label>
-                                              <input type="text" class="form-control">
+                                              <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="VAL_EDIF_E" [(ngModel)]="propiedad.VAL_EDIF_E">
                                           </div>
                                       </th>
                                       <th>
                                           <div class="form-group">
                                               <label>Valor terreno</label>
-                                              <input type="text" class="form-control">
+                                              <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="VAL_TERREN" [(ngModel)]="propiedad.VAL_TERREN">
                                           </div>
                                       </th>
                                   </tr>
@@ -112,30 +112,30 @@
                                       <th>
                                           <div class="form-group">
                                               <label>Valor total definitivo</label>
-                                              <input type="text" class="form-control">
+                                              <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="VAL_TOT_DE" [(ngModel)]="propiedad.VAL_TOT_DE">
                                           </div>
                                       </th>
                                       <th colspan="2"></th>
                                   </tr>
                                   <tr>
-                                      <th rowspan="2">x M2 USD</th>
+                                      <th rowspan="2">x M2</th>
                                       <th>Autorizado</th>
                                       <th>
                                           <div class="form-group">
                                               <label>Valor total autorizado</label>
-                                              <input type="text" class="form-control">
+                                              <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="VAL_AUT_M2" [(ngModel)]="propiedad.VAL_AUT_M2">
                                           </div>
                                       </th>
                                       <th>
                                           <div class="form-group">
-                                              <label>Valor edificaciones</label>
-                                              <input type="text" class="form-control">
+                                              <label>Valor edif.</label>
+                                              <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="TOT_DEF_DE" [(ngModel)]="propiedad.TOT_DEF_DE">
                                           </div>
                                       </th>
                                       <th>
                                           <div class="form-group">
                                               <label>Valor terreno</label>
-                                              <input type="text" class="form-control">
+                                              <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="VAL_TERRE2" [(ngModel)]="propiedad.VAL_TERRE2">
                                           </div>
                                       </th>
                                   </tr>
@@ -144,7 +144,7 @@
                                       <th>
                                           <div class="form-group">
                                               <label>Valor total definitivo</label>
-                                              <input type="text" class="form-control">
+                                              <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="VAL_DEF_M2" [(ngModel)]="propiedad.VAL_DEF_M2">
                                           </div>
                                       </th>
                                       
@@ -152,7 +152,7 @@
                               </thead>
                           </table>
                         <br>
-                        <button type="submit" class="btn btn-info btn-fill pull-right">{{this.legajo == "new" ? "Guardar" : "Actualizar"}}</button>
+                        <ng-content></ng-content>
                         <div class="clearfix"></div>
                     </form>
                 </div>
