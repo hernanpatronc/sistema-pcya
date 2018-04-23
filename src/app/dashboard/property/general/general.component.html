@@ -1,267 +1,275 @@
-<div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="card">
-                <div class="col-md-12">
-                    <div class="header">
-                        <h4 class="title">Propiedad: {{this.propiedad.LEGAJO}}</h4>
-                    </div>
-                    <div class="content">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>Fecha</label>
-                                                <input type="date" class="form-control" name="fecha" [ngModel]="this.propiedad.FECHA | date:'yyyy-MM-dd'" (ngModelChange)="this.propiedad.FECHA=$event">
-                                            </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="card">
+            <div class="col-md-12">
+                <div class="header">
+                    <h4 class="title">Propiedad: {{this.propiedad.LEGAJO}}</h4>
+                </div>
+                <div class="content">
+                    <form #propertyForm="ngForm">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Fecha</label>
+                                            <input required [disabled]="propiedadesService.disableForm" type="date" class="form-control" name="fecha" [ngModel]="this.propiedad.FECHA | date:'yyyy-MM-dd'"
+                                                (ngModelChange)="this.propiedad.FECHA=$event">
                                         </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>Ofr,Req</label>
-                                                <select class="form-control" name="OFR" (change)="OnLegajoPropertiesChanges()" [(ngModel)]="this.propiedad.OFR">
-                                                    <option value="1">Ofrecimiento</option>
-                                                    <option value="2">Requerimiento</option>
-                                                </select>
-                                            </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Ofr,Req</label>
+                                            <select [disabled]="propiedadesService.disableForm" class="form-control" name="OFR" (change)="OnLegajoPropertiesChanges()" [(ngModel)]="this.propiedad.OFR">
+                                                <option value="1">Ofrecimiento</option>
+                                                <option value="2">Requerimiento</option>
+                                            </select>
                                         </div>
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <label>Operacion</label>
-                                                <select class="form-control" [ngModelOptions]="{standalone: true}" (change)="OnLegajoPropertiesChanges()" [(ngModel)]="this.propiedad.TIPO_OPERA">
-                                                    <option value="CV">CV</option>
-                                                    <option value="AL">AL</option>
-                                                </select>
-                                            </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Operacion</label>
+                                            <select [disabled]="propiedadesService.disableForm" class="form-control" [ngModelOptions]="{standalone: true}" (change)="OnLegajoPropertiesChanges()"
+                                                [(ngModel)]="this.propiedad.TIPO_OPERA">
+                                                <option value="CV">CV</option>
+                                                <option value="AL">AL</option>
+                                            </select>
                                         </div>
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <label>País</label>
-                                                <select class="form-control" [ngModelOptions]="{standalone: true}" (change)="OnLegajoPropertiesChanges()" [(ngModel)]="this.propiedad.PAIS">
-                                                    <option *ngFor="let pais of paises" [value]="pais.nombre">{{pais.nombre}}</option>
-                                                </select>
-                                            </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>País</label>
+                                            <select [disabled]="propiedadesService.disableForm" class="form-control" [ngModelOptions]="{standalone: true}" (change)="OnLegajoPropertiesChanges()"
+                                                [(ngModel)]="this.propiedad.PAIS">
+                                                <option *ngFor="let pais of paises" [value]="pais.nombre">{{pais.nombre}}</option>
+                                            </select>
                                         </div>
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <label>Propiedad</label>
-                                                <select class="form-control" [ngModelOptions]="{standalone: true}" (change)="OnLegajoPropertiesChanges()" [(ngModel)]="this.propiedad.TIPO_INMU">
-                                                    <option *ngFor="let inmu of tipo_inmus" [value]="inmu.nombre">{{inmu.nombre}}</option>
-                                                </select>
-                                            </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Propiedad</label>
+                                            <select [disabled]="propiedadesService.disableForm" class="form-control" [ngModelOptions]="{standalone: true}" (change)="OnLegajoPropertiesChanges()"
+                                                [(ngModel)]="this.propiedad.TIPO_INMU">
+                                                <option *ngFor="let inmu of tipo_inmus" [value]="inmu.nombre">{{inmu.nombre}}</option>
+                                            </select>
                                         </div>
+                                    </div>
 
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Nombre</label>
-                                                <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.NOMBRE_INM">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>Estado</label>
-                                                <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.ESTADO">
-                                                    <option *ngFor="let estado of estados" [value]="estado.nombre">{{estado.nombre}}</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>Vto. Autorización</label>
-                                                <input class="form-control" type="date" name="VTO_AUTORI" [ngModel]="this.propiedad.VTO_AUTORI | date:'yyyy-MM-dd'" (ngModelChange)="this.propiedad.VTO_AUTORI=$event"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <label>Provincia</label>
-                                                <select class="form-control" [ngModelOptions]="{standalone: true}" (change)="OnLegajoPropertiesChanges()" [(ngModel)]="this.propiedad.ZONA">
-                                                    <option *ngFor="let prov of provincias" [value]="prov.nombre">{{prov.nombre}}</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr/>
                                 </div>
-                                <div class="col-md-3 pull-right">
-                                    <div class="card">
-                                        <div class="content">
-                                            <!--div class="col-md-2 pull-right"-->
-                                            <div class="form-group">
-                                                <label>Legajo</label>
-                                                <input type="text" class="form-control" disabled [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.LEGAJO">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Operacion</label>
-                                                <input type="text" class="form-control" disabled [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.OPERACION">
-                                            </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Provincia</label>
+                                            <select [disabled]="propiedadesService.disableForm" class="form-control" [ngModelOptions]="{standalone: true}" (change)="OnLegajoPropertiesChanges()"
+                                                [(ngModel)]="this.propiedad.ZONA">
+                                                <option *ngFor="let prov of provincias" [value]="prov.nombre">{{prov.nombre}}</option>
+                                            </select>
                                         </div>
-                                        <!--/div-->
+                                    </div>
 
+                                    <div class="col-md-7">
+                                        <div class="form-group">
+                                            <label>Estado</label>
+                                            <select [disabled]="propiedadesService.disableForm" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.ESTADO">
+                                                <option *ngFor="let estado of estados" [value]="estado.nombre">{{estado.nombre + " | " + estado.descripcion}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Vto. Autorización</label>
+                                            <input [disabled]="propiedadesService.disableForm" class="form-control" type="date" name="VTO_AUTORI" [ngModel]="this.propiedad.VTO_AUTORI | date:'yyyy-MM-dd'"
+                                                (ngModelChange)="this.propiedad.VTO_AUTORI=$event" />
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label>Nombre</label>
+                                            <input required [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.NOMBRE_INM">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Categoría por Vínculo</label>
+                                            <select [disabled]="propiedadesService.disableForm" class="form-control" name="caracter" [(ngModel)]="this.propiedad.CARACTER">
+                                                <option value="OPER">Operación</option>
+                                                <option value="DATO">Sólo dato</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr/>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Oferente/Requerente</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.OFER_REQUE">
+                            <div class="col-md-3 pull-right">
+                                <div class="card">
+                                    <div class="content">
+                                        <!--div class="col-md-2 pull-right"-->
+                                        <div class="form-group">
+                                            <label>Legajo</label>
+                                            <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" disabled [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.LEGAJO">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Operacion</label>
+                                            <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" disabled [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.OPERACION">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Celular</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.CELULAR">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Mail</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.EMAIL">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label>Interlocutor</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.INTERLOCUT">
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label>Telefono</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.TELEFONO">
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label>Aclaracion</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.ACL_CAP">
-                                    </div>
-                                </div>
-                            </div>
-                            <hr/>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label>Trader</label>
-                                        <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.TRADER">
-                                            <option *ngFor="let trader of traders" [value]="trader.nombre">{{trader.nombre}}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label>Repr. Local</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.AGENT_LOCA">
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label>Prod. Ofr.</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.PORDUCT_O">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Coprod. Ofr.</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.INFORM_OFR">
-                                    </div>
-                                </div>
+                                    <!--/div-->
 
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Inform. Ofr.</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.INFORM_OF2">
-                                    </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label>Co-trader</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.OFR == '1' ? this.propiedad.TRADER_EO : this.propiedad.TRADER_ER">
-                                    </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Oferente/Requerente</label>
+                                    <input [disabled]="propiedadesService.disableForm" required type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.OFER_REQUE">
                                 </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Telefono</label>
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.TELEFONO">
+                                </div>
+                            </div>
 
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label>Repr. Zonal</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.REPRES_ZON">
-                                    </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Mail</label>
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.EMAIL">
                                 </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label>Prod. Req.</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.PRODUCT_R">
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label>Interlocutor</label>
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.INTERLOCUT">
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Coprod. Req.</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.INFORM_REQ">
-                                    </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Celular</label>
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.CELULAR">
                                 </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Aclaracion</label>
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.DIRECCION">
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>Trader</label>
+                                    <select [disabled]="propiedadesService.disableForm" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.TRADER">
+                                        <option *ngFor="let trader of traders" [value]="trader.nombre">{{trader.nombre}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2" *ngIf="propiedad.OFR == '1'">
+                                <div class="form-group">
+                                    <label>Repr. Local</label>
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.AGENT_LOCA">
+                                </div>
+                            </div>
+                            <div class="col-md-2" *ngIf="propiedad.OFR == '1'">
+                                <div class="form-group">
+                                    <label>Prod. Ofr.</label>
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.PORDUCT_O">
+                                </div>
+                            </div>
+                            <div class="col-md-3" *ngIf="propiedad.OFR == '1'">
+                                <div class="form-group">
+                                    <label>Coprod. Ofr.</label>
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.INFOR1">
+                                </div>
+                            </div>
 
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Inform. Req.</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.INFORM_RE2">
-                                    </div>
+                            <div class="col-md-3" *ngIf="propiedad.OFR == '1'">
+                                <div class="form-group">
+                                    <label>Inform. Ofr.</label>
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.INFOR2">
                                 </div>
                             </div>
-                            <hr/>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <h4>Fuente de Captacion Cliente</h4>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label>Codigo</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.COD_CAP">
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label>Sub-Codigo</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.COD_CAP2">
-                                    </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2" *ngIf="propiedad.OFR == '1'">
+                                <div class="form-group">
+                                    <label>Co-trader</label>
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.OFR == '1' ? this.propiedad.TRADER_EO : this.propiedad.TRADER_ER">
                                 </div>
                             </div>
-                            <hr/>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <h4>Ubicacion</h4>
+
+                            <div class="col-md-2" *ngIf="propiedad.OFR == '1'">
+                                <div class="form-group">
+                                    <label>Repr. Zonal</label>
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.REPRES_ZON">
                                 </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label>Region</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.REGION">
-                                    </div>
+                            </div>
+                            <div class="col-md-2" *ngIf="propiedad.OFR == '2'">
+                                <div class="form-group">
+                                    <label>Prod. Req.</label>
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.PRODUCT_R">
                                 </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label>Partido</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.SUB_ZONA">
-                                    </div>
+                            </div>
+                            <div class="col-md-3" *ngIf="propiedad.OFR == '2'">
+                                <div class="form-group">
+                                    <label>Coprod. Req.</label>
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.INFORM_REQ">
                                 </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label>Lista</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.LISTA">
-                                    </div>
+                            </div>
+
+                            <div class="col-md-3" *ngIf="propiedad.OFR == '2'">
+                                <div class="form-group">
+                                    <label>Inform. Req.</label>
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.INFORM_RE2">
                                 </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label>Polo</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.POLO">
-                                    </div>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h4>Fuente de Captacion Cliente</h4>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>Codigo</label>
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.COD_CAP">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>Sub-Codigo</label>
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.COD_CAP2">
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h4>Ubicacion</h4>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>Región</label>
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.REGION">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>Partido</label>
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.SUB_ZONA">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>Lista</label>
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.LISTA">
                                 </div>
                             </div>
                             <div class="row">
@@ -302,30 +310,30 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label>Tipo Ruta</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.RUTA2">
-                                    </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>Tipo Ruta</label>
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.RUTA2">
                                 </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label>Ruta </label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.RUTA">
-                                    </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>Ruta </label>
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.RUTA">
                                 </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label>Distancia a ruta</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.RUTA_KIL">
-                                    </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>Distancia a ruta</label>
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.KIL_DESDE_">
                                 </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label>Distancia a asfalto</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.KIL_A_CAMI">
-                                    </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>Distancia a asfalto</label>
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.KIL_A_CAMI">
                                 </div>
                             </div>
                             <div class="row">
@@ -357,54 +365,69 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="card">
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card">
 
 
-                                        <div class="content">
-                                            <!--div class="col-md-2 pull-right"-->
-                                            <div class="card-header text-center">
-                                                MercadoLibre
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Situac. Publ.</label>
-                                                <input type="text" class="form-control" disabled [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.LEGAJO">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Publ. hasta</label>
-                                                <input type="text" class="form-control" disabled [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.OPERACION">
-                                            </div>
+                                    <div class="content">
+                                        <div class="card-header text-center">
+                                            MercadoLibre
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Situac. Publ.</label>
+                                            <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" disabled [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.TEL_INFOR1">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Publ. hasta</label>
+                                            <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" disabled [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.TEL_INFOR2">
                                         </div>
                                     </div>
                                 </div>
-                                <!--div class="col-md-4">
-                                    <div class="card">
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card">
 
 
-                                        <div class="content">
-                                            
-                                            <div class="card-header text-center">
-                                                Google Adwords
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Mes vto.</label>
-                                                <input type="text" class="form-control" disabled [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.LEGAJO">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>$ x click</label>
-                                                <input type="text" class="form-control" disabled [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.OPERACION">
-                                                <label>$ maximo diario</label>
-                                                <input type="text" class="form-control" disabled [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.OPERACION">
-
-                                            </div>
+                                    <div class="content">
+                                        <div class="card-header text-center">
+                                            Google Adwords
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Precio x click $</label>
+                                            <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" disabled [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.RUTA_KIL">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Máximo diario</label>
+                                            <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" disabled [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.ACL_CAP">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Mes vto. campaña</label>
+                                            <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" disabled [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.ZP_ES">
                                         </div>
                                     </div>
-                                </div-->
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-info btn-fill pull-right" (click)="updateProperty.next(propiedad.LEGJAO)">{{this.legajo == "new" ? "Guardar" : "Actualizar"}}</button>
-                            <div class="clearfix"></div>
-                        </form>
-                    </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h4>Cerrado con Requerimiento</h4>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Legajo</label>
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.LEGAJO_REQ">
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label>Nombre</label>
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.NOM_REQUER">
+                                </div>
+                            </div>
+                        </div>
+                        <ng-content></ng-content>
+                    </form>
                 </div>
             </div>
         </div>

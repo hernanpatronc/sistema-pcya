@@ -11,25 +11,25 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Tipo Explotación</label>
-                                    <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.TIPO_EXPLO">
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.TIPO_EXPLO">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Precipitación Anual </label>
-                                    <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.PRECIPITAC">
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.PRECIPITAC">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Altitud (S.N.M.) mín:</label>
-                                    <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.ALTITUD_MI">
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.ALTITUD_MI">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Altitud (S.N.M.) máx:</label>
-                                    <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.ALTITUD_MA">
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.ALTITUD_MA">
                                 </div>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Situación Títulos</label>
-                                    <input type="text" class="form-control" name="titulos" [(ngModel)]="propiedad.TITULOS" />
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="titulos" [(ngModel)]="propiedad.TITULOS" />
                                 </div>
                             </div>
                         </div>
@@ -54,10 +54,10 @@
                                     <label>Al pueblo más cercano</label>
                                     <div class="row">
                                         <div class="col-md-8" style="padding: 0;">
-                                            <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                                            <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
                                         </div>
                                         <div class="col-md-4" style="padding: 0;">
-                                            <input style="display:inline-block; width:50%;" type="text" class="form-control" name="dist_puebl" [(ngModel)]="propiedad.DIST_PUEBL">
+                                            <input [disabled]="propiedadesService.disableForm" style="display:inline-block; width:50%;" type="text" class="form-control" name="dist_puebl" [(ngModel)]="propiedad.DIST_PUEBL">
                                             <p style="display:inline;" class="text-muted">km</p>
                                         </div>
                                     </div>
@@ -68,10 +68,10 @@
                                     <label>A la ciudad más cercana</label>
                                     <div class="row">
                                         <div class="col-md-8" style="padding: 0;">
-                                            <input type="text" class="form-control" name="ciudad1" [(ngModel)]="propiedad.CIUDAD1">
+                                            <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="ciudad1" [(ngModel)]="propiedad.CIUDAD1">
                                         </div>
                                         <div class="col-md-4" style="padding: 0;">
-                                            <input style="display:inline-block; width:50%;" type="text" class="form-control" name="dist_ciuda" [(ngModel)]="propiedad.DIST_CIUDA">
+                                            <input [disabled]="propiedadesService.disableForm" style="display:inline-block; width:50%;" type="text" class="form-control" name="dist_ciuda" [(ngModel)]="propiedad.DIST_CIUDA">
                                             <p style="display:inline;" class="text-muted">km</p>
                                         </div>
                                     </div>
@@ -82,10 +82,10 @@
                                     <label>A la pista más cercana</label>
                                     <div class="row">
                                         <div class="col-md-8" style="padding: 0;">
-                                            <input type="text" class="form-control" name="pista1" [(ngModel)]="propiedad.PISTA1">
+                                            <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="pista1" [(ngModel)]="propiedad.PISTA1">
                                         </div>
                                         <div class="col-md-4" style="padding: 0;">
-                                            <input style="display:inline-block; width:50%;" type="text" class="form-control" name="dist_pista" [(ngModel)]="propiedad.DIST_PISTA">
+                                            <input [disabled]="propiedadesService.disableForm" style="display:inline-block; width:50%;" type="text" class="form-control" name="dist_pista" [(ngModel)]="propiedad.DIST_PISTA">
                                             <p style="display:inline;" class="text-muted">km</p>
                                         </div>
                                     </div>
@@ -96,10 +96,10 @@
                                     <label>Al aeropuerto más cercano</label>
                                     <div class="row">
                                         <div class="col-md-8" style="padding: 0;">
-                                            <input type="text" class="form-control" name="aero1" [(ngModel)]="propiedad.AERO1">
+                                            <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="aero1" [(ngModel)]="propiedad.AERO1">
                                         </div>
                                         <div class="col-md-4" style="padding: 0;">
-                                            <input style="display:inline-block; width:50%;" type="text" class="form-control" name="dist_aero1" [(ngModel)]="propiedad.DIST_AERO1">
+                                            <input [disabled]="propiedadesService.disableForm" style="display:inline-block; width:50%;" type="text" class="form-control" name="dist_aero1" [(ngModel)]="propiedad.DIST_AERO1">
                                             <p style="display:inline;" class="text-muted">km</p>
                                         </div>
                                     </div>
@@ -115,7 +115,7 @@
                             <div class="col-md-4 col-md-offset-2">
                                 <div class="form-group">
                                     <label>% de reserva por ley</label>
-                                    <input type="text" class="form-control" name="PORC_RES_L" [(ngModel)]="propiedad.PORC_RES_L">
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="PORC_RES_L" [(ngModel)]="propiedad.PORC_RES_L">
                                 </div>
                             </div>
                         </div>
@@ -124,28 +124,28 @@
                                 <label>
                                     Totales
                                 </label>
-                                <input style="display:inline-block; width:80%;" type="text" class="form-control" name="HAS_TOTALE" [(ngModel)]="propiedad.HAS_TOTALE">
+                                <input [disabled]="propiedadesService.disableForm" style="display:inline-block; width:80%;" type="text" class="form-control" name="HAS_TOTALE" [(ngModel)]="propiedad.HAS_TOTALE">
                                 <p style="display:inline;" class="text-muted">has</p>
                             </div>
                             <div class="col-md-3">
                                 <label>
                                     Montañas
                                 </label>
-                                <input style="display:inline-block; width:80%;" type="text" class="form-control" name="HAS_TOTALE" [(ngModel)]="propiedad.HAS_TOTALE">
+                                <input [disabled]="propiedadesService.disableForm" style="display:inline-block; width:80%;" type="text" class="form-control" name="HAS_MONTA" [(ngModel)]="propiedad.HAS_MONTA">
                                 <p style="display:inline;" class="text-muted">has</p>
                             </div>
                             <div class="col-md-3">
                                 <label>
                                     Lagunas
                                 </label>
-                                <input style="display:inline-block; width:80%;" type="text" class="form-control" name="HAS_TOTALE" [(ngModel)]="propiedad.HAS_TOTALE">
+                                <input [disabled]="propiedadesService.disableForm" style="display:inline-block; width:80%;" type="text" class="form-control" name="HAS_LAGUN" [(ngModel)]="propiedad.HAS_LAGUN">
                                 <p style="display:inline;" class="text-muted">has</p>
                             </div>
                             <div class="col-md-3">
                                 <label>
                                     Montes reserva ley
                                 </label>
-                                <input style="display:inline-block; width:80%;" type="text" class="form-control" name="HAS_TOTALE" [(ngModel)]="propiedad.HAS_TOTALE">
+                                <input [disabled]="propiedadesService.disableForm" style="display:inline-block; width:80%;" type="text" class="form-control" name="HAS_MONT_R" [(ngModel)]="propiedad.HAS_MONT_R">
                                 <p style="display:inline;" class="text-muted">has</p>
                             </div>
                         </div>
@@ -154,28 +154,28 @@
                                 <label>
                                     Explotables
                                 </label>
-                                <input style="display:inline-block; width:80%;" type="text" class="form-control" name="HAS_TOTALE" [(ngModel)]="propiedad.HAS_TOTALE">
+                                <input [disabled]="propiedadesService.disableForm" style="display:inline-block; width:80%;" type="text" class="form-control" name="HAS_EXPLOT" [(ngModel)]="propiedad.HAS_EXPLOT">
                                 <p style="display:inline;" class="text-muted">has</p>
                             </div>
                             <div class="col-md-3">
                                 <label>
                                     En explot. agrícola
                                 </label>
-                                <input style="display:inline-block; width:80%;" type="text" class="form-control" name="HAS_TOTALE" [(ngModel)]="propiedad.HAS_TOTALE">
+                                <input [disabled]="propiedadesService.disableForm" style="display:inline-block; width:80%;" type="text" class="form-control" name="HAS_AGRIC" [(ngModel)]="propiedad.HAS_AGRIC">
                                 <p style="display:inline;" class="text-muted">has</p>
                             </div>
                             <div class="col-md-3">
                                 <label>
                                     En explot. ganadera
                                 </label>
-                                <input style="display:inline-block; width:80%;" type="text" class="form-control" name="HAS_TOTALE" [(ngModel)]="propiedad.HAS_TOTALE">
+                                <input [disabled]="propiedadesService.disableForm" style="display:inline-block; width:80%;" type="text" class="form-control" name="HAS_GANAD" [(ngModel)]="propiedad.HAS_GANAD">
                                 <p style="display:inline;" class="text-muted">has</p>
                             </div>
                             <div class="col-md-3">
                                 <label>
                                     Explotación actual
                                 </label>
-                                <input style="display:inline-block; width:80%;" type="text" class="form-control" name="HAS_TOTALE" [(ngModel)]="propiedad.HAS_TOTALE">
+                                <input [disabled]="propiedadesService.disableForm" style="display:inline-block; width:80%;" type="text" class="form-control" name="HAS_EXPL_A" [(ngModel)]="propiedad.HAS_EXPL_A">
                                 <p style="display:inline;" class="text-muted">has</p>
                             </div>
                         </div>
@@ -184,29 +184,29 @@
                                 <label>
                                     Bosques
                                 </label>
-                                <input style="display:inline-block; width:80%;" type="text" class="form-control" name="HAS_TOTALE" [(ngModel)]="propiedad.HAS_TOTALE">
+                                <input [disabled]="propiedadesService.disableForm" style="display:inline-block; width:80%;" type="text" class="form-control" name="BOSQUES" [(ngModel)]="propiedad.BOSQUES">
                                 <p style="display:inline;" class="text-muted">has</p>
                             </div>
                             <div class="col-md-3">
                                 <label>
                                     Construcción total
                                 </label>
-                                <input style="display:inline-block; width:80%;" type="text" class="form-control" name="HAS_TOTALE" [(ngModel)]="propiedad.HAS_TOTALE">
-                                <p style="display:inline;" class="text-muted">has</p>
+                                <input [disabled]="propiedadesService.disableForm" style="display:inline-block; width:80%;" type="text" class="form-control" name="MTS_CONSTR" [(ngModel)]="propiedad.MTS_CONSTR">
+                                <p style="display:inline;" class="text-muted">mts</p>
                             </div>
                             <div class="col-md-3">
                                 <label>
                                     Vivienda
                                 </label>
-                                <input style="display:inline-block; width:80%;" type="text" class="form-control" name="HAS_TOTALE" [(ngModel)]="propiedad.HAS_TOTALE">
-                                <p style="display:inline;" class="text-muted">has</p>
+                                <input [disabled]="propiedadesService.disableForm" style="display:inline-block; width:80%;" type="text" class="form-control" name="MTS_VIVIEN" [(ngModel)]="propiedad.MTS_VIVIEN">
+                                <p style="display:inline;" class="text-muted">mts</p>
                             </div>
                             <div class="col-md-3">
                                 <label>
                                     Galpones/Instalac.
                                 </label>
-                                <input style="display:inline-block; width:80%;" type="text" class="form-control" name="HAS_TOTALE" [(ngModel)]="propiedad.HAS_TOTALE">
-                                <p style="display:inline;" class="text-muted">has</p>
+                                <input [disabled]="propiedadesService.disableForm" style="display:inline-block; width:80%;" type="text" class="form-control" name="MTS_GALP_I" [(ngModel)]="propiedad.MTS_GALP_I">
+                                <p style="display:inline;" class="text-muted">mts</p>
                             </div>
                         </div>
                         <hr>
@@ -219,13 +219,13 @@
                             <div class="col-md-2 col-md-offset-4">
                                 <div class="form-group">
                                     <label>Mostrar precios</label>
-                                    <input type="text" class="form-control">
+                                    <input [disabled]="propiedadesService.disableForm" type="text" class="form-control"  name="MOST_PREC" [(ngModel)]="propiedad.MOST_PREC">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                     <div class="form-group">
                                             <label>Fecha última actualización pr.</label>
-                                            <input type="date" class="form-control">
+                                            <input [disabled]="propiedadesService.disableForm" type="date" class="form-control"  name="FEC_ULT_PR" [(ngModel)]="propiedad.FEC_ULT_PR">
                                         </div>
                             </div>
                         </div>
@@ -237,19 +237,19 @@
                                     <th>
                                         <div class="form-group">
                                             <label>Valor Total Autorizado</label>
-                                            <input type="text" class="form-control">
+                                            <input [disabled]="propiedadesService.disableForm" type="text" class="form-control"  name="VAL_TOT" [(ngModel)]="propiedad.VAL_TOT">
                                         </div>
                                     </th>
                                     <th>
                                         <div class="form-group">
                                             <label>Valuación mejoras</label>
-                                            <input type="text" class="form-control">
+                                            <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="VALUA_MEJ" [(ngModel)]="propiedad.VALUA_MEJ">
                                         </div>
                                     </th>
                                     <th>
                                         <div class="form-group">
                                             <label>Valor tierras</label>
-                                            <input type="text" class="form-control">
+                                            <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="VAL_TIERRA" [(ngModel)]="propiedad.VAL_TIERRA">
                                         </div>
                                     </th>
                                 </tr>
@@ -258,7 +258,7 @@
                                     <th>
                                         <div class="form-group">
                                             <label>Valor total definitivo</label>
-                                            <input type="text" class="form-control">
+                                            <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="VAL_TOT_DE" [(ngModel)]="propiedad.VAL_TOT_DE">
                                         </div>
                                     </th>
                                     <th colspan="2"></th>
@@ -269,19 +269,19 @@
                                     <th>
                                         <div class="form-group">
                                             <label>Valor total autorizado</label>
-                                            <input type="text" class="form-control">
+                                            <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="VAL_MEJ_XH" [(ngModel)]="propiedad.VAL_MEJ_XH">
                                         </div>
                                     </th>
                                     <th>
                                         <div class="form-group">
                                             <label>Valuación mejoras por HA.</label>
-                                            <input type="text" class="form-control">
+                                            <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="VAL_EXP_XH" [(ngModel)]="propiedad.VAL_EXP_XH">
                                         </div>
                                     </th>
                                     <th>
                                         <div class="form-group">
                                             <label>Tierras netas mejoras</label>
-                                            <input type="text" class="form-control">
+                                            <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="VAL_NET_XH" [(ngModel)]="propiedad.VAL_NET_XH">
                                         </div>
                                     </th>
                                 </tr>
@@ -290,16 +290,14 @@
                                     <th>
                                         <div class="form-group">
                                             <label>Valor total definitivo</label>
-                                            <input type="text" class="form-control">
+                                            <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="VAL_MEJ_X2" [(ngModel)]="propiedad.VAL_MEJ_X2">
                                         </div>
                                     </th>
                                     
                                 </tr>
                             </thead>
                         </table>
-                        <br>
-                        <button type="submit" class="btn btn-info btn-fill pull-right">{{this.legajo == "new" ? "Guardar" : "Actualizar"}}</button>
-                        <div class="clearfix"></div>
+                        <ng-content></ng-content>
                     </form>
                 </div>
             </div>

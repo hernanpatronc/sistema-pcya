@@ -12,6 +12,7 @@ import { ip } from '../config';
 export class PropiedadesService {
 
     currentProperty : Property = new Property();
+    disableForm : boolean = true;
 
     constructor(private http: HttpClient, private router: Router, private activatedRoute: ActivatedRoute) { }
 
@@ -47,6 +48,46 @@ export class PropiedadesService {
                 //     throw response["message"];
                 //     //return this.handleError(response["message"])
                 // }
+            })
+            .catch(this.handleError);
+    }
+
+    postProperty = (legajo : Property) => {
+        // console.log(ip+ "/api/legajo/" + legajo.id);
+        
+        return this.http.post(ip + "/api/legajo/", legajo)
+            .toPromise()
+            .then(response => {
+                // if (response["success"])
+                    return response;
+            })
+            .catch(this.handleError);
+    }
+
+    updateProperty = (legajo : Property) => {
+        // console.log(ip+ "/api/legajo/" + legajo.id);
+        // console.log(legajo.VTO_AUTORI,new Date("0000-00-00"))
+        if (legajo.VTO_AUTORI.toString() == "0000-00-00"){
+            // console.log("Invalid Date");
+            legajo.VTO_AUTORI = new Date(2010,10,10);
+        }
+        if (legajo.FEC_ULT_PR.toString() == "0000-00-00"){
+            // console.log("Invalid Date");
+            legajo.FEC_ULT_PR = new Date(2010,10,10);
+        }
+        if (legajo.FECHA_HORA.toString() == "0000-00-00"){
+            // console.log("Invalid Date");
+            legajo.FECHA_HORA = new Date(2010,10,10);
+        }
+        if (legajo.FECHA.toString() == "0000-00-00"){
+            // console.log("Invalid Date");
+            legajo.FECHA_HORA = new Date();
+        }
+        return this.http.put(ip + "/api/legajo/" + legajo.id, legajo)
+            .toPromise()
+            .then(response => {
+                // if (response["success"])
+                    return response;
             })
             .catch(this.handleError);
     }

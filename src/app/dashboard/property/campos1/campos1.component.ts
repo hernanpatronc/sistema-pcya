@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Property } from '../../../models/property';
+import { PropiedadesService } from '../../../services/propiedades.service';
 
 @Component({
   selector: 'app-campos1',
@@ -8,8 +9,8 @@ import { Property } from '../../../models/property';
 })
 export class Campos1Component implements OnInit {
   @Input() propiedad: Property;
-  @Output() updateProperty = new EventEmitter<string>();
-  constructor() { }
+
+  constructor(private propiedadesService : PropiedadesService) { }
 
   ngOnInit() {
   }

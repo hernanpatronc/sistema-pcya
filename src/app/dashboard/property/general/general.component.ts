@@ -3,6 +3,7 @@ import { Property } from "../../../models/property";
 import { PropiedadesService } from "../../../services/propiedades.service";
 import { Router } from "@angular/router";
 import { NotifyService } from "../../../notify/notify.service";
+// import { NgForm } from "@angular/forms";
 
 @Component({
   selector: "app-general",
@@ -11,16 +12,21 @@ import { NotifyService } from "../../../notify/notify.service";
 })
 export class GeneralComponent implements OnInit {
   @Input() propiedad: Property;
-  @Output() updateProperty = new EventEmitter<string>();
+
+  // @ViewChild('propertyForm') form : NgForm;
+
   traders = [];
   tipo_inmus = [];
   estados = [];
+  globalEstados = []
   paises = [];
   provincias = [];
   lastIndexOfr : number = 0;
   lastIndexReq : number = 0;
   lat : number;
   long : number;
+  lasIndexOper : number = 0;
+
   constructor(
     private propiedadesService: PropiedadesService,
     private router: Router,
@@ -28,6 +34,10 @@ export class GeneralComponent implements OnInit {
   ) {}
 
   OnLegajoPropertiesChanges() {
+    this.estados = this.globalEstados.filter((val,index,array)=>{
+      return val.columna == (this.propiedad.OFR =='1' ? "ESTADO_OFR" : "ESTADO_REQ");
+    });
+    this.propiedad.OPERACION = "PA-" + (this.propiedad.OFR == '1' ? this.lasIndexOper : '000');
     if (
       this.propiedad.OFR =="1" &&
       this.propiedad.ZONA &&
@@ -88,8 +98,8 @@ export class GeneralComponent implements OnInit {
       this.tipo_inmus = fields.filter((val,index,array)=>{
         return val.columna == "TIPO_INMU";
       });
-      this.estados = fields.filter((val,index,array)=>{
-        return val.columna == "ESTADO";
+      this.globalEstados = fields.filter((val,index,array)=>{
+        return val.columna.includes("ESTADO");
       });
       this.paises = fields.filter((val,index,array)=>{
         return val.columna == "PAIS";
@@ -103,6 +113,12 @@ export class GeneralComponent implements OnInit {
       this.lastIndexReq = parseInt(fields.filter((val,index,array)=>{
         return val.columna == "INDICE_REQ"
       })[0].nombre);
+      this.lasIndexOper = parseInt(fields.filter((val,index,array)=>{
+        return val.columna == "INDICE_OPE"
+      })[0].nombre);
+      this.estados = this.globalEstados.filter((val,index,array)=>{
+        return val.columna == (this.propiedad.OFR =='1' ? "ESTADO_OFR" : "ESTADO_REQ");
+      });
     }
     
     catch (error) {

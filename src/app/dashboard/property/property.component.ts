@@ -43,6 +43,10 @@ export class PropertyComponent implements OnInit {
             this.propiedad = /*await this.propiedadesService.getProperty(
                 this.id
               );*/ this.propiedadesService.currentProperty;
+              if (!this.propiedad.LEGAJO) {
+                this.propiedad = await this.propiedadesService.getProperty(this.id);
+              }
+
         }
         catch (err) {
             // initNotify("Error buscando legajo ", 4);
@@ -53,11 +57,35 @@ export class PropertyComponent implements OnInit {
       this.setTipoPropiedad(this.propiedad.TIPO_INMU);
     } else {
       this.propiedadesService.currentProperty = this.propiedad;
+      this.propiedadesService.disableForm = false;
+      this.propiedad.OPERACION = "PA-208";
+    }
+    
+  }
+
+  actualizarLegajo = async () => {
+    // console.log(this.propiedad.FECHA, this.propiedad.VTO_AUTORI)
+    try {
+      if (this.propiedad.id){
+        await this.propiedadesService.updateProperty(this.propiedad);
+      } else {
+        await this.propiedadesService.postProperty(this.propiedad);
+      }
+      this.notifyService.newNotification("success", "Se ha actualizado el legajo")
+    }
+    catch (err){
+      this.notifyService.newNotification("danger", "Error actualizando legajo " + err)
     }
   }
 
-  updatePropertyGlobal = ($event) => {
-      console.log("Actualizada propiedad " + this.propiedad.LEGAJO)
+  resetProperty = async () => {
+    try {
+      this.propiedad = await this.propiedadesService.getProperty(this.propiedad.id);
+      // this.notifyService.newNotification("success", "Se ha actualizado el legajo")
+    }
+    catch (err){
+      this.notifyService.newNotification("danger", "Error buscando legajo " + err)
+    }
   }
 
   setTipoPropiedad = (tipo_inmu : string) => {

@@ -11,25 +11,25 @@
                   <div class="col-md-3">
                       <div class="form-group">
                           <label>ABL (anual)</label>
-                          <input type="text" class="form-control">
+                          <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="EXPENSAS" [(ngModel)]="propiedad.EXPENSAS">
                       </div>
                   </div>
                   <div class="col-md-3">
                       <div class="form-group">
                           <label>Rentas (anual)</label>
-                          <input type="text" class="form-control">
+                          <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="RENTAS" [(ngModel)]="propiedad.RENTAS">
                       </div>
                   </div>
                   <div class="col-md-3">
                       <div class="form-group">
                           <label>FOS</label>
-                          <input type="text" class="form-control">
+                          <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="FOS" [(ngModel)]="propiedad.FOS">
                       </div>
                   </div>
                   <div class="col-md-3">
                       <div class="form-group">
                           <label>FOT</label>
-                          <input type="text" class="form-control">
+                          <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="FOT" [(ngModel)]="propiedad.FOT">
                       </div>
                   </div>
               </div>
@@ -37,7 +37,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Situación Títulos</label>
-                  <input type="text" class="form-control" name="titulos" [(ngModel)]="propiedad.TITULOS" />
+                  <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="TITULOS" [(ngModel)]="propiedad.TITULOS" />
                 </div>
               </div>
             </div>
@@ -52,13 +52,13 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Calle</label>
-                  <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                  <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="CALLE" [(ngModel)]="propiedad.CALLE">
                 </div>
               </div>
               <div class="col-md-2">
                 <div class="form-group">
                   <label>Número</label>
-                  <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                  <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="NRO_CALLE" [(ngModel)]="propiedad.NRO_CALLE">
                 </div>
               </div>
 
@@ -67,32 +67,32 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Entre calle</label>
-                  <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                  <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="ENTRE_CALL" [(ngModel)]="propiedad.ENTRE_CALL">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Y calle</label>
-                  <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                  <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="Y_CALLE" [(ngModel)]="propiedad.Y_CALLE">
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-3">
                 <label>Circunscrip.</label>
-                <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="CIRCUNSCRI" [(ngModel)]="propiedad.CIRCUNSCRI">
               </div>
               <div class="col-md-3">
                 <label>Sección</label>
-                <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="SECCION" [(ngModel)]="propiedad.SECCION">
               </div>
               <div class="col-md-3">
                 <label>Manzana fracción</label>
-                <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="MANZANA" [(ngModel)]="propiedad.MANZANA">
               </div>
               <div class="col-md-3">
                 <label>Parcela/Lote</label>
-                <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="LOTE" [(ngModel)]="propiedad.LOTE">
               </div>
             </div>
             <hr>
@@ -101,19 +101,19 @@
             <div class="row">
               <div class="col-md-3">
                 <label>Total</label>
-                <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="HAS_TOTALE" [(ngModel)]="propiedad.HAS_TOTALE">
               </div>
               <div class="col-md-3">
                 <label>Cubierta</label>
-                <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="CONSTRUCCI" [(ngModel)]="propiedad.CONSTRUCCI">
               </div>
               <div class="col-md-3">
                 <label>Ocupación del suelo</label>
-                <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="OCUPACION_" [(ngModel)]="propiedad.OCUPACION_">
               </div>
               <div class="col-md-3">
                 <label>Espacio verde</label>
-                <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="ESPVERD" [(ngModel)]="propiedad.ESPVERD">
               </div>
             </div>
             <br>
@@ -121,11 +121,11 @@
             <div class="row">
               <div class="col-md-2">
                 <label>Gas</label>
-                <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="GAS" [(ngModel)]="propiedad.GAS">
               </div>
               <div class="col-md-2">
                 <label>Asfalto</label>
-                <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="ASFALTO" [(ngModel)]="propiedad.ASFALTO">
               </div>
               
             </div>
@@ -134,32 +134,30 @@
             <div class="row">
               <div class="col-md-2">
                 <label>Ambientes</label>
-                <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="AMBIENTALE" [(ngModel)]="propiedad.AMBIENTALE">
               </div>
               <div class="col-md-2">
                 <label>Baños/Toilettes</label>
-                <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="BANIOS" [(ngModel)]="propiedad.BANIOS">
               </div>
               <div class="col-md-2">
                 <label>Dependencias/Servicio</label>
-                <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="DEP_SERV" [(ngModel)]="propiedad.DEP_SERV">
               </div>
               <div class="col-md-2">
                 <label>Piscina</label>
-                <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="PISCINA" [(ngModel)]="propiedad.PISCINA">
               </div>
               <div class="col-md-2">
                 <label>Quincho</label>
-                <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="QUINCHO" [(ngModel)]="propiedad.QUINCHO">
               </div>
               <div class="col-md-2">
                 <label>Garage</label>
-                <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" name="GARAGE" [(ngModel)]="propiedad.GARAGE">
               </div>
             </div>
-            <br>
-            <button type="submit" class="btn btn-info btn-fill pull-right">{{this.legajo == "new" ? "Guardar" : "Actualizar"}}</button>
-            <div class="clearfix"></div>
+            <ng-content></ng-content>
           </form>
         </div>
       </div>
