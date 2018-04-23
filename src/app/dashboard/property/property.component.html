@@ -12,7 +12,7 @@
     </ul>
 
     <div class="tab-content">
-        <app-general id="general" class="tab-pane fade show active" [propiedad]="propiedad">
+        <app-general id="general" class="tab-pane fade show active" (propiedadChanged)="setTipoPropiedad(propiedad.TIPO_INMU)" [propiedad]="propiedad">
             <div class="text-center" style="margin-bottom: 30px; margin-top: 30px;">
                 <button type="submit" class="btn btn-success btn-fill" *ngIf="!propiedadesService.disableForm" (click)="actualizarLegajo(); propiedadesService.disableForm = true;">Guardar</button>
                 <!-- (click)="updateProperty.next(propiedad.LEGJAO)" -->

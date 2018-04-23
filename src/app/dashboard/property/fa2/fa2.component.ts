@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Property } from '../../../models/property';
+import { PropiedadesService } from '../../../services/propiedades.service';
 
 @Component({
   selector: 'app-fa2',
@@ -8,7 +9,7 @@ import { Property } from '../../../models/property';
 })
 export class Fa2Component implements OnInit {
   @Input() propiedad : Property;
-  constructor() { }
+  constructor(private propiedadesService : PropiedadesService) { }
 
   ngOnInit() {
   }

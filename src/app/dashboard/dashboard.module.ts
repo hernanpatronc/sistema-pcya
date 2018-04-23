@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { MODULE_COMPONENTS, MODULE_ROUTES } from './dashboard.routes';
 import { FormsModule } from '@angular/forms';
@@ -28,7 +28,7 @@ import { AgmCoreModule } from '@agm/core';
         })
     ],
     declarations: [ MODULE_COMPONENTS, GeneralComponent, Campos1Component, Campos2Component, DeOfLo1Component, DeOfLo2Component, CcTc1Component, CcTc2Component, VuCqTu1Component, VuCqTu2Component, Ot1Component, Ot2Component, Fa1Component, Fa2Component ],
-    providers : [RouterModule]
+    providers : [RouterModule,{provide: LocationStrategy, useClass: HashLocationStrategy}]
 })
 
 export class DashboardModule{}

@@ -12,6 +12,7 @@ import { NotifyService } from "../../../notify/notify.service";
 })
 export class GeneralComponent implements OnInit {
   @Input() propiedad: Property;
+  @Output() propiedadChanged = new EventEmitter<string>();
 
   // @ViewChild('propertyForm') form : NgForm;
 
@@ -82,12 +83,12 @@ export class GeneralComponent implements OnInit {
   }
 
   setLatLong = () => {
-    this.lat = 0 - (parseInt(this.propiedad.COORD_S1) + (parseInt(this.propiedad.COORD_S2) / 60) + (parseFloat(this.propiedad.COORD_S3)/3600));
-    this.long = 0 - (parseInt(this.propiedad.COORD_W1) + (parseInt(this.propiedad.COORD_W2) / 60) + (parseFloat(this.propiedad.COORD_W3)/3600));
+    this.lat = 0 - (parseFloat(this.propiedad.COORD_S1) + (parseFloat(this.propiedad.COORD_S2) / 60) + (parseFloat(this.propiedad.COORD_S3)/3600));
+    this.long = 0 - (parseFloat(this.propiedad.COORD_W1) + (parseFloat(this.propiedad.COORD_W2) / 60) + (parseFloat(this.propiedad.COORD_W3)/3600));
   }
 
   async ngOnInit() {
-    this.setLatLong();
+    
     // console.log(this.lat,this.long)
     try {
       let fields = await this.propiedadesService.getFields()
@@ -119,6 +120,7 @@ export class GeneralComponent implements OnInit {
       this.estados = this.globalEstados.filter((val,index,array)=>{
         return val.columna == (this.propiedad.OFR =='1' ? "ESTADO_OFR" : "ESTADO_REQ");
       });
+      this.setLatLong();
     }
     
     catch (error) {
