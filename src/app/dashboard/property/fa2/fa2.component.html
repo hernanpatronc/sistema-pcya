@@ -1,3 +1,127 @@
-<p>
-  fa2 works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="card" style="width: 100%;">
+      <div class="col-md-12">
+        <div class="header">
+          <h4 class="title">Propiedad: {{this.propiedad.LEGAJO}}</h4>
+        </div>
+        <div class="content" style="width: 100%;">
+          <form style="width: 100%;">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>Varios-expensas</label>
+                  <input type="text" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <h4>Precios</h4>
+                </div>
+              </div>
+              <div class="col-md-2 col-md-offset-4">
+                <div class="form-group">
+                  <label>Mostrar precios</label>
+                  <input type="text" class="form-control">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Fecha última actualización pr.</label>
+                  <input type="date" class="form-control">
+                </div>
+              </div>
+            </div>
+            <table class="table table-striped table-hover table-bordered">
+              <thead>
+                <tr class="bg-light">
+                  <th rowspan="2">Total USD</th>
+                  <th>Autorizado</th>
+                  <th>
+                    <div class="form-group">
+                      <label>Valor Total Autorizado</label>
+                      <input type="text" class="form-control">
+                    </div>
+                  </th>
+                </tr>
+                <tr class="bg-light">
+                  <th>Definitivo</th>
+                  <th>
+                    <div class="form-group">
+                      <label>Valor total definitivo</label>
+                      <input type="text" class="form-control">
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+            </table>
+            <div class="row">
+              <div class="col-md-2">
+                <h4>Descripción</h4>
+              </div>
+
+              <div class="col-md-5">
+                <label>Principal</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="col-md-5">
+                <label>Secundaria</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2">
+                <h4>Description</h4>
+              </div>
+
+              <div class="col-md-5">
+                <label>Principal</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="col-md-5">
+                <label>Secundaria</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2">
+                <h4>Comentarios </h4>
+              </div>
+
+              <div class="col-md-5">
+                <label>&nbsp;</label>
+                <textarea style="width: 100%; height: 70px;" class="form-control"></textarea>
+              </div>
+              <div class="col-md-5">
+                <label>&nbsp;</label>
+                <textarea style="width: 100%; height: 70px;" class="form-control"></textarea>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-2">
+                <h4>Título de la página </h4>
+              </div>
+
+              <div class="col-md-5">
+                <label>Español</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="col-md-5">
+                <label>Inglés</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <hr>
+
+            <br>
+            <button type="submit" class="btn btn-info btn-fill pull-right">{{this.legajo == "new" ? "Guardar" : "Actualizar"}}</button>
+            <div class="clearfix"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

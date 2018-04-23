@@ -1,3 +1,130 @@
-<p>
-  fa1 works!
-</p>
+<div class="container-fluid">
+    <div class="row">
+      <div class="card">
+        <div class="col-md-12">
+          <div class="header">
+            <h4 class="title">Propiedad: {{this.propiedad.LEGAJO}}</h4>
+          </div>
+          <div class="content">
+            <form>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Situación Títulos</label>
+                    <input type="text" class="form-control" name="titulos" [(ngModel)]="propiedad.TITULOS" />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <h4>Accesos</h4>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Calle</label>
+                    <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label>Número</label>
+                    <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                  </div>
+                </div>
+  
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Entre calle</label>
+                    <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Y calle</label>
+                    <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <label>Circunscrip.</label>
+                  <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                </div>
+                <div class="col-md-3">
+                  <label>Sección</label>
+                  <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                </div>
+                <div class="col-md-3">
+                  <label>Manzana fracción</label>
+                  <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                </div>
+                <div class="col-md-3">
+                  <label>Parcela/Lote</label>
+                  <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                </div>
+              </div>
+              <hr>
+              <br>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Uso del inmueble</label>
+                    <input type="text" class="form-control" name="titulos" [(ngModel)]="propiedad.TITULOS" />
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <br>
+              <h5>Superficie</h5>
+              <div class="row">
+                <div class="col-md-4">
+                  <label>Total Terreno</label>
+                  <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                </div>
+                <div class="col-md-4">
+                  <label>Total asignado a unidades</label>
+                  <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                </div>
+                <div class="col-md-4">
+                  <label>Espacios verdes y comunes</label>
+                  <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                </div>
+                
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <label>Superficie edificada común</label>
+                  <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                </div>
+                <div class="col-md-4">
+                  <label>Cantidad de unidades</label>
+                  <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                </div>
+              </div>
+              <br>
+              <h5>Superficie de las unidades</h5>
+              <div class="row">
+                <div class="col-md-3">
+                  <label>Desde</label>
+                  <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                </div>
+                <div class="col-md-3">
+                  <label>Hasta</label>
+                  <input type="text" class="form-control" name="pueblo1" [(ngModel)]="propiedad.PUEBLO1">
+                </div>
+              </div>
+              <br>
+              <button type="submit" class="btn btn-info btn-fill pull-right">{{this.legajo == "new" ? "Guardar" : "Actualizar"}}</button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -16,12 +16,16 @@ import { Ot1Component } from './property/ot1/ot1.component';
 import { Ot2Component } from './property/ot2/ot2.component';
 import { Fa1Component } from './property/fa1/fa1.component';
 import { Fa2Component } from './property/fa2/fa2.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
     imports: [
         RouterModule.forChild(MODULE_ROUTES),
         CommonModule,
-        FormsModule
+        FormsModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyCBnl65eOfbu7PS6Z8KCS7utzowp5EdWkE'
+        })
     ],
     declarations: [ MODULE_COMPONENTS, GeneralComponent, Campos1Component, Campos2Component, DeOfLo1Component, DeOfLo2Component, CcTc1Component, CcTc2Component, VuCqTu1Component, VuCqTu2Component, Ot1Component, Ot2Component, Fa1Component, Fa2Component ],
     providers : [RouterModule]

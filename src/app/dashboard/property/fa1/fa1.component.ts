@@ -8,6 +8,7 @@ import { Property } from '../../../models/property';
 })
 export class Fa1Component implements OnInit {
   @Input() propiedad : Property;
+
   constructor() { }
 
   ngOnInit() {

@@ -1,16 +1,15 @@
-import { NgModule }      from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 // import { HttpClientModule } from '@angular/http';
 
-import { AppComponent }   from './app.component';
+import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { DashboardModule } from './dashboard/dashboard.module';
 import { SidebarModule } from './sidebar/sidebar.module';
-import { NavbarModule} from './shared/navbar/navbar.module';
-
+import { NavbarModule } from './shared/navbar/navbar.module';
 import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { PropiedadesService } from './services/propiedades.service';
 import { FormsModule } from '@angular/forms';
@@ -25,7 +24,7 @@ import { UserService } from './services/user.service';
 
 
 @NgModule({
-    imports:      [
+    imports: [
         BrowserModule,
         DashboardModule,
         SidebarModule,
@@ -35,13 +34,13 @@ import { UserService } from './services/user.service';
         NoopAnimationsModule,
         RouterModule.forRoot([])
     ],
-    declarations: [ AppComponent, DashboardComponent , NotifyComponent ],
-    providers: [{provide: LocationStrategy, useClass: PathLocationStrategy}, PropiedadesService, AuthenticationService, AuthGuard, AdminGuard, NotifyService, 
+    declarations: [AppComponent, DashboardComponent, NotifyComponent],
+    providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }, PropiedadesService, AuthenticationService, AuthGuard, AdminGuard, NotifyService,
     {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptorService,
-      multi: true
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthInterceptorService,
+        multi: true
     }, UserService],
-    bootstrap:    [ AppComponent ]
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

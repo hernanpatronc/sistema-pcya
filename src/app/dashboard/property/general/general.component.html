@@ -266,42 +266,39 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <h4>Coordenadas</h4>
-                                </div>
-                                <div class="col-md-1">
                                     <div class="form-group">
                                         <label>Sur</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.COORD_S1">
+                                        <input type="number" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.COORD_S1" (input)="setLatLong()">
                                     </div>
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label>'</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.COORD_S2">
+                                        <input type="number" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.COORD_S2" (input)="setLatLong()">
                                     </div>
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label>''</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.COORD_S3">
+                                        <input type="number" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.COORD_S3" (input)="setLatLong()">
                                     </div>
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label>Oeste</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.COORD_W1">
+                                        <input type="number" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.COORD_W1" (input)="setLatLong()">
                                     </div>
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label>'</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.COORD_W2">
+                                        <input type="number" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.COORD_W2" (input)="setLatLong()">
                                     </div>
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label>''</label>
-                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.COORD_W3">
+                                        <input type="number" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.COORD_W3" (input)="setLatLong()">
                                     </div>
                                 </div>
                             </div>
@@ -331,6 +328,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <agm-map style="height: 300px;" [latitude]="lat" [longitude]="long" [zoom]="18">
+                                        <agm-marker [latitude]="lat" [longitude]="long"></agm-marker>
+                                    </agm-map>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="card">

@@ -19,7 +19,8 @@ export class GeneralComponent implements OnInit {
   provincias = [];
   lastIndexOfr : number = 0;
   lastIndexReq : number = 0;
-
+  lat : number;
+  long : number;
   constructor(
     private propiedadesService: PropiedadesService,
     private router: Router,
@@ -70,7 +71,14 @@ export class GeneralComponent implements OnInit {
     }
   }
 
+  setLatLong = () => {
+    this.lat = 0 - (parseInt(this.propiedad.COORD_S1) + (parseInt(this.propiedad.COORD_S2) / 60) + (parseFloat(this.propiedad.COORD_S3)/3600));
+    this.long = 0 - (parseInt(this.propiedad.COORD_W1) + (parseInt(this.propiedad.COORD_W2) / 60) + (parseFloat(this.propiedad.COORD_W3)/3600));
+  }
+
   async ngOnInit() {
+    this.setLatLong();
+    // console.log(this.lat,this.long)
     try {
       let fields = await this.propiedadesService.getFields()
       // console.log(fields)
