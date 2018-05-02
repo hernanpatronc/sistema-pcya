@@ -3,6 +3,7 @@ import { Property } from "../../../models/property";
 import { PropiedadesService } from "../../../services/propiedades.service";
 import { Router } from "@angular/router";
 import { NotifyService } from "../../../notify/notify.service";
+import { FieldsService } from "../../../services/fields.service";
 // import { NgForm } from "@angular/forms";
 
 @Component({
@@ -31,14 +32,15 @@ export class GeneralComponent implements OnInit {
   constructor(
     private propiedadesService: PropiedadesService,
     private router: Router,
-    private notifyService : NotifyService
+    private notifyService : NotifyService,
+    private fieldsService: FieldsService
   ) {}
 
   OnLegajoPropertiesChanges() {
     this.estados = this.globalEstados.filter((val,index,array)=>{
       return val.columna == (this.propiedad.OFR =='1' ? "ESTADO_OFR" : "ESTADO_REQ");
     });
-    this.propiedad.OPERACION = "PA-" + (this.propiedad.OFR == '1' ? this.lasIndexOper : '000');
+    this.propiedad.OPERACION = "PA-" + (this.propiedad.OFR == '1' && this.propiedad.CARACTER == 'OPER' ? this.lasIndexOper : '000');
     if (
       this.propiedad.OFR =="1" &&
       this.propiedad.ZONA &&
@@ -58,7 +60,6 @@ export class GeneralComponent implements OnInit {
         this.propiedad.ZONA +
         "-" +
         this.lastIndexOfr;
-      this.lastIndexOfr++;
     } else if (
       this.propiedad.OFR =="2" &&
       this.propiedad.ZONA &&
@@ -78,7 +79,6 @@ export class GeneralComponent implements OnInit {
         this.propiedad.ZONA +
         "-" +
         this.lastIndexReq;
-      this.lastIndexReq++;
     }
   }
 
@@ -91,7 +91,7 @@ export class GeneralComponent implements OnInit {
     
     // console.log(this.lat,this.long)
     try {
-      let fields = await this.propiedadesService.getFields()
+      let fields = await this.fieldsService.getFields()
       // console.log(fields)
       this.traders = fields.filter((val,index,array)=>{
         return val.columna == "TRADER";

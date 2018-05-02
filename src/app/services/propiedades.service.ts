@@ -92,14 +92,6 @@ export class PropiedadesService {
             .catch(this.handleError);
     }
     
-    getFields(): Promise<Fields[]> {
-        return this.http.get(ip + "/api/field")
-            .toPromise()
-            .then(response => {
-                return response as Fields[];
-            })
-            .catch(this.handleError);
-    }
     searchPropiedades = (columna : string, busqueda: string) : Promise<Property[]> => {
         return this.http.get(ip + '/api/legajo?where={"' + columna + '": {"contains" : "' + busqueda + '"}}')
             .toPromise()

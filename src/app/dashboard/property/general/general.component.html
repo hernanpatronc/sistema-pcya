@@ -95,7 +95,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Categoría por Vínculo</label>
-                                            <select [disabled]="propiedadesService.disableForm" class="form-control" name="caracter" [(ngModel)]="this.propiedad.CARACTER">
+                                            <select [disabled]="propiedadesService.disableForm" class="form-control" name="caracter" [(ngModel)]="this.propiedad.CARACTER" (change)="OnLegajoPropertiesChanges()">
                                                 <option value="OPER">Operación</option>
                                                 <option value="DATO">Sólo dato</option>
                                             </select>
@@ -110,13 +110,11 @@
                                         <!--div class="col-md-2 pull-right"-->
                                         <div class="form-group">
                                             <label>Legajo</label>
-                                            <input type="text" class="form-control" disabled [ngModelOptions]="{standalone: true}"
-                                                [(ngModel)]="this.propiedad.LEGAJO">
+                                            <input type="text" class="form-control" disabled [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.LEGAJO">
                                         </div>
                                         <div class="form-group">
                                             <label>Operacion</label>
-                                            <input type="text" class="form-control" disabled [ngModelOptions]="{standalone: true}"
-                                                [(ngModel)]="this.propiedad.OPERACION">
+                                            <input type="text" class="form-control" disabled [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.OPERACION">
                                         </div>
                                     </div>
                                     <!--/div-->
@@ -301,37 +299,43 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Sur</label>
-                                    <input type="number" [disabled]="propiedadesService.disableForm" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.COORD_S1" (input)="setLatLong()">
+                                    <input type="number" [disabled]="propiedadesService.disableForm" class="form-control" [ngModelOptions]="{standalone: true}"
+                                        [(ngModel)]="this.propiedad.COORD_S1" (input)="setLatLong()">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>'</label>
-                                    <input type="number" [disabled]="propiedadesService.disableForm" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.COORD_S2" (input)="setLatLong()">
+                                    <input type="number" [disabled]="propiedadesService.disableForm" class="form-control" [ngModelOptions]="{standalone: true}"
+                                        [(ngModel)]="this.propiedad.COORD_S2" (input)="setLatLong()">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>''</label>
-                                    <input type="number" [disabled]="propiedadesService.disableForm" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.COORD_S3" (input)="setLatLong()">
+                                    <input type="number" [disabled]="propiedadesService.disableForm" class="form-control" [ngModelOptions]="{standalone: true}"
+                                        [(ngModel)]="this.propiedad.COORD_S3" (input)="setLatLong()">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Oeste</label>
-                                    <input type="number" [disabled]="propiedadesService.disableForm" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.COORD_W1" (input)="setLatLong()">
+                                    <input type="number" [disabled]="propiedadesService.disableForm" class="form-control" [ngModelOptions]="{standalone: true}"
+                                        [(ngModel)]="this.propiedad.COORD_W1" (input)="setLatLong()">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>'</label>
-                                    <input type="number" [disabled]="propiedadesService.disableForm" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.COORD_W2" (input)="setLatLong()">
+                                    <input type="number" [disabled]="propiedadesService.disableForm" class="form-control" [ngModelOptions]="{standalone: true}"
+                                        [(ngModel)]="this.propiedad.COORD_W2" (input)="setLatLong()">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>''</label>
-                                    <input type="number" [disabled]="propiedadesService.disableForm" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.COORD_W3" (input)="setLatLong()">
+                                    <input type="number" [disabled]="propiedadesService.disableForm" class="form-control" [ngModelOptions]="{standalone: true}"
+                                        [(ngModel)]="this.propiedad.COORD_W3" (input)="setLatLong()">
                                 </div>
                             </div>
                         </div>
@@ -385,11 +389,13 @@
 
                                         <div class="form-group">
                                             <label>Situac. Publ.</label>
-                                            <input type="text" class="form-control" [disabled]="propiedadesService.disableForm" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.ZP_PU">
+                                            <input type="text" class="form-control" [disabled]="propiedadesService.disableForm" [ngModelOptions]="{standalone: true}"
+                                                [(ngModel)]="this.propiedad.ZP_PU">
                                         </div>
                                         <div class="form-group">
                                             <label>Publ. hasta</label>
-                                            <input type="text" class="form-control" [disabled]="propiedadesService.disableForm" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.propiedad.ZP_DE">
+                                            <input type="text" class="form-control" [disabled]="propiedadesService.disableForm" [ngModelOptions]="{standalone: true}"
+                                                [(ngModel)]="this.propiedad.ZP_DE">
                                         </div>
                                     </div>
                                 </div>
@@ -439,7 +445,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <h4>Cerrado con Requerimiento</h4>
                             </div>
                             <div class="col-md-3">
@@ -449,17 +455,43 @@
                                         [(ngModel)]="this.propiedad.LEGAJO_REQ">
                                 </div>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Nombre</label>
                                     <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" [ngModelOptions]="{standalone: true}"
                                         [(ngModel)]="this.propiedad.NOM_REQUER">
                                 </div>
                             </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>&nbsp;</label>
+                                    <button class="form-control btn btn-primary btn-fill" data-toggle="modal" data-target="#cerrarLegajo">Cerrar</button>
+                                </div>
+                            </div>
                         </div>
+                        
                         <ng-content></ng-content>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="cerrarLegajo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
