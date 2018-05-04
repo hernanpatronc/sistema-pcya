@@ -1,4 +1,4 @@
-    <div class="sidebar-wrapper">
+<!-- <div class="sidebar-wrapper">
         <div class="logo">
             <a href="http://www.creative-tim.com" class="simple-text">
                 <div class="logo-img">
@@ -14,5 +14,27 @@
                     <p>{{menuItem.title}}</p>
                 </a>
             </li>
-        </ul>
+        </ul> style="background-image: url('../assets/img/sidebar-2.jpg')"
+    </div> -->
+
+<nav id="sidebar">
+    <!-- Sidebar Header -->
+    <div class="sidebar-header">
+            <div class="logo-img">
+                    <img src="/assets/img/Logo2.png" width="30%"/>
+                </div>
+        <h3>Patrón Costas y Asociados</h3>
     </div>
+
+    <!-- Sidebar Links -->
+    <ul class="list-unstyled components">
+            <li *ngFor="let menuItem of menuItems" style="width:100%;" routerLinkActive="active" class="{{menuItem.class}}">
+                    <a  [routerLink]="[menuItem.path]" style="height:40px;">
+                        
+                        {{menuItem.title}}
+                        <i class="{{menuItem.icon}} pull-right"></i>
+                    </a>
+                    
+                </li>
+    </ul>
+</nav>

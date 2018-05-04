@@ -10,6 +10,7 @@ import { MapsComponent } from './maps/maps.component';
 import { LoginComponent } from './login/login.component';
 import { PropertyComponent } from './property/property.component';
 import { AuthGuard,AdminGuard } from '../authentication/auth.guard';
+import { FilesManagerComponent } from './files-manager/files-manager.component';
 
 export const MODULE_ROUTES: Route[] =[
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -21,6 +22,7 @@ export const MODULE_ROUTES: Route[] =[
     // { path: 'notifications', component: NotificationsComponent , canActivate: [AuthGuard]},
     { path: 'user', component: UserComponent , canActivate: [AdminGuard]},
     { path: 'maps', component: MapsComponent, canActivate: [AuthGuard] },
+    { path: 'files', component: FilesManagerComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent}
 
 ]

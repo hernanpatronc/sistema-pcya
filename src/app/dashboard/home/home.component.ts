@@ -20,7 +20,21 @@ export class HomeComponent implements OnInit, OnDestroy{
     deleteTask(task) {
         this.tasks.splice(this.tasks.indexOf(task), 1)
     }
-    colors = ["#1DC7EA","#9368E9","#FB404B","#87CB16","#FFA534","#1F77D0","#5e5e5e","#3b5998","#55acee","#cc2127","#dd4b39", "#cc2127", "#1769ff", "#6188e2", "#a748ca"];
+    colors = [ "#d70206",
+        "#f05b4f",
+        "#f4c63d",
+        "#d17905",
+        "#453d3f",
+        "#59922b",
+        "#0544d3",
+        "#6b0392",
+        "#f05b4f",
+        "#dda458",
+        "#eacf7d",
+        "#86797d",
+        "#b2c326",
+        "#6188e2",
+        "#a748ca"];
     tipos_inmu = [];
     cod_captacion = [];
     minutos:Date = new Date();

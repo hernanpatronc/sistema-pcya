@@ -1,0 +1,27 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2" *ngFor="let folder of folders">
+        <div class="card" style="height: 200px" [contextMenu]="basicMenu" [contextMenuSubject]="folder" [ngStyle]="{ 'background-color' : folder.selected ? 'RoyalBlue' : 'white' }"
+          (click)="folder.selected = !folder.selected" (dblclick)="goToPath(folder.path)">
+          <div class="card-img-top" style="padding: 10px">
+            <div class="text-center">
+              <i class="fa fa-{{folder.isFolder ? 'folder' : 'file'}} fa-5x" style="width:100%; color:lightgray;"></i>
+            </div>
+          </div>
+          <div class="card-body text-center">
+            <h6 class="card-title {{folder.selected ? 'text-white' : ''}}">{{folder.title}}</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<context-menu>
+  <ng-template contextMenuItem (execute)="deleteItem($event.item)">
+    Eliminar
+  </ng-template>
+  <ng-template contextMenuItem divider="true"></ng-template>
+  
+</context-menu>

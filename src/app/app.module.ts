@@ -21,6 +21,7 @@ import { NotifyService } from './notify/notify.service';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { UserService } from './services/user.service';
+import { FieldsService } from './services/fields.service';
 
 
 @NgModule({
@@ -40,7 +41,9 @@ import { UserService } from './services/user.service';
         provide: HTTP_INTERCEPTORS,
         useClass: AuthInterceptorService,
         multi: true
-    }, UserService],
+    }, UserService,
+    FieldsService
+],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

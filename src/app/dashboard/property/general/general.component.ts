@@ -91,30 +91,21 @@ export class GeneralComponent implements OnInit {
     
     // console.log(this.lat,this.long)
     try {
-      let fields = await this.fieldsService.getFields()
-      // console.log(fields)
-      this.traders = fields.filter((val,index,array)=>{
-        return val.columna == "TRADER";
-      });
-      this.tipo_inmus = fields.filter((val,index,array)=>{
-        return val.columna == "TIPO_INMU";
-      });
-      this.globalEstados = fields.filter((val,index,array)=>{
-        return val.columna.includes("ESTADO");
-      });
-      this.paises = fields.filter((val,index,array)=>{
-        return val.columna == "PAIS";
-      });
-      this.provincias = fields.filter((val,index,array)=>{
-        return val.columna == "ZONA";
-      });
-      this.lastIndexOfr = parseInt(fields.filter((val,index,array)=>{
+      // let fields = await this.fieldsService.getFields()
+      this.traders = await this.fieldsService.getTraders();
+      this.tipo_inmus = await this.fieldsService.getInmus();
+      this.globalEstados = await this.fieldsService.getEstados();
+      this.paises = await this.fieldsService.getPaises();
+      this.provincias = await this.fieldsService.getZonas();
+      let indices = await this.fieldsService.getIndices();
+     
+      this.lastIndexOfr = parseInt(indices.filter((val,index,array)=>{
         return val.columna == "INDICE_OFR"
       })[0].nombre);
-      this.lastIndexReq = parseInt(fields.filter((val,index,array)=>{
+      this.lastIndexReq = parseInt(indices.filter((val,index,array)=>{
         return val.columna == "INDICE_REQ"
       })[0].nombre);
-      this.lasIndexOper = parseInt(fields.filter((val,index,array)=>{
+      this.lasIndexOper = parseInt(indices.filter((val,index,array)=>{
         return val.columna == "INDICE_OPE"
       })[0].nombre);
       this.estados = this.globalEstados.filter((val,index,array)=>{

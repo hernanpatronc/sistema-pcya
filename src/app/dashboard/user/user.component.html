@@ -2,51 +2,53 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="card" >
-                    <div class="header">
-                        <h4 class="title">Usuarios</h4>
-                        <p class="category">Se pueden modificar los privilegios</p>
-                    </div>
-                    <div class="content table-responsive table-full-width">
-                        <table class="table table-hover table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Usuario</th>
-                                    <th>Alias</th>
-                                    <th>Privilegios</th>
-                                </tr>
-                                <tbody>
-                                    <tr *ngFor="let user of users">
-                                        <td>{{user.username}}</td>
-                                        <td>{{user.alias}}</td>
-                                        <td>{{user.privileges == -1 ? "Todos" : (user.privileges == 0 ? "Solo Lectura" : "Lectura
-                                            y Escritura")}}</td>
-                                    </tr>
-                                </tbody>
-                        </table>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Usuarios</h4>
+                        <p class="card-subtitle">Se pueden modificar los privilegios</p>
 
+                        <div class="content table-responsive table-full-width">
+                            <table class="table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Usuario</th>
+                                        <th>Alias</th>
+                                        <th>Privilegios</th>
+                                    </tr>
+                                    <tbody>
+                                        <tr *ngFor="let user of users">
+                                            <td>{{user.username}}</td>
+                                            <td>{{user.alias}}</td>
+                                            <td>{{user.privileges == -1 ? "Todos" : (user.privileges == 0 ? "Solo Lectura" :
+                                                "Lectura y Escritura")}}</td>
+                                        </tr>
+                                    </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2 col-md-offset-5">
+            <div class="col-md-2 offset-md-5">
                 <button *ngIf="this.isAdmin" data-toggle="modal" data-target="#nuevoUsuario" class="btn btn-primary">Nuevo usuario</button>
             </div>
         </div>
     </div>
 </div>
-<div data-backdrop="false" class="modal fade" id="nuevoUsuario" role="dialog">
-    <div class="modal-dialog">
+<div class="modal" tabindex="-1" id="nuevoUsuario" role="dialog">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Nuevo usuario</h4>
+                <h5 class="modal-title">Nuevo usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <form #userForm="ngForm" novalidate (ngSubmit)="newUser()">
                     <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
+                        <div class="col-md-6 offset-md-3">
                             <div class="form-group">
                                 <label>Usuario:
                                 </label>
@@ -56,7 +58,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
+                        <div class="col-md-6 offset-md-3">
                             <div class="form-group">
                                 <label>Contraseña:
                                 </label>
@@ -66,7 +68,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
+                        <div class="col-md-6 offset-md-3">
                             <div class="form-group">
                                 <label>Privilegios:
                                 </label>
@@ -79,7 +81,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
+                        <div class="col-md-6 offset-md-3">
                             <div class="form-group">
                                 <label>Alias:
                                 </label>
@@ -94,6 +96,5 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal" #closeModalButton>Cerrar</button>
             </div>
         </div>
-
     </div>
 </div>
