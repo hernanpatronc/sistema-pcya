@@ -2,18 +2,23 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-2" *ngFor="let folder of folders">
-        <div class="card" style="height: 200px" [contextMenu]="basicMenu" [contextMenuSubject]="folder" [ngStyle]="{ 'background-color' : folder.selected ? 'RoyalBlue' : 'white' }"
-          (click)="folder.selected = !folder.selected" (dblclick)="goToPath(folder.path)">
+        <div class="card" draggable="true" [contextMenu]="basicMenu" [contextMenuSubject]="folder" [ngStyle]="{ 'background-color' : folder.selected ? 'RoyalBlue' : 'white' }"
+          (click)="folder.selected = !folder.selected" (dblclick)="goToPath(folder.path + '/' + folder.filename)">
           <div class="card-img-top" style="padding: 10px">
-            <div class="text-center">
+            <div *ngIf="!folder.isImage" class="text-center">
               <i class="fa fa-{{folder.isFolder ? 'folder' : 'file'}} fa-5x" style="width:100%; color:lightgray;"></i>
-            </div>
+            </div >
+            <img *ngIf="folder.isImage" src="{{ip + '/' + folder.path + '/' + folder.filename}}" width="100%"/>
           </div>
           <div class="card-body text-center">
-            <h6 class="card-title {{folder.selected ? 'text-white' : ''}}">{{folder.title}}</h6>
+            <h6 class="card-title {{folder.selected ? 'text-white' : ''}}">{{folder.originalFilename}}</h6>
           </div>
         </div>
       </div>
+    </div>
+    <div class="text-center">
+      <button *ngIf="currentPath!='files'" (click)="goToPrevious()" class="btn btn-danger"><i class="fa fa-arrow-left"></i>&nbsp;Atrás</button>
+      <button data-toggle="modal" data-target="#nuevaCarpeta" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp;Crear Carpeta</button>
     </div>
   </div>
 </div>
@@ -25,3 +30,53 @@
   <ng-template contextMenuItem divider="true"></ng-template>
   
 </context-menu>
+
+<div class="modal" tabindex="-1" id="nuevaCarpeta" role="dialog">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Nueva Carpeta</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <form novalidate>
+                  <div class="row">
+                      <div class="col-md-6 offset-md-3">
+                          <div class="form-group">
+                              <label>Nombre:
+                              </label>
+                              <input class="form-control input-sm" type="text" #folderName required
+                                  minlength="5">
+                          </div>
+                      </div>
+                  </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="submit" class="btn btn-success" data-dismiss="modal" (click)="createFolder(folderName.value)">Crear</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal" >Cerrar</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" id="fotoZoom" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Foto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img width="100%" src=""/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" >Cerrar</button>
+            </div>
+        </div>
+    </div>
+  </div>

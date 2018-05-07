@@ -22,6 +22,7 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { UserService } from './services/user.service';
 import { FieldsService } from './services/fields.service';
+import { FilesService } from './services/files.service';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { FieldsService } from './services/fields.service';
         useClass: AuthInterceptorService,
         multi: true
     }, UserService,
-    FieldsService
+    FieldsService,
+    FilesService
 ],
     bootstrap: [AppComponent]
 })

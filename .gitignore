@@ -5,6 +5,8 @@
 /dist-server
 /tmp
 /out-tsc
+/sistinmo-frontend-cli-win32-x64
+/dist/sistinmo-frontend-cli-win32-x64
 
 # dependencies
 /node_modules
