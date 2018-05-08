@@ -16,6 +16,7 @@ import { PropiedadesService } from "../../services/propiedades.service";
 import { FormsModule } from "@angular/forms";
 import { NotifyService } from "../../notify/notify.service";
 import { FieldsService } from "../../services/fields.service";
+import { ficha_interna } from "./ficha_interna";
 // import initNotify from "../../../assets/js/notify.js";
 
 @Component({
@@ -37,6 +38,18 @@ export class PropertyComponent implements OnInit {
     nombre: ""
   };
   propiedad = new Property();
+
+  print = () => {
+    var newWindow = window.open('about:blank', '_new');
+    newWindow.document.open();
+    newWindow.document.write(ficha_interna);
+    newWindow.document.close();
+    // newWindow.focus(); // necessary for IE >= 10*/
+    // window.
+    // newWindow.print();
+    // newWindow.close();
+
+  }
 
   async ngOnInit() {
     this.id = this.activatedRoute.snapshot.params["id"];
@@ -62,6 +75,8 @@ export class PropertyComponent implements OnInit {
     } else {
       this.propiedadesService.currentProperty = this.propiedad;
       this.propiedadesService.disableForm = false;
+      this.propiedad.FECHA = new Date();
+      this.propiedad.PAIS = "AR"
       this.propiedad.OPERACION = "PA-000";
     }
   }
