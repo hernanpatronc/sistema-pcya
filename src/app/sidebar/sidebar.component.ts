@@ -12,7 +12,7 @@ import { User } from '../models/user-model';
 export class SidebarComponent implements OnInit {
     public menuItems: any[] = [];
 
-    constructor(private authenticationService : AuthenticationService) {}
+    constructor(public authenticationService : AuthenticationService) {}
     ngOnInit() {
         //this.updateMenu();
         const currentUser : User = JSON.parse(localStorage.getItem("currentUser"));

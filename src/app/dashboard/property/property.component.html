@@ -19,7 +19,8 @@
                     <h4 class="card-title">Propiedad: {{this.propiedad.LEGAJO}}</h4>
                 </div>
                 <div class="col-md-6">
-                    <button class="btn btn-warning pull-right" (click)="print()">
+                    <button class="btn btn-warning pull-right" (click)="print()" >
+                            <!-- onclick="printElectr(true)" -->
                         <i class="fa fa-print"></i>
                     </button>
 
@@ -27,125 +28,54 @@
             </div>
         </div>
         <div class="card-body">
-            <div class="tab-content">
-                <app-general id="general" class="tab-pane fade show active" (propiedadChanged)="setTipoPropiedad(propiedad.TIPO_INMU)" [propiedad]="propiedad">
+                <div class="tab-content">
+                    <app-general id="general" #general class="tab-pane fade show active" (propiedadChanged)="setTipoPropiedad(propiedad.TIPO_INMU)" [propiedad]="propiedad">
+                        
+                    </app-general>
+                    <app-campos1 id="campos1" class="tab-pane fade" [propiedad]="propiedad">
+                        
+                    </app-campos1>
+                    <app-campos2 id="campos2" class="tab-pane fade" [propiedad]="propiedad">
+                       
+                    </app-campos2>
+                    <app-de-of-lo1 id="deoflo1" class="tab-pane fade" [propiedad]="propiedad">
+                        
+                    </app-de-of-lo1>
+                    <app-de-of-lo2 id="deoflo2" class="tab-pane fade" [propiedad]="propiedad">
+                        
+                    </app-de-of-lo2>
+                    <app-cc-tc1 id="cctc1" class="tab-pane fade" [propiedad]="propiedad">
+                        
+                    </app-cc-tc1>
+                    <app-cc-tc2 id="cctc2" class="tab-pane fade" [propiedad]="propiedad">
+                        
+                    </app-cc-tc2>
+                    <app-vu-cq-tu1 id="vucqtu1" class="tab-pane fade" [propiedad]="propiedad">
+                        
+                    </app-vu-cq-tu1>
+                    <app-vu-cq-tu2 id="vucqtu2" class="tab-pane fade" [propiedad]="propiedad">
+                        
+                    </app-vu-cq-tu2>
+                    <app-ot1 id="ot1" class="tab-pane fade" [propiedad]="propiedad">
+                        
+                    </app-ot1>
+                    <app-ot2 id="ot2" class="tab-pane fade" [propiedad]="propiedad">
+                        
+                    </app-ot2>
+                    <app-fa1 id="fa1" class="tab-pane fade" [propiedad]="propiedad">
+                        
+                    </app-fa1>
+                    <app-fa2 id="fa2" class="tab-pane fade" [propiedad]="propiedad">
+                        
+                    </app-fa2>
                     <div class="text-center" style="margin-bottom: 30px; margin-top: 30px;">
-                        <button type="submit" class="btn btn-success btn-fill" *ngIf="!propiedadesService.disableForm" (click)="actualizarLegajo(); propiedadesService.disableForm = true;">Guardar</button>
-                        <!-- (click)="updateProperty.next(propiedad.LEGJAO)" -->
-                        <button type="submit" class="btn btn-danger btn-fill" *ngIf="!propiedadesService.disableForm" (click)="resetProperty(); propiedadesService.disableForm = true;">Cancelar</button>
+                            <button type="submit" class="btn btn-success btn-fill" *ngIf="!propiedadesService.disableForm" (click)="onSubmit()">Guardar</button>
+                            <!-- (click)="updateProperty.next(propiedad.LEGJAO)" -->
+                            <button type="submit" class="btn btn-danger btn-fill" *ngIf="!propiedadesService.disableForm" (click)="resetProperty(); propiedadesService.disableForm = true;">Cancelar</button>
 
-                        <button type="submit" class="btn btn-info btn-fill" *ngIf="propiedadesService.disableForm" (click)="propiedadesService.disableForm = false;">Modificar</button>
+                            <button type="submit" class="btn btn-info btn-fill" *ngIf="propiedadesService.disableForm" (click)="propiedadesService.disableForm = false;">Modificar</button>
                     </div>
-                </app-general>
-                <app-campos1 id="campos1" class="tab-pane fade" [propiedad]="propiedad">
-                    <div class="text-center" style="margin-bottom: 30px; margin-top: 30px;">
-                        <button type="submit" class="btn btn-success btn-fill" *ngIf="!propiedadesService.disableForm" (click)="actualizarLegajo(); propiedadesService.disableForm = true;">Guardar</button>
-                        <!-- (click)="updateProperty.next(propiedad.LEGJAO)" -->
-                        <button type="submit" class="btn btn-danger btn-fill" *ngIf="!propiedadesService.disableForm" (click)="resetProperty(); propiedadesService.disableForm = true;">Cancelar</button>
-
-                        <button type="submit" class="btn btn-info btn-fill" *ngIf="propiedadesService.disableForm" (click)="propiedadesService.disableForm = false;">Modificar</button>
-                    </div>
-                </app-campos1>
-                <app-campos2 id="campos2" class="tab-pane fade" [propiedad]="propiedad">
-                    <div class="text-center" style="margin-bottom: 30px; margin-top: 30px;">
-                        <button type="submit" class="btn btn-success btn-fill" *ngIf="!propiedadesService.disableForm" (click)="actualizarLegajo(); propiedadesService.disableForm = true;">Guardar</button>
-                        <!-- (click)="updateProperty.next(propiedad.LEGJAO)" -->
-                        <button type="submit" class="btn btn-danger btn-fill" *ngIf="!propiedadesService.disableForm" (click)="resetProperty(); propiedadesService.disableForm = true;">Cancelar</button>
-
-                        <button type="submit" class="btn btn-info btn-fill" *ngIf="propiedadesService.disableForm" (click)="propiedadesService.disableForm = false;">Modificar</button>
-                    </div>
-                </app-campos2>
-                <app-de-of-lo1 id="deoflo1" class="tab-pane fade" [propiedad]="propiedad">
-                    <div class="text-center" style="margin-bottom: 30px; margin-top: 30px;">
-                        <button type="submit" class="btn btn-success btn-fill" *ngIf="!propiedadesService.disableForm" (click)="actualizarLegajo(); propiedadesService.disableForm = true;">Guardar</button>
-                        <!-- (click)="updateProperty.next(propiedad.LEGJAO)" -->
-                        <button type="submit" class="btn btn-danger btn-fill" *ngIf="!propiedadesService.disableForm" (click)="resetProperty(); propiedadesService.disableForm = true;">Cancelar</button>
-
-                        <button type="submit" class="btn btn-info btn-fill" *ngIf="propiedadesService.disableForm" (click)="propiedadesService.disableForm = false;">Modificar</button>
-                    </div>
-                </app-de-of-lo1>
-                <app-de-of-lo2 id="deoflo2" class="tab-pane fade" [propiedad]="propiedad">
-                    <div class="text-center" style="margin-bottom: 30px; margin-top: 30px;">
-                        <button type="submit" class="btn btn-success btn-fill" *ngIf="!propiedadesService.disableForm" (click)="actualizarLegajo(); propiedadesService.disableForm = true;">Guardar</button>
-                        <!-- (click)="updateProperty.next(propiedad.LEGJAO)" -->
-                        <button type="submit" class="btn btn-danger btn-fill" *ngIf="!propiedadesService.disableForm" (click)="resetProperty(); propiedadesService.disableForm = true;">Cancelar</button>
-
-                        <button type="submit" class="btn btn-info btn-fill" *ngIf="propiedadesService.disableForm" (click)="propiedadesService.disableForm = false;">Modificar</button>
-                    </div>
-                </app-de-of-lo2>
-                <app-cc-tc1 id="cctc1" class="tab-pane fade" [propiedad]="propiedad">
-                    <div class="text-center" style="margin-bottom: 30px; margin-top: 30px;">
-                        <button type="submit" class="btn btn-success btn-fill" *ngIf="!propiedadesService.disableForm" (click)="actualizarLegajo(); propiedadesService.disableForm = true;">Guardar</button>
-                        <!-- (click)="updateProperty.next(propiedad.LEGJAO)" -->
-                        <button type="submit" class="btn btn-danger btn-fill" *ngIf="!propiedadesService.disableForm" (click)="resetProperty(); propiedadesService.disableForm = true;">Cancelar</button>
-
-                        <button type="submit" class="btn btn-info btn-fill" *ngIf="propiedadesService.disableForm" (click)="propiedadesService.disableForm = false;">Modificar</button>
-                    </div>
-                </app-cc-tc1>
-                <app-cc-tc2 id="cctc2" class="tab-pane fade" [propiedad]="propiedad">
-                    <div class="text-center" style="margin-bottom: 30px; margin-top: 30px;">
-                        <button type="submit" class="btn btn-success btn-fill" *ngIf="!propiedadesService.disableForm" (click)="actualizarLegajo(); propiedadesService.disableForm = true;">Guardar</button>
-                        <!-- (click)="updateProperty.next(propiedad.LEGJAO)" -->
-                        <button type="submit" class="btn btn-danger btn-fill" *ngIf="!propiedadesService.disableForm" (click)="resetProperty(); propiedadesService.disableForm = true;">Cancelar</button>
-
-                        <button type="submit" class="btn btn-info btn-fill" *ngIf="propiedadesService.disableForm" (click)="propiedadesService.disableForm = false;">Modificar</button>
-                    </div>
-                </app-cc-tc2>
-                <app-vu-cq-tu1 id="vucqtu1" class="tab-pane fade" [propiedad]="propiedad">
-                    <div class="text-center" style="margin-bottom: 30px; margin-top: 30px;">
-                        <button type="submit" class="btn btn-success btn-fill" *ngIf="!propiedadesService.disableForm" (click)="actualizarLegajo(); propiedadesService.disableForm = true;">Guardar</button>
-                        <!-- (click)="updateProperty.next(propiedad.LEGJAO)" -->
-                        <button type="submit" class="btn btn-danger btn-fill" *ngIf="!propiedadesService.disableForm" (click)="resetProperty(); propiedadesService.disableForm = true;">Cancelar</button>
-
-                        <button type="submit" class="btn btn-info btn-fill" *ngIf="propiedadesService.disableForm" (click)="propiedadesService.disableForm = false;">Modificar</button>
-                    </div>
-                </app-vu-cq-tu1>
-                <app-vu-cq-tu2 id="vucqtu2" class="tab-pane fade" [propiedad]="propiedad">
-                    <div class="text-center" style="margin-bottom: 30px; margin-top: 30px;">
-                        <button type="submit" class="btn btn-success btn-fill" *ngIf="!propiedadesService.disableForm" (click)="actualizarLegajo(); propiedadesService.disableForm = true;">Guardar</button>
-                        <!-- (click)="updateProperty.next(propiedad.LEGJAO)" -->
-                        <button type="submit" class="btn btn-danger btn-fill" *ngIf="!propiedadesService.disableForm" (click)="resetProperty(); propiedadesService.disableForm = true;">Cancelar</button>
-
-                        <button type="submit" class="btn btn-info btn-fill" *ngIf="propiedadesService.disableForm" (click)="propiedadesService.disableForm = false;">Modificar</button>
-                    </div>
-                </app-vu-cq-tu2>
-                <app-ot1 id="ot1" class="tab-pane fade" [propiedad]="propiedad">
-                    <div class="text-center" style="margin-bottom: 30px; margin-top: 30px;">
-                        <button type="submit" class="btn btn-success btn-fill" *ngIf="!propiedadesService.disableForm" (click)="actualizarLegajo(); propiedadesService.disableForm = true;">Guardar</button>
-                        <!-- (click)="updateProperty.next(propiedad.LEGJAO)" -->
-                        <button type="submit" class="btn btn-danger btn-fill" *ngIf="!propiedadesService.disableForm" (click)="resetProperty(); propiedadesService.disableForm = true;">Cancelar</button>
-
-                        <button type="submit" class="btn btn-info btn-fill" *ngIf="propiedadesService.disableForm" (click)="propiedadesService.disableForm = false;">Modificar</button>
-                    </div>
-                </app-ot1>
-                <app-ot2 id="ot2" class="tab-pane fade" [propiedad]="propiedad">
-                    <div class="text-center" style="margin-bottom: 30px; margin-top: 30px;">
-                        <button type="submit" class="btn btn-success btn-fill" *ngIf="!propiedadesService.disableForm" (click)="actualizarLegajo(); propiedadesService.disableForm = true;">Guardar</button>
-                        <!-- (click)="updateProperty.next(propiedad.LEGJAO)" -->
-                        <button type="submit" class="btn btn-danger btn-fill" *ngIf="!propiedadesService.disableForm" (click)="resetProperty(); propiedadesService.disableForm = true;">Cancelar</button>
-
-                        <button type="submit" class="btn btn-info btn-fill" *ngIf="propiedadesService.disableForm" (click)="propiedadesService.disableForm = false;">Modificar</button>
-                    </div>
-                </app-ot2>
-                <app-fa1 id="fa1" class="tab-pane fade" [propiedad]="propiedad">
-                    <div class="text-center" style="margin-bottom: 30px; margin-top: 30px;">
-                        <button type="submit" class="btn btn-success btn-fill" *ngIf="!propiedadesService.disableForm" (click)="actualizarLegajo(); propiedadesService.disableForm = true;">Guardar</button>
-                        <!-- (click)="updateProperty.next(propiedad.LEGJAO)" -->
-                        <button type="submit" class="btn btn-danger btn-fill" *ngIf="!propiedadesService.disableForm" (click)="resetProperty(); propiedadesService.disableForm = true;">Cancelar</button>
-
-                        <button type="submit" class="btn btn-info btn-fill" *ngIf="propiedadesService.disableForm" (click)="propiedadesService.disableForm = false;">Modificar</button>
-                    </div>
-                </app-fa1>
-                <app-fa2 id="fa2" class="tab-pane fade" [propiedad]="propiedad">
-                    <div class="text-center" style="margin-bottom: 30px; margin-top: 30px;">
-                        <button type="submit" class="btn btn-success btn-fill" *ngIf="!propiedadesService.disableForm" (click)="actualizarLegajo(); propiedadesService.disableForm = true;">Guardar</button>
-                        <!-- (click)="updateProperty.next(propiedad.LEGJAO)" -->
-                        <button type="submit" class="btn btn-danger btn-fill" *ngIf="!propiedadesService.disableForm" (click)="resetProperty(); propiedadesService.disableForm = true;">Cancelar</button>
-
-                        <button type="submit" class="btn btn-info btn-fill" *ngIf="propiedadesService.disableForm" (click)="propiedadesService.disableForm = false;">Modificar</button>
-                    </div>
-                </app-fa2>
-            </div>
+                </div>
         </div>
 
     </div>

@@ -9,7 +9,7 @@ import { PropiedadesService } from '../../../services/propiedades.service';
 })
 export class VuCqTu1Component implements OnInit {
   @Input() propiedad : Property;
-  constructor(private propiedadesService : PropiedadesService) { }
+  constructor(public propiedadesService : PropiedadesService) { }
 
   ngOnInit() {
   }

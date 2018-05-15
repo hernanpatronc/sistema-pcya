@@ -12,11 +12,11 @@ export class AuthenticationService {
         //console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
     }
-    private headers = new HttpHeaders({
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
-        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-    });
+    private headers = new HttpHeaders({});
+    //     'Access-Control-Allow-Origin': '*',
+    //     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+    //     'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+    // });
     login(username: string, password: string) : Promise<any>{
         return this.http.post(ip + '/login' /*TODO: Cambiar a /user*/, { username: username, password: password },{headers : this.headers}).toPromise()
             .then((response) => {

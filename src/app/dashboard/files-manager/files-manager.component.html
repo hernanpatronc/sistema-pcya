@@ -3,12 +3,13 @@
     <div class="row">
       <div class="col-md-2" *ngFor="let folder of folders">
         <div class="card" draggable="true" [contextMenu]="basicMenu" [contextMenuSubject]="folder" [ngStyle]="{ 'background-color' : folder.selected ? 'RoyalBlue' : 'white' }"
-          (click)="folder.selected = !folder.selected" (dblclick)="goToPath(folder.path + '/' + folder.filename)">
+          (click)="folder.selected = !folder.selected" (dblclick)="folder.isFolder? goToPath(folder.path + '/' + folder.filename) : fotoZoomButton.click()">
           <div class="card-img-top" style="padding: 10px">
             <div *ngIf="!folder.isImage" class="text-center">
               <i class="fa fa-{{folder.isFolder ? 'folder' : 'file'}} fa-5x" style="width:100%; color:lightgray;"></i>
             </div >
-            <img *ngIf="folder.isImage" src="{{ip + '/' + folder.path + '/' + folder.filename}}" width="100%"/>
+            <img *ngIf="folder.isImage" src="{{ip + '/' + folder.path + '/' + folder.filename}}" width="100%" />
+            <button data-toggle="modal" data-target="#fotoZoom" (click)="selectedImage = folder" #fotoZoomButton style="display: none"></button>
           </div>
           <div class="card-body text-center">
             <h6 class="card-title {{folder.selected ? 'text-white' : ''}}">{{folder.originalFilename}}</h6>
@@ -19,12 +20,15 @@
     <div class="text-center">
       <button *ngIf="currentPath!='files'" (click)="goToPrevious()" class="btn btn-danger"><i class="fa fa-arrow-left"></i>&nbsp;Atrás</button>
       <button data-toggle="modal" data-target="#nuevaCarpeta" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp;Crear Carpeta</button>
+      <label class="btn btn-primary" style="margin-bottom: 0;" for="fileUpload"><i class="fa fa-upload"></i>&nbsp;Cargar archivos</label>
+      <input style="display: none" type="file" name="fileUpload" (change)="onFileChange($event)" id="fileUpload" multiple/>
     </div>
   </div>
 </div>
 
+
 <context-menu>
-  <ng-template contextMenuItem (execute)="deleteItem($event.item)">
+  <ng-template contextMenuItem (execute)="deleteItem()">
     Eliminar
   </ng-template>
   <ng-template contextMenuItem divider="true"></ng-template>
@@ -72,7 +76,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <img width="100%" src=""/>
+                    <img  src="{{ip + '/' + selectedImage.path + '/' + selectedImage.filename}}" width="100%"/>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" >Cerrar</button>

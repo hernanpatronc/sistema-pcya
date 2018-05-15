@@ -7,7 +7,7 @@ export class User
 {
     username : string;
     password : string;
-    privileges : string;
+    privileges : number;
     alias : string;
     id: string;
     created_at: Date;

@@ -19,12 +19,13 @@ export class FilesManagerComponent implements OnInit {
   folders: Files[] = [];
   currentPath: string = "";
   ip = ip;
+  selectedImage: Files = new Files();
 
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private filesService: FilesService,
-    private notifyService: NotifyService
+    public activatedRoute: ActivatedRoute,
+    public router: Router,
+    public filesService: FilesService,
+    public notifyService: NotifyService
   ) {}
 
   async ngOnInit() {
@@ -41,10 +42,18 @@ export class FilesManagerComponent implements OnInit {
     // console.log(this.activatedRoute)
   }
 
-  deleteItem = folder => {
+  deleteItem = () => {
     // console.log(folder)
-    this.filesService.deleteFile(folder.id);
-    this.folders.splice(this.folders.indexOf(folder), 1);
+    let folders = this.folders.filter((file, index, array) => {
+      return file.selected;
+    });
+    if (folders.length == 0) {
+      return alert("No has seleccionado ningun archivo");
+    }
+    for (let folder of folders) {
+      this.filesService.deleteFile(folder.id);
+      this.folders.splice(this.folders.indexOf(folder), 1);
+    }
   };
 
   goToPath = async (path: string) => {
@@ -58,23 +67,40 @@ export class FilesManagerComponent implements OnInit {
   };
 
   goToPrevious = async () => {
-    let pathParts = this.currentPath.split('/');
-    pathParts.length = pathParts.length -1;
+    let pathParts = this.currentPath.split("/");
+    pathParts.length = pathParts.length - 1;
     this.currentPath = "";
     for (let pathPart of pathParts) {
-      
-      this.currentPath += pathPart + '/';
+      this.currentPath += pathPart + "/";
     }
     // console.log(this.currentPath);
-    
-    this.currentPath = this.currentPath.substring(0,this.currentPath.length -1);
+
+    this.currentPath = this.currentPath.substring(
+      0,
+      this.currentPath.length - 1
+    );
     // console.log(this.currentPath);
-    
+
     this.goToPath(this.currentPath);
-  }
+  };
 
   createFolder = async (foldername: string) => {
     await this.filesService.createFolder(this.currentPath, foldername);
     this.folders = await this.filesService.getFiles(this.currentPath);
   };
+
+  onFileChange(event) {
+    let input = new FormData();
+    input.append("isFolder", "false");
+    input.append("path", this.currentPath);
+    if (event.target.files.length > 0) {
+      for (let file of event.target.files) {
+        input.append("files", file, file.name);
+      }
+
+      // console.log(this.currentPath);
+
+      this.filesService.postFile(input);
+    }
+  }
 }

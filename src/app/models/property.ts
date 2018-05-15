@@ -1,12 +1,12 @@
 export class Property 
 {
     id: number;
-    created_at: Date;
+    created_at: number;
     LEGAJO: string;
     NOMBRE_INM: string;
     OPERACION: string;
     OFER_REQUE: string;
-    FECHA: Date;
+    FECHA: number;
     ESTADO : string;
     PAIS : string;
     OFR : string;
@@ -27,7 +27,7 @@ export class Property
     DIRECCION : string;
     CELULAR : string;
     EMAIL : string;
-    VTO_AUTORI : Date;
+    VTO_AUTORI : number;
     TIPO_INMU : string;
     REGION : string;
     COORD_S1 : string;
@@ -207,7 +207,7 @@ export class Property
     COD_CAP : string;
     COD_CAP2 : string;
     ACL_CAP : string;
-    FEC_ULT_PR: Date;
+    FEC_ULT_PR: number;
     DPTO1A : string;
     DPTO2A : string;
     DPTO3A : string;
@@ -255,6 +255,6 @@ export class Property
     COORD_S3 : string;
     COORD_W2 : string;
     COORD_W3 : string;
-    FECHA_HORA : Date;
+    FECHA_HORA : number;
     MOST_PREC : string;
 }

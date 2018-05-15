@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http';
 import { Files } from '../models/files';
 import { ip } from '../config';
 
@@ -43,6 +43,24 @@ export class FilesService {
         return response;
       })
       .catch(this.handleError);
+  }
+
+
+  postFile = async (formData : FormData) => {
+    const req = new HttpRequest('POST', ip+'/api/files', formData, {
+      reportProgress: true
+    });
+    return this.http.request(req).subscribe(event => {
+      // Via this API, you get access to the raw event stream.
+      // Look for upload progress events.
+      if (event.type === HttpEventType.UploadProgress) {
+        // This is an upload progress event. Compute and show the % done:
+        const percentDone = Math.round(100 * event.loaded / event.total);
+        console.log(`File is ${percentDone}% uploaded.`);
+      } else if (event instanceof HttpResponse) {
+        console.log('File is completely uploaded!');
+      }
+    });
   }
 
   private handleError(error: any): Promise<any> {

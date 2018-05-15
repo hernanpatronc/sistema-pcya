@@ -20,10 +20,10 @@ export class LoginComponent implements OnInit {
   user: string;
   password: string;
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private authenticationService: AuthenticationService,
-    private notifyService : NotifyService
+    public route: ActivatedRoute,
+    public router: Router,
+    public authenticationService: AuthenticationService,
+    public notifyService : NotifyService
   ) {}
   ngOnInit() {
     // reset login status
@@ -37,8 +37,7 @@ export class LoginComponent implements OnInit {
         this.password
       );
       if (currentUser) {
-        if (currentUser.privileges == "-1") this.router.navigate(["./dashboard"]);
-        else this.router.navigate(["./table"]);
+        this.router.navigate(["./"]);
         this.notifyService.newNotification("success","Bienvenido " + currentUser.alias);
       }
     } catch (error) {

@@ -11,9 +11,10 @@ import { LoginComponent } from './login/login.component';
 import { PropertyComponent } from './property/property.component';
 import { AuthGuard,AdminGuard } from '../authentication/auth.guard';
 import { FilesManagerComponent } from './files-manager/files-manager.component';
+import { MenuComponent } from './menu/menu.component';
 
 export const MODULE_ROUTES: Route[] =[
-    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    { path: '', component: MenuComponent, canActivate: [AuthGuard], pathMatch: 'full' },
     { path: 'dashboard', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'property/:id', component: PropertyComponent , canActivate: [AuthGuard]},
     { path: 'property', component: PropertyComponent , canActivate: [AuthGuard]},

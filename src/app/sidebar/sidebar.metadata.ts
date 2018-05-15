@@ -4,5 +4,5 @@ export interface RouteInfo {
     title: string;
     icon: string;
     class: string;
-    privilegesNeeded: string[];
+    privilegesNeeded: number[];
 }

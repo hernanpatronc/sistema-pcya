@@ -15,7 +15,7 @@ declare var $:any;
 })
 
 export class HomeComponent implements OnInit, OnDestroy{
-    constructor(private propiedadesService : PropiedadesService, private router : Router){}
+    constructor(public propiedadesService : PropiedadesService, public router : Router){}
     public tasks = []//["Unfollow 5 enemies from twitter", "Read \"Following makes Medium better\"", "Create 4 Invisible User Experiences you Never Knew About","Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit","Lines From Great Russian Literature? Or E-mails From My Boss?","Sign contract for \"What are conference organizers afraid of?\""];
     deleteTask(task) {
         this.tasks.splice(this.tasks.indexOf(task), 1)
@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit, OnDestroy{
         //     $checkbox.checkbox();
         // });
         let statistics = await this.propiedadesService.getStatistics();
-        console.log(statistics)
+        // console.log(statistics)
         initDemo(statistics.FECHA,statistics.TIPO_INMU, statistics.PRODUCT_O, statistics.PRODUCT_R, statistics.TRADER, statistics.COD_CAP, statistics.COD_CAP2);
         this.tipos_inmu = Object.keys(statistics.TIPO_INMU);
         this.cod_captacion = Object.keys(statistics.COD_CAP);

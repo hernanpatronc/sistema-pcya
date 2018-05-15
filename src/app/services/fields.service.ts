@@ -20,7 +20,7 @@ export class FieldsService {
 
   getTraders(): Promise<Fields[]> {
     return this.http
-      .get(ip + '/api/field?where={"columna":"TRADER"}')
+      .get(ip + '/api/field?where={"columna":"TRADER"}&sort=nombre ASC')
       .toPromise()
       .then(response => {
         // console.log(response)
@@ -30,7 +30,7 @@ export class FieldsService {
   }
   getInmus(): Promise<Fields[]> {
     return this.http
-      .get(ip + '/api/field?where={"columna":"TIPO_INMU"}')
+      .get(ip + '/api/field?where={"columna":"TIPO_INMU"}&sort=nombre ASC')
       .toPromise()
       .then(response => {
         // console.log(response)
@@ -40,7 +40,7 @@ export class FieldsService {
   }
   getEstados(): Promise<Fields[]> {
     return this.http
-      .get(ip + '/api/field?where={"columna": {"contains" : "ESTADO"}}')
+      .get(ip + '/api/field?where={"columna": {"contains" : "ESTADO"}}&sort=nombre ASC')
       .toPromise()
       .then(response => {
         // console.log(response)
@@ -50,7 +50,7 @@ export class FieldsService {
   }
   getPaises(): Promise<Fields[]> {
     return this.http
-      .get(ip + '/api/field?where={"columna":"PAIS"}')
+      .get(ip + '/api/field?where={"columna":"PAIS"}&sort=nombre ASC')
       .toPromise()
       .then(response => {
         // console.log(response)
@@ -58,9 +58,21 @@ export class FieldsService {
       })
       .catch(this.handleError);
   }
+
+  getRegiones() {
+    return this.http
+      .get(ip + '/api/field?where={"columna":"REGION"}&sort=nombre ASC')
+      .toPromise()
+      .then(response => {
+        // console.log(response)
+        return response as Fields[];
+      })
+      .catch(this.handleError);
+  }
+
   getZonas(): Promise<Fields[]> {
     return this.http
-      .get(ip + '/api/field?where={"columna":"ZONA"}')
+      .get(ip + '/api/field?where={"columna":"ZONA"}&sort=nombre ASC')
       .toPromise()
       .then(response => {
         // console.log(response)
@@ -68,6 +80,40 @@ export class FieldsService {
       })
       .catch(this.handleError);
   }
+
+  getSubzonas(tipo : string): Promise<Fields[]> {
+    return this.http
+      .get(ip + '/api/field?where={"columna":"SUB_ZONA","tipo":"' +tipo + '"}&sort=nombre ASC')
+      .toPromise()
+      .then(response => {
+        // console.log(response)
+        return response as Fields[];
+      })
+      .catch(this.handleError);
+  }
+
+  getCodigos(): Promise<Fields[]> {
+    return this.http
+      .get(ip + '/api/field?where={"columna":"COD_CAP"}&sort=nombre ASC')
+      .toPromise()
+      .then(response => {
+        // console.log(response)
+        return response as Fields[];
+      })
+      .catch(this.handleError);
+  }
+
+  getSubcodigos(tipo: string): Promise<Fields[]> {
+    return this.http
+      .get(ip + '/api/field?where={"columna":"COD_CAP2","tipo":"' +tipo + '"}&sort=nombre ASC')
+      .toPromise()
+      .then(response => {
+        // console.log(response)
+        return response as Fields[];
+      })
+      .catch(this.handleError);
+  }
+
   getIndices(): Promise<Fields[]> {
     return this.http
       .get(ip + '/api/field?where={"columna":{"contains" : "INDICE"}}')
@@ -80,8 +126,10 @@ export class FieldsService {
   }
 
   updateField = (field : Fields) => {
+    // console.log(field);
+    
     return this.http
-      .put(ip + "/api/field", field)
+      .put(ip + "/api/field/"+field.id, field)
       .toPromise()
       .then(response => {
         return response;
@@ -102,6 +150,8 @@ export class FieldsService {
 
   private handleError(error: any): Promise<any> {
     //console.error("An error occurred", error); // for demo purposes only
+    // console.log(error);
+    
     return Promise.reject(error.message || error);
   }
 }

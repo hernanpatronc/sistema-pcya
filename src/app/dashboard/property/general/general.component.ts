@@ -1,10 +1,12 @@
-import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
+import { Component, OnInit, Input, EventEmitter, Output, ViewChild } from "@angular/core";
 import { Property } from "../../../models/property";
 import { PropiedadesService } from "../../../services/propiedades.service";
 import { Router } from "@angular/router";
 import { NotifyService } from "../../../notify/notify.service";
 import { FieldsService } from "../../../services/fields.service";
-import { Fields } from "../../../../../sistinmo-frontend-cli-win32-x64/resources/app/src/app/models/fields";
+import { Fields } from "../../../models/fields";
+import { FormsModule, FormGroup, FormControl, NgForm } from "@angular/forms";
+// import { Fields } from "../../../../../sistinmo-frontend-cli-win32-x64/resources/app/src/app/models/fields";
 
 // import { NgForm } from "@angular/forms";
 
@@ -16,8 +18,8 @@ import { Fields } from "../../../../../sistinmo-frontend-cli-win32-x64/resources
 export class GeneralComponent implements OnInit {
   @Input() propiedad: Property;
   @Output() propiedadChanged = new EventEmitter<string>();
-  toAddField : Fields = new Fields();
-  // @ViewChild('propertyForm') form : NgForm;
+  toAddField: Fields = new Fields();
+  @ViewChild('propertyForm') form: NgForm;
 
   traders = [];
   tipo_inmus = [];
@@ -25,18 +27,52 @@ export class GeneralComponent implements OnInit {
   globalEstados = [];
   paises = [];
   provincias = [];
-  lastIndexOfr: number = 0;
-  lastIndexReq: number = 0;
+  regiones = [];
+  subzonas = [];
+  codigos = [];
+  subcodigos = [];
+  currentLegajos: Property[] = [];
+  legajoCierre: Property = new Property();
+  legajos: Property[] = [];
+  lastIndexOfr: Fields = new Fields();
+  lastIndexReq: Fields = new Fields();
   lat: number = -34.6083;
-  long: number =  -58.3712;
-  lasIndexOper: number = 0;
+  long: number = -58.3712;
+  lasIndexOper: Fields = new Fields();
+  editable = true;
 
   constructor(
-    private propiedadesService: PropiedadesService,
-    private router: Router,
-    private notifyService: NotifyService,
-    private fieldsService: FieldsService
-  ) {}
+    public propiedadesService: PropiedadesService,
+    public router: Router,
+    public notifyService: NotifyService,
+    public fieldsService: FieldsService
+  ) { }
+
+  searchLegajos = async (columna: string, search: string) => {
+    this.currentLegajos = await this.propiedadesService.getProperties(columna, search);
+  }
+
+  cerrarLegajo = () => {
+    this.propiedad.LEGAJO_REQ = this.legajoCierre.LEGAJO;
+    this.propiedad.NOM_REQUER = this.legajoCierre.OFER_REQUE;
+  }
+
+  selectLegajo = (legajo: Property) => {
+    this.legajoCierre = legajo;
+    this.propiedad.LEGAJO_REQ = this.legajoCierre.LEGAJO;
+    this.propiedad.NOM_REQUER = this.legajoCierre.OFER_REQUE;
+  }
+
+  onZonaChosen = async (value: string) => {
+    // console.log(value);
+
+    this.subzonas = await this.fieldsService.getSubzonas(value);
+    this.OnLegajoPropertiesChanges();
+  }
+
+  onCodigoChosen = async (value: string) => {
+    this.subcodigos = await this.fieldsService.getSubcodigos(value);
+  }
 
   OnLegajoPropertiesChanges() {
     this.estados = this.globalEstados.filter((val, index, array) => {
@@ -48,7 +84,7 @@ export class GeneralComponent implements OnInit {
     this.propiedad.OPERACION =
       "PA-" +
       (this.propiedad.OFR == "1" && this.propiedad.CARACTER == "OPER"
-        ? this.lasIndexOper
+        ? this.lasIndexOper.nombre
         : "000");
     if (
       this.propiedad.OFR == "1" &&
@@ -68,7 +104,7 @@ export class GeneralComponent implements OnInit {
         "-" +
         this.propiedad.ZONA +
         "-" +
-        this.lastIndexOfr;
+        parseInt(this.lastIndexOfr.nombre);
     } else if (
       this.propiedad.OFR == "2" &&
       this.propiedad.ZONA &&
@@ -87,18 +123,48 @@ export class GeneralComponent implements OnInit {
         "-" +
         this.propiedad.ZONA +
         "-" +
-        this.lastIndexReq;
+        parseInt(this.lastIndexReq.nombre);
     }
   }
 
-  newField = (columna : string) => {
+  createField = async () => {
+    try {
+      // this.fieldsService.postField(this.toAddField);
+      // console.log(this.toAddField);
+      switch (this.toAddField.columna) {
+        case "ESTADO_REQ":
+        case "ESTADO_OFR":
+        case "TRADER":
+        case "COD_CAP":
+          break;
+        case "COD_CAP2":
+          this.toAddField.tipo = this.propiedad.COD_CAP;
+          break;
+        case "REGION":
+          this.toAddField.tipo = this.propiedad.PAIS;
+          break;
+        case "SUB_ZONA":
+          this.toAddField.tipo = this.propiedad.ZONA;
+          break;
+
+      }
+      await this.fieldsService.postField(this.toAddField)
+      this.notifyService.newNotification("success", "Agregado nuevo " + this.toAddField.columna);
+    }
+    catch (err) {
+      this.notifyService.newNotification("danger", err);
+    }
+  }
+
+  newField = (columna: string) => {
     this.toAddField.columna = columna;
     this.toAddField.nombre = "";
     this.toAddField.descripcion = "";
+    this.toAddField.tipo = "";
   }
 
   setLatLong = () => {
-    if (this.propiedad.COORD_S1 && this.propiedad.COORD_W1 && this.propiedad.COORD_W2  && this.propiedad.COORD_W3  && this.propiedad.COORD_S2  && this.propiedad.COORD_S3) {
+    if (this.propiedad.COORD_S1 && this.propiedad.COORD_W1 && this.propiedad.COORD_W2 && this.propiedad.COORD_W3 && this.propiedad.COORD_S2 && this.propiedad.COORD_S3) {
       this.lat =
         0 -
         (parseFloat(this.propiedad.COORD_S1) +
@@ -140,6 +206,9 @@ export class GeneralComponent implements OnInit {
 
 
   async ngOnInit() {
+    if (this.propiedad.LEGAJO) {
+      this.editable = false;
+    }
     // console.log(this.lat,this.long)
     try {
       // let fields = await this.fieldsService.getFields()
@@ -149,22 +218,17 @@ export class GeneralComponent implements OnInit {
       this.paises = await this.fieldsService.getPaises();
       this.provincias = await this.fieldsService.getZonas();
       let indices = await this.fieldsService.getIndices();
-
-      this.lastIndexOfr = parseInt(
-        indices.filter((val, index, array) => {
-          return val.columna == "INDICE_OFR";
-        })[0].nombre
-      );
-      this.lastIndexReq = parseInt(
-        indices.filter((val, index, array) => {
-          return val.columna == "INDICE_REQ";
-        })[0].nombre
-      );
-      this.lasIndexOper = parseInt(
-        indices.filter((val, index, array) => {
-          return val.columna == "INDICE_OPE";
-        })[0].nombre
-      );
+      this.regiones = await this.fieldsService.getRegiones();
+      this.codigos = await this.fieldsService.getCodigos();
+      this.lastIndexOfr = indices.filter((val, index, array) => {
+        return val.columna == "INDICE_OFR";
+      })[0];
+      this.lastIndexReq = indices.filter((val, index, array) => {
+        return val.columna == "INDICE_REQ";
+      })[0];
+      this.lasIndexOper = indices.filter((val, index, array) => {
+        return val.columna == "INDICE_OPE";
+      })[0];
       this.estados = this.globalEstados.filter((val, index, array) => {
         return (
           val.columna ==
@@ -179,5 +243,84 @@ export class GeneralComponent implements OnInit {
         "Error buscando los valores " + error
       );
     }
+  }
+
+  submit() {
+    // console.log(this.form)
+    // console.log(this.propiedad.ESTADO);
+
+    this.validateAllFormFields(this.form.form);
+    if (this.form.valid) {
+      this.actualizarLegajo();
+      // this.propiedadesService.
+      this.propiedadesService.disableForm = true;
+    }
+    else {
+      this.notifyService.newNotification("danger", "Hay campos invalidos")
+    }
+
+  }
+
+
+  actualizarLegajo = async () => {
+    // console.log(this.propiedad.FECHA, this.propiedad.VTO_AUTORI)
+    try {
+      if (this.propiedad.id) {
+        await this.propiedadesService.updateProperty(this.propiedad);
+        this.notifyService.newNotification(
+          "success",
+          "Se ha actualizado el legajo"
+        );
+      } else {
+        let response = await this.propiedadesService.postProperty(this.propiedad);
+        this.notifyService.newNotification(
+          "success",
+          "Se ha actualizado el legajo"
+        );
+        if (this.propiedad.OFR == "1") {
+          if (this.propiedad.CARACTER == "OPER") {
+            
+            this.lasIndexOper.nombre = (parseInt(this.lasIndexOper.nombre) + 1).toString();
+            
+            
+            this.fieldsService.updateField(this.lasIndexOper);
+          }
+          
+          this.lastIndexOfr.nombre = (parseInt(this.lastIndexOfr.nombre) + 1).toString();
+          this.fieldsService.updateField(this.lastIndexOfr);
+
+        } else {
+          this.lastIndexReq.nombre = (parseInt(this.lastIndexReq.nombre) + 1).toString();
+          this.fieldsService.updateField(this.lastIndexReq);
+        }
+        this.notifyService.newNotification(
+          "success",
+          "Se han actualizado los valores"
+        );
+        this.router.navigate(["/property/" + response["id"]])
+      }
+    } catch (err) {
+      this.notifyService.newNotification(
+        "danger",
+        "Error actualizando legajo " + err
+      );
+    }
+  };
+
+  validateAllFormFields(formGroup: FormGroup) {
+    //{1}
+    // console.log(formGroup);
+
+    Object.keys(formGroup.controls).forEach(field => {
+      //{2}
+      const control = formGroup.get(field); //{3}
+      if (control instanceof FormControl) {
+        //{4}
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        //{5}
+        this.validateAllFormFields(control); //{6}
+      }
+    });
   }
 }

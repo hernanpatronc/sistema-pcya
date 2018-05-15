@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NotifyService } from './notify/notify.service';
+import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -9,23 +10,23 @@ import { NotifyService } from './notify/notify.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  location: Location;
 
-    constructor(location:Location, private notificationService : NotifyService) {
-        this.location = location;
-    }
+    isLoggedIn = false;
+
+    constructor(private authenticationService : AuthenticationService,public notificationService : NotifyService) {}
     
     ngOnInit(){
-        $.getScript('../assets/js/light-bootstrap-dashboard.js');
-    }
-    public isMaps(path){
-        var titlee = this.location.prepareExternalUrl(this.location.path());
-        titlee = titlee.slice( 1 );
-        if(path === titlee){
-            return true;
+        if (localStorage.getItem("currentUser")){
+            this.isLoggedIn = true;
         }
-        else {
-            return false;
-        }
+        this.authenticationService.loggedIn.subscribe((user)=>{
+            if (user) {
+                this.isLoggedIn = true;
+            }
+            else {
+                this.isLoggedIn = false;
+            }
+        });
     }
+    
 }

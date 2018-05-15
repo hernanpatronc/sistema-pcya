@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { CommonModule, PathLocationStrategy, LocationStrategy } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { MODULE_COMPONENTS, MODULE_ROUTES } from './dashboard.routes';
 import { FormsModule } from '@angular/forms';
@@ -19,6 +19,8 @@ import { Fa1Component } from './property/fa1/fa1.component';
 import { Fa2Component } from './property/fa2/fa2.component';
 import { AgmCoreModule } from '@agm/core';
 import { FilesManagerComponent } from './files-manager/files-manager.component';
+import { MenuComponent } from './menu/menu.component';
+import {NgxElectronModule} from 'ngx-electron';
 
 @NgModule({
     imports: [
@@ -28,10 +30,11 @@ import { FilesManagerComponent } from './files-manager/files-manager.component';
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyCBnl65eOfbu7PS6Z8KCS7utzowp5EdWkE'
         }),
-        ContextMenuModule.forRoot()
+        ContextMenuModule.forRoot(),
+        NgxElectronModule
     ],
-    declarations: [ MODULE_COMPONENTS, GeneralComponent, Campos1Component, Campos2Component, DeOfLo1Component, DeOfLo2Component, CcTc1Component, CcTc2Component, VuCqTu1Component, VuCqTu2Component, Ot1Component, Ot2Component, Fa1Component, Fa2Component, FilesManagerComponent ],
-    providers : [RouterModule,{provide: LocationStrategy, useClass: HashLocationStrategy}]
+    declarations: [ MODULE_COMPONENTS, GeneralComponent, Campos1Component, Campos2Component, DeOfLo1Component, DeOfLo2Component, CcTc1Component, CcTc2Component, VuCqTu1Component, VuCqTu2Component, Ot1Component, Ot2Component, Fa1Component, Fa2Component, FilesManagerComponent, MenuComponent ],
+    providers : [RouterModule,{provide: LocationStrategy, useClass: PathLocationStrategy}]
 })
 
 export class DashboardModule{}

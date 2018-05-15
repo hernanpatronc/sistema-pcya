@@ -6,7 +6,7 @@
                     <div class="card-body">
                         <form>
                             <div class="row">
-                                <div class="col-md-3 offset-md-1">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Filtrar por Columna</label>
                                         <select class="form-control" #columna>
@@ -28,19 +28,26 @@
                                         </select>
                                     </div>
                                 </div-->
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Campo de Búsqueda</label>
                                         <input type="text" class="form-control" placeholder="Busqueda" #busqueda value="">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label>&nbsp;</label>
-                                        <button type="submit" class="btn btn-info btn-block btn-fill pull-right" (click)="search(columna.value,busqueda.value)">
-                                            <i class="fa fa-search"></i>Buscar</button>
+                                        <button type="submit" class="btn btn-info btn-block btn-fill" (click)="search(columna.value,busqueda.value)">
+                                            <i class="fa fa-search"></i>&nbsp;Buscar</button>
                                     </div>
                                 </div>
+                                <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>&nbsp;</label>
+                                            <button type="submit" class="btn btn-outline-success btn-block" data-toggle="modal" data-target="#advancedSearch">
+                                                <i class="fa fa-cogs"></i>&nbsp;Avanzada</button>
+                                        </div>
+                                    </div>
                             </div>
 
                         </form>
@@ -65,7 +72,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="pull-right">
-                                        <button class="btn btn-warning" onclick="window.print()"><i class="fa fa-print"></i></button>
+                                        <button class="btn btn-warning" (click)="print()"><i class="fa fa-print"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -102,3 +109,55 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="advancedSearch" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" >Busqueda Avanzada</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form #fieldForm="ngForm">
+                        <div class="form-group">
+                            <label>Buscar</label>
+                            <div class="input-group">
+                                <select class="form-control" >
+                                    <option value="LEGAJO">Legajo</option>
+                                    <option value="OFER_REQUE">Requerente</option>
+                                </select>
+                                <input class="form-control" name="nombre" #busq>
+                                <div class="input-group-addon">
+                                    <button class="btn btn-primary">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <table class="table">
+                        <thead>
+                            <th>
+                                Legajo
+                            </th>
+                            <th>
+                                Requerente
+                            </th>
+                        </thead>
+                        <tbody>
+                            <tr  data-dismiss="modal">
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>

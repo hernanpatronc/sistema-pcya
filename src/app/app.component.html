@@ -3,15 +3,15 @@
 <!-- <button (click)="notificationService.newNotification('success','Success')">Clickeame</button> -->
 <div class="wrapper">
     <!-- <div class="sidebar navbar-collapse collapse show" id="demo" data-color="orange" data-image=""> -->
-    <sidebar-cmp></sidebar-cmp>
+    <sidebar-cmp *ngIf="isLoggedIn"></sidebar-cmp>
     <!-- <div class="sidebar-background" style="background-image: url(/assets/img/sidebar-5.jpg)"></div> -->
     <!-- </div> -->
 
     <!-- <div class="main-panel"> -->
 
-    <div id="content">
+    <div [ngStyle]="{'width' : isLoggedIn ? '':'100%'}" id="content">
         <navbar-cmp></navbar-cmp>
-        <dashboard-cmp></dashboard-cmp>
+        <dashboard-cmp ></dashboard-cmp>
     </div>
 
     <!-- <div *ngIf="!isMaps('/maps')"> -->

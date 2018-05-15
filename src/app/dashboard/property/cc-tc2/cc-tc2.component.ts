@@ -10,7 +10,7 @@ import { PropiedadesService } from '../../../services/propiedades.service';
 export class CcTc2Component implements OnInit {
   @Input() propiedad : Property;
 
-  constructor(private propiedadesService : PropiedadesService) { }
+  constructor(public propiedadesService : PropiedadesService) { }
 
   ngOnInit() {
   }

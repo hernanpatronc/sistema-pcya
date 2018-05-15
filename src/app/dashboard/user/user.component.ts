@@ -22,7 +22,7 @@ export class UserComponent implements OnInit {
         this.user = new User();
     }
 
-    constructor(private userService: UserService, private notificationService : NotifyService) {
+    constructor(public userService: UserService, public notificationService : NotifyService) {
         this.getUsers();
     }
     async getUsers() {

@@ -8,15 +8,18 @@ import {
   keyframes,
   OnInit,
   OnDestroy,
-  OnChanges
+  OnChanges,
+  ViewChild
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Property } from "../../models/property";
 import { PropiedadesService } from "../../services/propiedades.service";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, FormGroup, FormControl } from "@angular/forms";
 import { NotifyService } from "../../notify/notify.service";
 import { FieldsService } from "../../services/fields.service";
 import { ficha_interna } from "./ficha_interna";
+import { GeneralComponent } from "./general/general.component";
+import { ElectronService } from "ngx-electron";
 // import initNotify from "../../../assets/js/notify.js";
 
 @Component({
@@ -26,29 +29,55 @@ import { ficha_interna } from "./ficha_interna";
 })
 export class PropertyComponent implements OnInit {
   constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private propiedadesService: PropiedadesService,
-    private notifyService: NotifyService,
-    private fieldsService : FieldsService
-  ) {}
+    private _electronService: ElectronService,
+    public router: Router,
+    public activatedRoute: ActivatedRoute,
+    public propiedadesService: PropiedadesService,
+    public notifyService: NotifyService,
+    public fieldsService: FieldsService
+  ) { }
   id: string;
   tipo_propiedad = {
     value: "",
     nombre: ""
   };
   propiedad = new Property();
+  @ViewChild(GeneralComponent) generalComp: GeneralComponent;
 
   print = () => {
-    var newWindow = window.open('about:blank', '_new');
-    newWindow.document.open();
-    newWindow.document.write(ficha_interna);
-    newWindow.document.close();
+    // ficha_interna.replace()
+    
+    let htmlFicha = ficha_interna.replace(
+      /\{\{(.{1,10})\}\}/g,
+      (substring, args) => {
+        let textoAReemplazar = this.propiedad[substring.replace(/(\{|\})/g, "")];
+        // console.log(textoAReemplazar);
+        if (substring.replace(/(\{|\})/g, "")=="FECHA"){
+          let fecha = textoAReemplazar as Date;
+          textoAReemplazar = fecha.getDate() + "/" + (fecha.getMonth()+1) + "/" + fecha.getFullYear();
+        }
+        return textoAReemplazar ? textoAReemplazar : "";
+      }
+    );
+    if (!this._electronService.isElectronApp) {
+      var newWindow = window.open("about:blank", "_new");
+      newWindow.document.open();
+      newWindow.document.write(htmlFicha);
+      newWindow.document.close();
+    }
+    else {
+      htmlFicha = htmlFicha.replace('onload="window.print();window.close()"',"");
+      this._electronService.ipcRenderer.send("print",htmlFicha);
+    }
+
     // newWindow.focus(); // necessary for IE >= 10*/
     // window.
     // newWindow.print();
     // newWindow.close();
+  };
 
+  onSubmit() {
+    this.generalComp.submit();
   }
 
   async ngOnInit() {
@@ -57,10 +86,8 @@ export class PropertyComponent implements OnInit {
       try {
         this.propiedad = /*await this.propiedadesService.getProperty(
                 this.id
-              );*/ this.propiedadesService.currentProperty;
-        if (!this.propiedad.LEGAJO) {
-          this.propiedad = await this.propiedadesService.getProperty(this.id);
-        }
+              );*/ await this.propiedadesService.getProperty(this.id);
+        
       } catch (err) {
         // initNotify("Error buscando legajo ", 4);
 
@@ -75,67 +102,29 @@ export class PropertyComponent implements OnInit {
     } else {
       this.propiedadesService.currentProperty = this.propiedad;
       this.propiedadesService.disableForm = false;
-      this.propiedad.FECHA = new Date();
-      this.propiedad.PAIS = "AR"
+      this.propiedad.FECHA = new Date().getTime();
+      this.propiedad.PAIS = "AR";
       this.propiedad.OPERACION = "PA-000";
     }
   }
 
-  actualizarLegajo = async () => {
-    // console.log(this.propiedad.FECHA, this.propiedad.VTO_AUTORI)
-    try {
-      if (this.propiedad.id) {
-        await this.propiedadesService.updateProperty(this.propiedad);
-      } else {
-        await this.propiedadesService.postProperty(this.propiedad);
-      }
-      if (this.propiedad.OFR == "1"){
-        if (this.propiedad.CARACTER == "OPER"){
-          this.fieldsService.updateField({
-            nombre: "",
-            descripcion: "",
-            columna: "INDICE_OPE"
-          })
 
-        }
-        this.fieldsService.updateField({
-          nombre: "",
-          descripcion: "",
-          columna: "INDICE_OFR"
-        })
-      }
-      else {
-        this.fieldsService.updateField({
-          nombre: "",
-          descripcion: "",
-          columna: "INDICE_REQ"
-        })
-      }
-      // this.fieldsService.updateField()
-      this.notifyService.newNotification(
-        "success",
-        "Se ha actualizado el legajo"
-      );
-      // this.propiedadesService.
-    } catch (err) {
-      this.notifyService.newNotification(
-        "danger",
-        "Error actualizando legajo " + err
-      );
-    }
-  };
 
   resetProperty = async () => {
-    try {
-      this.propiedad = await this.propiedadesService.getProperty(
-        this.propiedad.id
-      );
-      // this.notifyService.newNotification("success", "Se ha actualizado el legajo")
-    } catch (err) {
-      this.notifyService.newNotification(
-        "danger",
-        "Error buscando legajo " + err
-      );
+    if (this.propiedad.id) {
+      try {
+        this.propiedad = await this.propiedadesService.getProperty(
+          this.propiedad.id
+        );
+        // this.notifyService.newNotification("success", "Se ha actualizado el legajo")
+      } catch (err) {
+        this.notifyService.newNotification(
+          "danger",
+          "Error buscando legajo " + err
+        );
+      }
+    } else {
+      this.propiedad = new Property();
     }
   };
 
@@ -173,4 +162,6 @@ export class PropertyComponent implements OnInit {
         break;
     }
   };
+
+
 }

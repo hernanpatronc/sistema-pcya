@@ -26,7 +26,7 @@ export class NotifyComponent implements OnInit {
   @Input() state : string = "create";
   @Input() top : number = 0;
 
-  constructor(private notifyService : NotifyService) { }
+  constructor(public notifyService : NotifyService) { }
 
   ngOnInit() {
   }

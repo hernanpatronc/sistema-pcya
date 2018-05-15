@@ -8,7 +8,9 @@
     padding-right: 1rem;
 }
 
-
+.ng-invalid:not(form).ng-touched  {
+    border: 1px solid #a94442; /* red */
+}
 
 body {
     font-family: 'Poppins', sans-serif;

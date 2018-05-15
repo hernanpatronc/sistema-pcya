@@ -7,6 +7,7 @@ export class Files
     isFolder: boolean;
     isImage: boolean;
     path: string;
+    selected: boolean;
     // TRADER : string;
     // PRODUCT_O : string;
     // PRODUCT_R : string;
