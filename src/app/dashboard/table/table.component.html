@@ -88,16 +88,16 @@
                                         <th>Legajo</th>
                                         <th>Nombre</th>
                                         <th>Oferente/Requerente</th>
-                                        <th>Fecha</th>
-                                        <th>Operacion</th>
+                                        <th>Estado</th>
+                                        <th>Trader</th>
                                     </tr>
                                     <tbody>
                                         <tr (click)="propDetail(prop)" style="cursor: pointer;" *ngFor="let prop of displayingPropiedades">
                                             <td>{{prop.LEGAJO}}</td>
                                             <td>{{prop.NOMBRE_INM}}</td>
                                             <td>{{prop.OFER_REQUE}}</td>
-                                            <td>{{prop.FECHA}}</td>
-                                            <td>{{prop.OPERACION}}</td>
+                                            <td>{{prop.ESTADO}}</td>
+                                            <td>{{prop.TRADER}}</td>
                                         </tr>
                                     </tbody>
                             </table>

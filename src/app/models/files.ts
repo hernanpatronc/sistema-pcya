@@ -1,9 +1,9 @@
 
 export class Files 
 {
-    id: number;
+    // id: number;
     filename : string;
-    originalFilename: string;
+    // originalFilename: string;
     isFolder: boolean;
     isImage: boolean;
     path: string;

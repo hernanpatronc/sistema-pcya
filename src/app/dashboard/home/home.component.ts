@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit, OnDestroy{
         //     $checkbox.checkbox();
         // });
         let statistics = await this.propiedadesService.getStatistics();
-        // console.log(statistics)
+        console.log(statistics.FECHA)
         initDemo(statistics.FECHA,statistics.TIPO_INMU, statistics.PRODUCT_O, statistics.PRODUCT_R, statistics.TRADER, statistics.COD_CAP, statistics.COD_CAP2);
         this.tipos_inmu = Object.keys(statistics.TIPO_INMU);
         this.cod_captacion = Object.keys(statistics.COD_CAP);

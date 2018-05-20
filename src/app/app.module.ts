@@ -23,6 +23,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { UserService } from './services/user.service';
 import { FieldsService } from './services/fields.service';
 import { FilesService } from './services/files.service';
+import { ComisionesComponent } from './comisiones/comisiones.component';
 
 
 @NgModule({
@@ -36,7 +37,7 @@ import { FilesService } from './services/files.service';
         NoopAnimationsModule,
         RouterModule.forRoot([])
     ],
-    declarations: [AppComponent, DashboardComponent, NotifyComponent],
+    declarations: [AppComponent, DashboardComponent, NotifyComponent, ComisionesComponent],
     providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }, PropiedadesService, AuthenticationService, AuthGuard, AdminGuard, NotifyService,
     {
         provide: HTTP_INTERCEPTORS,

@@ -51,7 +51,7 @@ export class FilesManagerComponent implements OnInit {
       return alert("No has seleccionado ningun archivo");
     }
     for (let folder of folders) {
-      this.filesService.deleteFile(folder.id);
+      this.filesService.deleteFile(folder);
       this.folders.splice(this.folders.indexOf(folder), 1);
     }
   };
@@ -89,7 +89,7 @@ export class FilesManagerComponent implements OnInit {
     this.folders = await this.filesService.getFiles(this.currentPath);
   };
 
-  onFileChange(event) {
+  async onFileChange(event) {
     let input = new FormData();
     input.append("isFolder", "false");
     input.append("path", this.currentPath);
@@ -97,10 +97,11 @@ export class FilesManagerComponent implements OnInit {
       for (let file of event.target.files) {
         input.append("files", file, file.name);
       }
-
-      // console.log(this.currentPath);
-
-      this.filesService.postFile(input);
+      await this.filesService.postFile(input);
+      setTimeout(async ()=>{
+        this.folders = await this.filesService.getFiles(this.currentPath);
+      }, 1500)
+      
     }
   }
 }

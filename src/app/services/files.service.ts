@@ -10,7 +10,7 @@ export class FilesService {
 
   getFiles(path: string): Promise<Files[]> {
     return this.http
-      .get(ip + '/api/files?where={"path":"'+path+'"}')
+      .get(ip + '/api/file?where={"path":"'+path+'"}')
       .toPromise()
       .then(response => {
         // console.log(response)
@@ -21,8 +21,8 @@ export class FilesService {
 
   createFolder(path: string, foldername : string): Promise<any> {
     return this.http
-      .post(ip + '/api/files', {
-        originalFilename : foldername,
+      .post(ip + '/api/file', {
+        filename : foldername,
         isFolder : true,
         path : path
       })
@@ -34,9 +34,9 @@ export class FilesService {
       .catch(this.handleError);
   }
 
-  deleteFile = async (id: number) => {
+  deleteFile = async (file : Files) => {
     return this.http
-      .delete(ip + '/api/files/' + id)
+      .delete(ip + '/api/file?file={"completeFileName":"' + file.path + '/' + file.filename + '","isFolder":'+file.isFolder+'}')
       .toPromise()
       .then(response => {
         // console.log(response)
@@ -45,9 +45,9 @@ export class FilesService {
       .catch(this.handleError);
   }
 
-
+  percentage = 0;
   postFile = async (formData : FormData) => {
-    const req = new HttpRequest('POST', ip+'/api/files', formData, {
+    const req = new HttpRequest('POST', ip+'/api/file', formData, {
       reportProgress: true
     });
     return this.http.request(req).subscribe(event => {
@@ -55,10 +55,11 @@ export class FilesService {
       // Look for upload progress events.
       if (event.type === HttpEventType.UploadProgress) {
         // This is an upload progress event. Compute and show the % done:
-        const percentDone = Math.round(100 * event.loaded / event.total);
-        console.log(`File is ${percentDone}% uploaded.`);
+        this.percentage = Math.round(100 * event.loaded / event.total);
+        // console.log(`File is ${percentDone}% uploaded.`);
       } else if (event instanceof HttpResponse) {
-        console.log('File is completely uploaded!');
+        // console.log('File is completely uploaded!');
+        this.percentage = 0;
       }
     });
   }

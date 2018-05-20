@@ -76,8 +76,7 @@ export class PropiedadesService {
         return this.http.post(ip + "/api/legajo/", legajo)
             .toPromise()
             .then(response => {
-                // if (response["success"])
-                    return response;
+                return response;
             })
             .catch(this.handleError);
     }
@@ -102,7 +101,6 @@ export class PropiedadesService {
         return this.http.put(ip + "/api/legajo/" + legajo.id, legajo)
             .toPromise()
             .then(response => {
-                // if (response["success"])
                     return response;
             })
             .catch(this.handleError);

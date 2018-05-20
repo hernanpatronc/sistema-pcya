@@ -273,6 +273,8 @@ export class GeneralComponent implements OnInit {
         );
       } else {
         let response = await this.propiedadesService.postProperty(this.propiedad);
+        console.log(response);
+        
         this.notifyService.newNotification(
           "success",
           "Se ha actualizado el legajo"

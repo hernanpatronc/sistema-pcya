@@ -53,7 +53,7 @@ export class PropertyComponent implements OnInit {
         let textoAReemplazar = this.propiedad[substring.replace(/(\{|\})/g, "")];
         // console.log(textoAReemplazar);
         if (substring.replace(/(\{|\})/g, "")=="FECHA"){
-          let fecha = textoAReemplazar as Date;
+          let fecha = new Date(textoAReemplazar as number);
           textoAReemplazar = fecha.getDate() + "/" + (fecha.getMonth()+1) + "/" + fecha.getFullYear();
         }
         return textoAReemplazar ? textoAReemplazar : "";

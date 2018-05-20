@@ -1,0 +1,44 @@
+.form-sistema {
+  background-color: rgb(250,191,143) !important;
+}
+.form-gerencia {
+  background-color: #00FF00;
+}
+.form-datos {
+  background-color: rgb(204,255,255);
+  padding: 0 !important;
+  text-align: center;
+  vertical-align: middle !important;
+}
+.form-formulas {
+  background-color: rgb(255,255,153);
+}
+.form-publicidad {
+  background-color: rgb(228,223,236);
+}
+
+.form-datos input {
+  border: none;
+  background-color: rgb(204,255,255);
+  width: 50%;
+  height: 100%;
+  text-align: center;
+}
+body {
+  font-size: 0.5rem;
+  font-weight: 400;
+}
+
+.table td, .table th {
+  padding-top : 0;
+  padding-bottom : 0;
+}
+
+@media print{
+  @page{
+    size: landscape
+  }
+  body{
+    -webkit-print-color-adjust: exact !important;
+  }
+}
