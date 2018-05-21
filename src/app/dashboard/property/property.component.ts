@@ -44,6 +44,10 @@ export class PropertyComponent implements OnInit {
   propiedad = new Property();
   @ViewChild(GeneralComponent) generalComp: GeneralComponent;
 
+  goToFiles() {
+    this.router.navigate(['/files'], {queryParams: {path:"files/" + this.propiedad.LEGAJO}})
+  }
+
   print = () => {
     // ficha_interna.replace()
     

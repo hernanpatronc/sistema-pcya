@@ -16,18 +16,37 @@ import { ElectronService } from 'ngx-electron';
 export class TableComponent implements OnInit {
     constructor(public propiedadesService: PropiedadesService, public notifyService: NotifyService, public router: Router, public activatedRoute: ActivatedRoute, private _electronService: ElectronService) {}
     currentOffset = 0;
+    currentPage = 1;
+    limit = 20;
+    count = 0;
 
-    async updateOffset(){
-        this.currentOffset += 50;
-        this.propiedades = await this.propiedadesService.getTableProperties(this.currentOffset,50);
-        this.displayingPropiedades = this.propiedades;
-    }
+
+    getPage(page) {
+        switch (page) {
+            case "prev":
+                this.currentOffset -= this.limit;
+                this.currentPage -= 1;
+                this.getProperties();
+                break;
+            case "next":
+                this.currentOffset += this.limit;
+                this.currentPage += 1;
+                this.getProperties();
+                break;
+            default:
+                this.currentOffset = this.limit * (page-1);
+                this.currentPage = page;
+                this.getProperties();
+                break;
+        }
+
+    }    
 
     ngOnInit() {
         this.getProperties();
     }
     async getProperties() {
-        this.propiedades = await this.propiedadesService.getTableProperties(0,50);
+        this.propiedades = await this.propiedadesService.getTableProperties(0,this.limit);
         this.displayingPropiedades = this.propiedades;
     }
 

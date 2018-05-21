@@ -246,6 +246,10 @@ a.article, a.article:hover {
       display: none;
     }
 
+    .pagination {
+        display: none;
+    }
+
     .card {
         border: none;
     }

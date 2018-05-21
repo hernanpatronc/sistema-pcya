@@ -83,7 +83,7 @@ export class FieldsService {
 
   getSubzonas(tipo : string): Promise<Fields[]> {
     return this.http
-      .get(ip + '/api/field?where={"columna":"SUB_ZONA","tipo":"' +tipo + '"}&sort=nombre ASC')
+      .get(ip + '/api/field?where={"columna":"SUB_ZONA","tipo":"' +tipo + '"}&limit=100&sort=nombre ASC')
       .toPromise()
       .then(response => {
         // console.log(response)
@@ -105,7 +105,7 @@ export class FieldsService {
 
   getSubcodigos(tipo: string): Promise<Fields[]> {
     return this.http
-      .get(ip + '/api/field?where={"columna":"COD_CAP2","tipo":"' +tipo + '"}&sort=nombre ASC')
+      .get(ip + '/api/field?where={"columna":"COD_CAP2","tipo":"' +tipo + '"}&limit=100&sort=[{"updatedAt":"DESC"},{"nombre":"ASC"}]')
       .toPromise()
       .then(response => {
         // console.log(response)

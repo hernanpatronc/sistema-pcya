@@ -74,6 +74,7 @@
                             <button type="submit" class="btn btn-danger btn-fill" *ngIf="!propiedadesService.disableForm" (click)="resetProperty(); propiedadesService.disableForm = true;">Cancelar</button>
 
                             <button type="submit" class="btn btn-info btn-fill" *ngIf="propiedadesService.disableForm" (click)="propiedadesService.disableForm = false;">Modificar</button>
+                            <button type="submit" class="btn btn-warning btn-fill" *ngIf="propiedadesService.disableForm" (click)="goToFiles()">Ver archivos</button>
                     </div>
                 </div>
         </div>

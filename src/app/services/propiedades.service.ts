@@ -17,7 +17,7 @@ export class PropiedadesService {
     constructor(private http: HttpClient, private router: Router, private activatedRoute: ActivatedRoute) { }
 
     getTableProperties = (offset : number, limit:number) => {
-        return this.http.get(ip + "/api/legajo?limit=" + limit + "&skip=" + offset + "&select=LEGAJO,NOMBRE_INM,OFER_REQUE,ESTADO,TRADER")
+        return this.http.get(ip + "/api/legajo?limit=" + limit + "&skip=" + offset + '&sort=[{"updatedAt":"DESC"},{"id":"ASC"}]&select=LEGAJO,NOMBRE_INM,OFER_REQUE,ESTADO,TRADER')
             .toPromise()
             .then(response => {
                     return response as Property[];

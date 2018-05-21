@@ -55,6 +55,10 @@ export class GeneralComponent implements OnInit {
   cerrarLegajo = () => {
     this.propiedad.LEGAJO_REQ = this.legajoCierre.LEGAJO;
     this.propiedad.NOM_REQUER = this.legajoCierre.OFER_REQUE;
+    this.propiedad.TRADER_ER = this.legajoCierre.TRADER_ER;
+    this.propiedad.PRODUCT_R = this.legajoCierre.PRODUCT_R;
+    this.propiedad.INFORM_REQ = this.legajoCierre.INFORM_REQ;
+    this.propiedad.INFORM_RE2 = this.legajoCierre.INFORM_RE2;
   }
 
   selectLegajo = (legajo: Property) => {
