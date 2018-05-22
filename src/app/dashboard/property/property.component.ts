@@ -45,7 +45,14 @@ export class PropertyComponent implements OnInit {
   @ViewChild(GeneralComponent) generalComp: GeneralComponent;
 
   goToFiles() {
-    this.router.navigate(['/files'], {queryParams: {path:"files/" + this.propiedad.LEGAJO}})
+
+    if (this._electronService.isElectronApp){
+      this._electronService.ipcRenderer.send("open","\\\\10.10.10.19\\files\\"+ this.propiedad.LEGAJO)
+    }
+    else {
+      this.router.navigate(['/files'], {queryParams: {path:"files/" + this.propiedad.LEGAJO}})
+    }
+    
   }
 
   print = () => {

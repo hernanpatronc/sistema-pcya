@@ -9,9 +9,30 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="btn-group-vertical btn-block" role="group" aria-label="Basic example">
+                  
+                  <a class="btn btn-block btn-outline-info" routerLink="table">
+                    <div class="row">
+                      <div class="col-md-1 offset-md-1">
+                        <i class="fa fa-table"></i>
+                      </div>
+                      <div class="col-md-2">
+                        &nbsp;Listado y Búsqueda de legajos
+                      </div>
+                    </div>
+                  </a>
+                  <a class="btn btn-block btn-outline-info" routerLink="property">
+                    <div class="row">
+                      <div class="col-md-1 offset-md-1">
+                        <i class="fa fa-home"></i>
+                      </div>
+                      <div class="col-md-2">
+                        &nbsp;ABM de legajos
+                      </div>
+                    </div>
+                  </a>
                   <a class="btn btn-block btn-outline-info" routerLink="dashboard">
                     <div class="row">
-                      <div class="col-md-1 offset-md-3">
+                      <div class="col-md-1 offset-md-1">
                         <i class="fa fa-pie-chart"></i>
                       </div>
                       <div class="col-md-2">
@@ -19,29 +40,59 @@
                       </div>
                     </div>
                   </a>
-                  <a class="btn btn-block btn-outline-info" routerLink="table">
+                  <a class="btn btn-block btn-outline-info" >
                     <div class="row">
-                      <div class="col-md-1 offset-md-3">
-                        <i class="fa fa-table"></i>
-                      </div>
-                      <div class="col-md-2">
-                        &nbsp;Listado de legajos
-                      </div>
-                    </div>
-                  </a>
-                  <a class="btn btn-block btn-outline-info" routerLink="property">
-                    <div class="row">
-                      <div class="col-md-1 offset-md-3">
+                      <div class="col-md-1 offset-md-1">
                         <i class="fa fa-home"></i>
                       </div>
                       <div class="col-md-2">
-                        &nbsp;Alta y modificación de legajos
+                        &nbsp;Isologotipos, papelería y otros
+                      </div>
+                    </div>
+                  </a>
+                  <a class="btn btn-block btn-outline-info" >
+                    <div class="row">
+                      <div class="col-md-1 offset-md-1">
+                        <i class="fa fa-home"></i>
+                      </div>
+                      <div class="col-md-2">
+                        &nbsp;Porcentaje a cobrar
+                      </div>
+                    </div>
+                  </a>
+                  <a class="btn btn-block btn-outline-info" >
+                    <div class="row">
+                      <div class="col-md-1 offset-md-1">
+                        <i class="fa fa-home"></i>
+                      </div>
+                      <div class="col-md-2">
+                        &nbsp;Tasaciones
+                      </div>
+                    </div>
+                  </a>
+                  <a class="btn btn-block btn-outline-info" >
+                    <div class="row">
+                      <div class="col-md-1 offset-md-1">
+                        <i class="fa fa-home"></i>
+                      </div>
+                      <div class="col-md-2">
+                        &nbsp;Mapas y rutas
+                      </div>
+                    </div>
+                  </a>
+                  <a class="btn btn-block btn-outline-info" >
+                    <div class="row">
+                      <div class="col-md-1 offset-md-1">
+                        <i class="fa fa-home"></i>
+                      </div>
+                      <div class="col-md-2">
+                        &nbsp;Planillas varias
                       </div>
                     </div>
                   </a>
                   <a class="btn btn-block btn-outline-info" routerLink="user">
                     <div class="row">
-                      <div class="col-md-1 offset-md-3">
+                      <div class="col-md-1 offset-md-1">
                         <i class="fa fa-users"></i>
                       </div>
                       <div class="col-md-2">
@@ -49,9 +100,9 @@
                       </div>
                     </div>
                   </a>
-                  <a class="btn btn-block btn-outline-info" routerLink="files">
+                  <a class="btn btn-block btn-outline-info" (click)="legajosClick()">
                     <div class="row">
-                      <div class="col-md-1 offset-md-3">
+                      <div class="col-md-1 offset-md-1">
                         <i class="fa fa-file"></i>
                       </div>
                       <div class="col-md-2">
@@ -59,7 +110,47 @@
                       </div>
                     </div>
                   </a>
-
+                  <a class="btn btn-block btn-outline-info" >
+                    <div class="row">
+                      <div class="col-md-1 offset-md-1">
+                        <i class="fa fa-home"></i>
+                      </div>
+                      <div class="col-md-2">
+                        &nbsp;Publicidad
+                      </div>
+                    </div>
+                  </a>
+                  <a class="btn btn-block btn-outline-info" >
+                    <div class="row">
+                      <div class="col-md-1 offset-md-1">
+                        <i class="fa fa-home"></i>
+                      </div>
+                      <div class="col-md-2">
+                        &nbsp;Control y seguimiento Maixon
+                      </div>
+                    </div>
+                  </a>
+                  <a class="btn btn-block btn-outline-info" >
+                    <div class="row">
+                      <div class="col-md-1 offset-md-1">
+                        <i class="fa fa-home"></i>
+                      </div>
+                      <div class="col-md-2">
+                        &nbsp;Legislación y normativas inmobiliarias
+                      </div>
+                    </div>
+                  </a>
+                  <a class="btn btn-block btn-outline-info" >
+                    <div class="row">
+                      <div class="col-md-1 offset-md-1">
+                        <i class="fa fa-home"></i>
+                      </div>
+                      <div class="col-md-2">
+                        &nbsp;Contratos, recibos y otros
+                      </div>
+                    </div>
+                  </a>
+                  
                 </div>
               </div>
             </div>

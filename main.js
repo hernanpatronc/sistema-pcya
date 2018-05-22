@@ -35,6 +35,11 @@ app.on('window-all-closed', function () {
     app.quit()
   }
 })
+
+ipcMain.on("open", (event,args)=>{
+  shell.openItem(args)
+});
+
 let print_win;
 ipcMain.on("print", (event, args) => {
   if (args) {
