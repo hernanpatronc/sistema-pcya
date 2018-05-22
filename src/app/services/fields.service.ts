@@ -40,7 +40,7 @@ export class FieldsService {
   }
   getEstados(): Promise<Fields[]> {
     return this.http
-      .get(ip + '/api/field?where={"columna": {"contains" : "ESTADO"}}&sort=nombre ASC')
+      .get(ip + '/api/field?where={"columna":{"contains":"ESTADO"}}&sort=nombre ASC')
       .toPromise()
       .then(response => {
         // console.log(response)

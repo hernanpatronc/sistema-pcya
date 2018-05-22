@@ -17,7 +17,7 @@ export class PropiedadesService {
     constructor(private http: HttpClient, private router: Router, private activatedRoute: ActivatedRoute) { }
 
     getTableProperties = (offset : number, limit:number) => {
-        return this.http.get(ip + "/api/legajo?limit=" + limit + "&skip=" + offset + '&sort=[{"updatedAt":"DESC"},{"id":"ASC"}]&select=LEGAJO,NOMBRE_INM,OFER_REQUE,ESTADO,TRADER')
+        return this.http.get(ip + "/api/legajo?limit=" + limit + "&skip=" + offset + '&sort=[{"FECHA":"DESC"},{"id":"ASC"}]&select=FECHA,LEGAJO,NOMBRE_INM,OFER_REQUE,ESTADO,TRADER,PRODUCT_O,PRODUCT_R,VAL_TOT')
             .toPromise()
             .then(response => {
                     return response as Property[];
@@ -106,6 +106,16 @@ export class PropiedadesService {
             .catch(this.handleError);
     }
     
+    advancedSearchPropiedades = async (search : object) => {
+        console.log(JSON.stringify(search));
+        
+        return this.http.get(ip + '/api/legajo?where=' + JSON.stringify(search))
+            .toPromise()
+            .then(response => {
+                    return response as Property[];
+            })
+    }
+
     searchPropiedades = (columna : string, busqueda: string) : Promise<Property[]> => {
         return this.http.get(ip + '/api/legajo?where={"' + columna + '": {"contains" : "' + busqueda + '"}}')
             .toPromise()

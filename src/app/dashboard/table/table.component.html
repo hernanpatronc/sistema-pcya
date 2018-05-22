@@ -87,25 +87,31 @@
                             <table class="table table-hover table-striped">
                                 <thead>
                                     <tr>
+                                        <th>Fecha</th>
                                         <th>Legajo</th>
                                         <th>Nombre</th>
                                         <th>Oferente/Requerente</th>
                                         <th>Estado</th>
                                         <th>Trader</th>
+                                        <th>Productor</th>
+                                        <th>Precio</th>
                                     </tr>
                                     <tbody>
                                         <tr (click)="propDetail(prop)" style="cursor: pointer;" *ngFor="let prop of displayingPropiedades">
+                                            <td>{{prop.FECHA | date : 'dd/MM/yyyy'}}</td>
                                             <td>{{prop.LEGAJO}}</td>
                                             <td>{{prop.NOMBRE_INM}}</td>
                                             <td>{{prop.OFER_REQUE}}</td>
                                             <td>{{prop.ESTADO}}</td>
                                             <td>{{prop.TRADER}}</td>
+                                            <td>{{prop.OFR == "1" ? prop.PRODUCT_O : prop.PRODUCT_R}}</td>
+                                            <td>{{prop.VAL_TOT}}</td>
                                         </tr>
                                     </tbody>
                             </table>
 
                         </div>
-                        <nav aria-label="Page navigation example">
+                        <nav *ngIf="!recentSearched" aria-label="Page navigation example">
                             <ul class="pagination justify-content-center">
                                 <li *ngIf="currentPage!=1" class="page-item">
                                     <a class="page-link" style="color: blue" (click)="getPage('prev')" aria-label="Previous">
@@ -119,6 +125,13 @@
                                         <span aria-hidden="true">&raquo;</span>
                                         <span class="sr-only">Next</span>
                                     </a>
+                                </li>
+                                <li>
+                                    <select #limitSelect (change)="updateLimit(limitSelect.value)" class="form-control">
+                                        <option value="20">20</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select>
                                 </li>
                             </ul>
                         </nav>
@@ -142,53 +155,51 @@
                 <form #fieldForm="ngForm">
 
                     <label>Buscar</label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Desde estado</label>
+                                <select #desde class="form-control">
+                                    <option *ngFor="let estado of estados" [value]="estado.nombre">{{estado.nombre + '|' + estado.descripcion}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Hasta estado</label>
+                                <select #hasta class="form-control">
+                                    <option *ngFor="let estado of estados" [value]="estado.nombre">{{estado.nombre + '|' + estado.descripcion}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="form-group">
-                        <label>Legajo</label>
-                        <select class="form-control">
-                            <option value="LEGAJO">Legajo</option>
-                            <option value="OFER_REQUE">Requerente</option>
+                        <label>Tipo de Inmueble</label>
+                        <select #inmu class="form-control">
+                            <option *ngFor="let inmu of tipos_inmu" [value]="inmu.nombre">{{inmu.nombre + '|' + inmu.descripcion}}</option>
                         </select>
                     </div>
                     <div class="form-group">
-                            <label>Legajo</label>
-                            <select class="form-control">
-                                <option value="LEGAJO">Legajo</option>
-                                <option value="OFER_REQUE">Requerente</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                                <label>Legajo</label>
-                                <select class="form-control">
-                                    <option value="LEGAJO">Legajo</option>
-                                    <option value="OFER_REQUE">Requerente</option>
-                                </select>
-                            </div>
-                    <div class="input-group-addon">
-                        <button class="btn btn-primary">
-                            <i class="fa fa-search">&nbsp; Buscar</i>
-                        </button>
+                        <label>Provincia</label>
+                        <select #prov class="form-control">
+                            <option *ngFor="let prov of provincias" [value]="prov.nombre">{{prov.nombre + '|' + prov.descripcion}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo de operación</label>
+                        <select #operacion class="form-control">
+                            <option value="1">OFRECIMIENTO</option>
+                            <option value="2">REQUERIMIENTO</option>
+                        </select>
                     </div>
                 </form>
-                <table class="table">
-                    <thead>
-                        <th>
-                            Legajo
-                        </th>
-                        <th>
-                            Requerente
-                        </th>
-                    </thead>
-                    <tbody>
-                        <tr data-dismiss="modal">
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+                <button type="button" class="btn btn-primary" (click)="searchAdvanced(desde.value,hasta.value,inmu.value,prov.value,operacion.value)"
+                    data-dismiss="modal">
+                    <i class="fa fa-search"></i>&nbsp; Buscar</button>
             </div>
         </div>
     </div>
