@@ -78,6 +78,10 @@ export class GeneralComponent implements OnInit {
     this.subcodigos = await this.fieldsService.getSubcodigos(value);
   }
 
+  updateNombre = (tipo : string)  => {
+    this.propiedad[tipo] = this.propiedad[tipo].toLocaleUpperCase();
+  }
+
   OnLegajoPropertiesChanges() {
     this.estados = this.globalEstados.filter((val, index, array) => {
       return (
@@ -116,6 +120,7 @@ export class GeneralComponent implements OnInit {
       this.propiedad.TIPO_OPERA &&
       this.propiedad.PAIS
     ) {
+      this.propiedad.NOMBRE_INM = "XXXXXXXXXXXXXXXXXXXXXX";
       this.propiedad.LEGAJO =
         this.propiedad.PAIS.substring(0, 1) +
         "-" +
@@ -129,6 +134,10 @@ export class GeneralComponent implements OnInit {
         "-" +
         parseInt(this.lastIndexReq.nombre);
     }
+  }
+
+  updateNombreInmueble = (value : string) => {
+    this.propiedad.NOMBRE_INM = this.propiedad.OFR == '1' ? this.lastIndexOfr.nombre + value.substr(0,2) + '-' : "XXXXXXXXXXXXXXXXXXXXXX";
   }
 
   createField = async () => {
@@ -260,7 +269,7 @@ export class GeneralComponent implements OnInit {
       this.propiedadesService.disableForm = true;
     }
     else {
-      this.notifyService.newNotification("danger", "Hay campos invalidos")
+      this.notifyService.newNotification("danger", "Hay campos invalidos (marcados en rojo)")
     }
 
   }

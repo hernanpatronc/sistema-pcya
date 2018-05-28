@@ -1,15 +1,18 @@
 {
-  "name": "sistinmo-frontend-cli",
-  "version": "0.0.0",
+  "name": "sistema-inmobiliario-pcya",
+  "version": "1.0.2",
   "license": "MIT",
+  "description": "Sistema CRM de gestión de Inmuebles de Patrón Costas y Asociados",
+  "author": "Hernán Patrón Costas",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --prod",
+    "start": "npm install && electron .",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "electron": "electron ."
+    "electron": "electron .",
+    "pack": "build --dir",
+    "dist": "build"
   },
   "main": "main.js",
   "private": true,
@@ -29,6 +32,7 @@
     "angular2-google-maps": "~0.17.0",
     "chartist": "~0.9.8",
     "core-js": "^2.4.1",
+    "electron-updater": "^2.21.10",
     "jquery": "^3.1.1",
     "ng-chartist": "1.1.0",
     "ngx-contextmenu": "^4.2.0",
@@ -48,6 +52,7 @@
     "@types/node": "~6.0.60",
     "codelyzer": "^4.0.1",
     "electron": "^2.0.0",
+    "electron-builder": "^20.14.7",
     "jasmine-core": "~2.8.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~2.0.0",
@@ -59,5 +64,24 @@
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
     "typescript": "~2.5.3"
+  },
+  "build": {
+    "publish": [
+      {
+        "provider": "generic",
+        "url": "http://localhost:1337/sistema"
+      }
+    ],
+    "directories": {
+      "output": "build"
+    },
+    "appId": "com.pcya.sistemainmobiliario",
+    "nsis": {
+      "perMachine": true
+    },
+    "win" : {
+      "target" : "nsis",
+      "icon" : "dist/favicon.ico"
+    }
   }
 }

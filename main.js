@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain, dialog, shell } = require('electron')
 const fs = require('fs');
+const {autoUpdater} = require("electron-updater");
 
 let win;
 
@@ -12,18 +13,20 @@ function createWindow() {
     icon: `file://${__dirname}/dist/assets/logo.png`
   })
 
+  win.maximize();
 
   win.loadURL(`file://${__dirname}/dist/index.html`)
 
   //// uncomment below to open the DevTools.
   // win.webContents.openDevTools()
-
+  
   // Event when the window is closed.
   win.on('closed', function () {
     win = null
   })
 }
 
+autoUpdater.checkForUpdatesAndNotify();
 // Create window on electron intialization
 app.on('ready', createWindow)
 
@@ -43,6 +46,8 @@ ipcMain.on("open", (event,args)=>{
 let print_win;
 ipcMain.on("print", (event, args) => {
   if (args) {
+    // console.log(args]);
+    
     let html = args
     print_win = new BrowserWindow({ autoHideMenuBar: true, show: false });
     print_win.loadURL("data:text/html;charset=utf-8," + encodeURI(html));
@@ -52,7 +57,10 @@ ipcMain.on("print", (event, args) => {
   }
 
   // print_win.show();
-  dialog.showSaveDialog(print_win, {}, function (file_path) {
+  dialog.showSaveDialog(print_win, {
+    defaultPath: 'impresion.pdf',
+    filters: [{extensions: ".pdf"}]
+  }, function (file_path) {
     if (file_path) {
       print_win.webContents.printToPDF({
         landscape: false,

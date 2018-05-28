@@ -15,7 +15,7 @@ export class MenuComponent implements OnInit {
 
   legajosClick = () => {
     if (!this._electronService.isElectronApp) {
-      this.rotuer.navigate(['/files'], {queryParams : {path : "files"}})
+      this.rotuer.navigate(['/files'])
     }
     else {
       this._electronService.ipcRenderer.send("open","\\\\10.10.10.19\\files");

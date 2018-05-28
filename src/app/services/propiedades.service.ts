@@ -107,9 +107,7 @@ export class PropiedadesService {
     }
     
     advancedSearchPropiedades = async (search : object) => {
-        console.log(JSON.stringify(search));
-        
-        return this.http.get(ip + '/api/legajo?where=' + JSON.stringify(search))
+        return this.http.get(ip + '/api/legajo?where=' + JSON.stringify(search) + '&limit=1000')
             .toPromise()
             .then(response => {
                     return response as Property[];

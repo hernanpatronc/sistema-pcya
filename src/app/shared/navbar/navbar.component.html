@@ -2,18 +2,25 @@
     <div class="container-fluid">
 
         <div class="navbar-header">
+            <button type="button" onclick="window.history.back()" class="btn btn-success">
+                <i class="fa fa-arrow-left"></i>
+            </button>
+            <button type="button" onclick="window.history.forward()" class="btn btn-success">
+                    <i class="fa fa-arrow-right"></i>
+                </button>
             <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
-                    <i class="fa fa-bars"></i>
+                <i class="fa fa-bars"></i>
             </button>
         </div>
 
-        
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a class="btn btn-success navbar-btn"  routerLink="/">Menu</a>
-                    <a class="btn btn-danger navbar-btn"  routerLink="/login">Salir</a>
-                </li>
-                
-            </ul>
+
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a class="btn btn-success navbar-btn" routerLink="/">Menu</a>
+                <a class="btn btn-danger navbar-btn" routerLink="/login">Salir</a>
+            </li>
+
+        </ul>
     </div>
 </nav>

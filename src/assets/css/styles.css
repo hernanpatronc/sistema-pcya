@@ -9,7 +9,7 @@
 }
 
 .ng-invalid:not(form).ng-touched  {
-    border: 1px solid #a94442; /* red */
+    border: 2px solid #a94442; /* red */
 }
 
 body {

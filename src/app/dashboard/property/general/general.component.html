@@ -4,16 +4,16 @@
             <div class="row">
                 <div class="col-md-9">
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label>Fecha</label>
-                                <input required [disabled]="propiedadesService.disableForm" type="date" class="form-control" name="fecha" [ngModel]="this.propiedad.FECHA | date:'yyyy-MM-dd'"
+                                <input required disabled type="date" class="form-control" name="fecha" [ngModel]="this.propiedad.FECHA | date:'yyyy-MM-dd'"
                                     (ngModelChange)="this.propiedad.FECHA=$event">
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label>Ofrecimiento</label>
+                                <label>Ofrec./Requer. *</label>
                                 <select [disabled]="propiedadesService.disableForm || !editable" required class="form-control" name="OFR" (change)="OnLegajoPropertiesChanges()"
                                     [(ngModel)]="this.propiedad.OFR" name="OFR">
                                     <option value="1">1 | Ofrecimiento</option>
@@ -23,7 +23,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label>Tipo de operacion</label>
+                                <label>Tipo de operacion *</label>
                                 <select [disabled]="propiedadesService.disableForm || !editable" class="form-control" required 
                                     (change)="OnLegajoPropertiesChanges()" [(ngModel)]="this.propiedad.TIPO_OPERA" name="TIPO_OPERA">
                                     <option value="CV">CV | Compraventa</option>
@@ -33,16 +33,16 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label>País</label>
+                                <label>País *</label>
                                 <select [disabled]="propiedadesService.disableForm || !editable" required class="form-control" 
                                     (change)="OnLegajoPropertiesChanges()" [(ngModel)]="this.propiedad.PAIS" name="PAIS">
                                     <option *ngFor="let pais of paises" [value]="pais.nombre">{{pais.nombre + ' | ' + pais.descripcion}}</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="form-group">
-                                <label>Tipo de inmueble</label>
+                                <label>Tipo de inmueble *</label>
                                 <select [disabled]="propiedadesService.disableForm || !editable" required class="form-control" 
                                     (change)="OnLegajoPropertiesChanges(); propiedadChanged.emit('Cambiado')" [(ngModel)]="this.propiedad.TIPO_INMU" name="TIPO_INMU">
                                     <option *ngFor="let inmu of tipo_inmus" [value]="inmu.nombre">{{inmu.nombre + ' | ' + inmu.descripcion}}</option>
@@ -54,7 +54,7 @@
                     <div class="row">
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label>Provincia</label>
+                                <label>Provincia *</label>
                                 <select [disabled]="propiedadesService.disableForm || !editable" required #zona class="form-control" 
                                     (change)="onZonaChosen(zona.value)" [(ngModel)]="this.propiedad.ZONA" name="ZONA">
                                     <option *ngFor="let prov of provincias" [value]="prov.nombre">{{prov.nombre + ' | ' + prov.descripcion}}</option>
@@ -64,7 +64,7 @@
 
                         <div class="col-md-7">
                             <div class="form-group">
-                                <label>Estado</label>
+                                <label>Estado *</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <button (click)="newField(this.propiedad.OFR == '1' ? 'ESTADO_OFR' : 'ESTADO_REQ')" data-toggle="modal" data-target="#addField" class="btn btn-outline btn-outline-success">
@@ -85,8 +85,8 @@
 
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Categoría por Vínculo</label>
-                                <select [disabled]="propiedadesService.disableForm" class="form-control" name="caracter" [(ngModel)]="this.propiedad.CARACTER" name="CARACTER"
+                                <label>Categoría por Vínculo *</label>
+                                <select [disabled]="propiedadesService.disableForm" required class="form-control" name="caracter" [(ngModel)]="this.propiedad.CARACTER" name="CARACTER"
                                     (change)="OnLegajoPropertiesChanges()">
                                     <option value="OPER">Operación</option>
                                     <option value="DATO">Sólo dato</option>
@@ -118,8 +118,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Oferente/Requerente</label>
-                        <input [disabled]="propiedadesService.disableForm" required type="text" class="form-control" 
+                        <label>Oferente/Requerente *</label>
+                        <input [disabled]="propiedadesService.disableForm" (input)="updateNombre('OFER_REQUE')" required type="text" class="form-control" 
                             [(ngModel)]="this.propiedad.OFER_REQUE" name="OFER_REQUE">
                     </div>
                 </div>
@@ -166,8 +166,8 @@
             <div class="row">
                 <div class="col-md-2">
                     <div class="form-group">
-                        <label>Trader</label>
-                        <select [disabled]="propiedadesService.disableForm" class="form-control"  [(ngModel)]="this.propiedad.TRADER" name="TRADER">
+                        <label>Trader *</label>
+                        <select [disabled]="propiedadesService.disableForm" required class="form-control" (change)="updateNombreInmueble(traderSelect.value)" #traderSelect [(ngModel)]="this.propiedad.TRADER" name="TRADER">
                             <option *ngFor="let trader of traders" [value]="trader.nombre">{{trader.nombre+ ' | ' + trader.descripcion}}</option>
                         </select>
                     </div>
@@ -184,7 +184,7 @@
                 <div class="col-md-2" *ngIf="propiedad.OFR == '1'">
                     <div class="form-group">
                         <label>Prod. Ofr.</label>
-                        <select [disabled]="propiedadesService.disableForm" class="form-control"  [(ngModel)]="this.propiedad.PORDUCT_O" name="PORDUCT_O">
+                        <select [disabled]="propiedadesService.disableForm" class="form-control"  [(ngModel)]="this.propiedad.PRODUCT_O" name="PRODUCT_O">
                             <option *ngFor="let trader of traders" [value]="trader.nombre">{{trader.nombre+ ' | ' + trader.descripcion}}</option>
                         </select>
 
@@ -193,7 +193,7 @@
                 <div class="col-md-3" *ngIf="propiedad.OFR == '1'">
                     <div class="form-group">
                         <label>Coprod. Ofr.</label>
-                        <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" 
+                        <input [disabled]="propiedadesService.disableForm"  type="text" class="form-control" 
                             [(ngModel)]="this.propiedad.INFOR1" name="INFOR1">
                     </div>
                 </div>
@@ -210,7 +210,7 @@
                 <div class="col-md-2" *ngIf="propiedad.OFR == '1'">
                     <div class="form-group">
                         <label>Co-trader</label>
-                        <select [disabled]="propiedadesService.disableForm" class="form-control" [name]="this.propiedad.OFR == '1' ? 'TRADER_EO' : 'TRADER_ER'" [(ngModel)]="this.propiedad.OFR == '1' ? this.propiedad.TRADER_EO : this.propiedad.TRADER_ER">
+                        <select [disabled]="propiedadesService.disableForm" #cotraderSelect (change)="updateNombreInmueble(cotraderSelect.value)" class="form-control" [name]="this.propiedad.OFR == '1' ? 'TRADER_EO' : 'TRADER_ER'" [(ngModel)]="this.propiedad.OFR == '1' ? this.propiedad.TRADER_EO : this.propiedad.TRADER_ER">
                             <option *ngFor="let trader of traders" [value]="trader.nombre">{{trader.nombre+ ' | ' + trader.descripcion}}</option>
                         </select>
 
@@ -261,8 +261,8 @@
             <div class="row">
                 <div class="col-md-9">
                     <div class="form-group">
-                        <label>Nombre Inmueble</label>
-                        <input required maxlength="60" [disabled]="propiedadesService.disableForm || !editable" type="text" class="form-control"
+                        <label>Nombre Inmueble *</label>
+                        <input required maxlength="60" (input)="updateNombre('NOMBRE_INM')" #nombreInmu [disabled]="propiedadesService.disableForm || !editable || propiedad.OFR == '2'" type="text" class="form-control"
                              [(ngModel)]="this.propiedad.NOMBRE_INM" name="NOMBRE_INM">
                     </div>
                 </div>
@@ -280,7 +280,7 @@
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
-                        <label>Codigo</label>
+                        <label>Codigo *</label>
                         <div class="input-group">
                             <div class="input-group-addon">
                                 <button (click)="newField('COD_CAP')" data-toggle="modal" data-target="#addField" class="btn btn-outline btn-outline-success">
@@ -432,7 +432,7 @@
                     <div class="form-group">
                         <label>Dist. a ruta</label>
                         <div class="input-group">
-                            <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" 
+                            <input [disabled]="propiedadesService.disableForm" type="number" class="form-control" 
                                 [(ngModel)]="this.propiedad.KIL_DESDE_" name="KIL_DESDE_">
                             <div class="input-group-addon">
                                 km
@@ -445,7 +445,7 @@
                     <div class="form-group">
                         <label>Dist. a asfalto</label>
                         <div class="input-group">
-                            <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" 
+                            <input [disabled]="propiedadesService.disableForm" type="number" class="form-control" 
                                 [(ngModel)]="this.propiedad.KIL_A_CAMI" name="KIL_A_CAMI">
                             <div class="input-group-addon">
                                 km
@@ -482,8 +482,21 @@
                             </div>
                             <div class="form-group">
                                 <label>Publ. hasta</label>
-                                <input type="text" class="form-control" [disabled]="propiedadesService.disableForm" 
+                                <select type="text" class="form-control" [disabled]="propiedadesService.disableForm" 
                                     [(ngModel)]="this.propiedad.ZP_DE" name="ZP_DE">
+                                <option>Ene</option>
+                                <option>Feb</option>
+                                <option>Mar</option>
+                                <option>Abr</option>
+                                <option>May</option>
+                                <option>Jun</option>
+                                <option>Jul</option>
+                                <option>Ago</option>
+                                <option>Sep</option>
+                                <option>Oct</option>
+                                <option>Nov</option>
+                                <option>Dic</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -502,8 +515,21 @@
                             </div>
                             <div class="form-group">
                                 <label>Publ. hasta</label>
-                                <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" 
+                                <select [disabled]="propiedadesService.disableForm" type="text" class="form-control" 
                                     [(ngModel)]="this.propiedad.TEL_INFOR2" name="TEL_INFOR2">
+                                    <option>Ene</option>
+                                <option>Feb</option>
+                                <option>Mar</option>
+                                <option>Abr</option>
+                                <option>May</option>
+                                <option>Jun</option>
+                                <option>Jul</option>
+                                <option>Ago</option>
+                                <option>Sep</option>
+                                <option>Oct</option>
+                                <option>Nov</option>
+                                <option>Dic</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -527,8 +553,21 @@
                             </div>
                             <div class="form-group">
                                 <label>Mes vto. campaña</label>
-                                <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" 
+                                <select [disabled]="propiedadesService.disableForm" type="text" class="form-control" 
                                     [(ngModel)]="this.propiedad.ZP_ES" name="ZP_ES">
+                                    <option>Ene</option>
+                                <option>Feb</option>
+                                <option>Mar</option>
+                                <option>Abr</option>
+                                <option>May</option>
+                                <option>Jun</option>
+                                <option>Jul</option>
+                                <option>Ago</option>
+                                <option>Sep</option>
+                                <option>Oct</option>
+                                <option>Nov</option>
+                                <option>Dic</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -546,8 +585,21 @@
                             </div>
                             <div class="form-group">
                                 <label>Mes vto. campaña</label>
-                                <input [disabled]="propiedadesService.disableForm" type="text" class="form-control" 
+                                <select [disabled]="propiedadesService.disableForm" type="text" class="form-control" 
                                     [(ngModel)]="this.propiedad.ZP_ES" name="ZP_ES">
+                                    <option>Ene</option>
+                                <option>Feb</option>
+                                <option>Mar</option>
+                                <option>Abr</option>
+                                <option>May</option>
+                                <option>Jun</option>
+                                <option>Jul</option>
+                                <option>Ago</option>
+                                <option>Sep</option>
+                                <option>Oct</option>
+                                <option>Nov</option>
+                                <option>Dic</option>
+                                </select>
                             </div>
                         </div>
                     </div>
